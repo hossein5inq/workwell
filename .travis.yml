@@ -5,7 +5,17 @@ cache:
     - node_modules
 node_js: 8
 deploy:
-  provider: script
+  - provider: script
   skip_cleanup: true
   script:
     - npx semantic-release
+  - provider: s3
+      access_key_id:
+        secure: XpvyUf9CxfA9AcW60VVbqgFNhPcT5qNAYtZVk6sCH0nl3OGIGIiTKMKGdisdUtmUfE2xxw+dazhO4mLTfe4/amv8S9sL9Yvu/CmIX2yKYkKSwSHTqD9DnMOiLk95iQA0sfa7thID9TRt7IMR41ScAN7Dh1HfzoOsUcg5ZLD+jnfAEfp6hyPN/M6EMk7phJw61bPQ3FjOcxuZnC92O4KOdkHC1N7u6uMNmNupU4XnczWY+3aAZiHpf5QNEYPdeGgcxXyX44KoiCOcemCmt3wCkW9bBzB2KQS7VhQ3msVa1pqe8TSjJoKeXOmVWclA2CssfrSNN5dqql2cgjP+bHRophqGgM9XNT+rJEXgBS0flLu9gCRK0LQl6q3Orp148NtsXhaVOqYehnu14XNtQxLFBWoTacBAeLybvW4MgcJUuXESWdpoyXilmQ+MHckE4Oh60i0mY8nwNqr2p88QadzeWD8svEBLxRnrCGyT6rqQfvG6nvJN1SFxgcAgY73ucRixqjxRAY94fGkAW9qoKCqskPd+XMZ8jTqVLY8dz7T/JomJDSAw5CncVqAw8RzkM2F2Vo51x39mHnz4sw8xHD2sM4Cyzkx8fKeucp/HJ4QY4qVw6I6slg5rk5ot3Mx08LhBkmx0lNI1lVrwbRDnm/gQ+rpG/imGJXcb8/jBKdwR6PU=
+      secret_access_key:
+        secure: KR92eYdFrPLiBm6tknNYDBTGXl+H9v4RezWSTUwEhw0JO9bgb3k/NYRP+6U5Mnz4nfwglmzK5Ie9jTN1kExYGbgqalDtSW2oxg9JbClphAUKEzMWgYpLd/tZt0sv1lgZ58c4Qd/Xyeeicdo4S4ApZN6izXJKJCKgnv6vjHKLaKdJ33c6oYNymciNO6Rf2E3GKhCLq7awS38woGzYRsaRgjnGXA4Y3RLbxq3REUTn+MFOpQBnzYKhKVnl4tjpolEDF5GQpPGjdCtSFlwJ/dYlqTUdG1iOq4uPMhCPSd5QPNJFtbILSz9ufYZ1udYYz6BQVvH8Y5/t2t2UUqSlnkQwf2EOp12GSj/TKfE2qVtXg07YCc8FTpo7oFzagiPV1Y6gH3i+Wkr4BC3yE7kQq3BDG05eltpTSVdr/twdz2Lmr3FczzSDO+Djr4fP+7092UbcV2k7K3pVQh3z/L+RQRuYmyBfy4VH3pItfEi69Q8MKKZtzn8MUidutxEOPh3phInmcSf8RsOsdj3mLhAhCqOyiJq0ptJfhttMcO/y13xBTs4IiM/B4b5imYoACVQrk+auXQzLNcAZG6yANMswBXPd8c5AGXaGlKusIPssA2Oy6zsn+dSLyefq0MKbPzoLhMXZGguGwIZZA78EiUqmtHOiCCFP7dB7MQsHGectOQehHE8=
+      bucket: static.workwell.io
+      skip_cleanup: true
+      region: us-east-1
+      local_dir: dist/js
+      upload-dir: libs/workwell
