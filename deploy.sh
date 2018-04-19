@@ -4,7 +4,7 @@ echo "deploooooooy"
 echo $1
 echo $2
 echo $3
-echo git tag
+git tag
 
 npm-cli-login -u $1 -p $2 -e $3
 npm install
