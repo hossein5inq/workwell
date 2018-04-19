@@ -1,10 +1,11 @@
 #!/bin/bash
 
+echo "deploooooooy"
 echo $1
 echo $2
 echo $3
 
-NPM_USER=$1 NPM_PASS=$2 NPM_EMAIL=$3 npm-cli-login
+npm-cli-login -u $1 -p $2 -e $3
 #npm install
 #npm run dev-no-watch    # to generate the full dist/js/workwell.js file (no minimization/uglification)
 #npm run prod    # to generate the minimized dist/js/workwell.min.js file and the map file associated
