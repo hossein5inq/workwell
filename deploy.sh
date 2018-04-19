@@ -4,14 +4,15 @@ echo "deploooooooy"
 echo $1
 echo $2
 echo $3
+echo git tag
 
 npm-cli-login -u $1 -p $2 -e $3
-#npm install
-#npm run dev-no-watch    # to generate the full dist/js/workwell.js file (no minimization/uglification)
-#npm run prod    # to generate the minimized dist/js/workwell.min.js file and the map file associated
+npm install
+npm run dev-no-watch    # to generate the full dist/js/workwell.js file (no minimization/uglification)
+npm run prod    # to generate the minimized dist/js/workwell.min.js file and the map file associated
 
 # publish our newest version of the lib to npm
-#npm publish
+# npm publish
 
 #bucket="$1"
 
