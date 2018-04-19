@@ -1,15 +1,12 @@
 {
   "name": "workwell",
-  "version": "0.0.0-development",
+  "version": "1.0.51",
   "description": "Workwell JS is the SDK to communicate between a web-application and the Workwell mobile application",
   "main": "src/index.js",
   "scripts": {
-    "commit": "git-cz",
     "prod": "webpack --config webpack.prod.js",
     "dev": "webpack --watch --config webpack.dev.js",
-    "dev-no-watch": "webpack --config webpack.dev.js",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "dev-no-watch": "webpack --config webpack.dev.js"
   },
   "keywords": [
     "workwell",
@@ -19,15 +16,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.19",
-    "commitizen": "^2.9.6",
     "css-loader": "^0.28.11",
-    "cz-conventional-changelog": "^2.1.0",
     "file-loader": "^1.1.11",
-    "semantic-release": "^15.1.7",
-    "semantic-release-cli": "^3.6.6",
     "sinon": "^1.17.7",
     "style-loader": "^0.20.3",
-    "travis-deploy-once": "^4.4.1",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "velocity-animate": "1.5.0",
     "webpack": "^4.5.0",
@@ -37,10 +29,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Workwell/workwell.git"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
   }
 }

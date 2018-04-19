@@ -1,25 +1,12 @@
 #!/bin/bash
 
-echo "deploooooooy"
-echo $1
-echo $2
-echo $3
-git describe
-
-# With --abbrev set to 0, the command can be used to find the closest tagname without any suffix:
-git describe --abbrev=0
-
-# other examples
-git describe --abbrev=0 --tags # gets tag from current branch
-git describe --tags `git rev-list --tags --max-count=1` # gets tags across all branches, not just the current branch
-
 npm-cli-login -u $1 -p $2 -e $3
 npm install
 npm run dev-no-watch    # to generate the full dist/js/workwell.js file (no minimization/uglification)
 npm run prod    # to generate the minimized dist/js/workwell.min.js file and the map file associated
 
 # publish our newest version of the lib to npm
-# npm publish
+npm publish
 
 #bucket="$1"
 
