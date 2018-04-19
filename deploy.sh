@@ -4,7 +4,14 @@ echo "deploooooooy"
 echo $1
 echo $2
 echo $3
-git tag
+git describe
+
+# With --abbrev set to 0, the command can be used to find the closest tagname without any suffix:
+git describe --abbrev=0
+
+# other examples
+git describe --abbrev=0 --tags # gets tag from current branch
+git describe --tags `git rev-list --tags --max-count=1` # gets tags across all branches, not just the current branch
 
 npm-cli-login -u $1 -p $2 -e $3
 npm install
