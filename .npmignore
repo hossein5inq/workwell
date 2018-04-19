@@ -1,0 +1,8 @@
+.idea
+src
+templates
+server.py
+requirements.txt
+webpack.*
+tests
+v2
