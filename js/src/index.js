@@ -368,9 +368,6 @@ var Workwell = {
         }
         var jsonObj = engine.createJSONFrom("core", "track", obj);
         bridge.sendFromJS(JSON.stringify(jsonObj));
-    },
-    hello: function () {
-        console.log("hello");
     }
 };
 
