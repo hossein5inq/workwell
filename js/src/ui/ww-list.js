@@ -62,11 +62,11 @@ function list() {
 
         // in case setType is called after having added listItems
         // to the list, those items need to be updated
-        if (type == "multi-select") {
+        if (type === "multi-select") {
             for (var i = 0; i < items.length; i++) {
                 items[i].setCheckable(true);
             }
-        } else if (type == "single-select") {
+        } else if (type === "single-select") {
             for (var i = 0; i < items.length; i++) {
                 items[i].setSelectable(true);
             }
@@ -76,9 +76,9 @@ function list() {
     this.add = function (listItem) {
         listItem.parent = this;
 
-        if (type == "multi-select") {
+        if (type === "multi-select") {
             listItem.setCheckable(true);
-        } else if (type == "single-select") {
+        } else if (type === "single-select") {
             listItem.setSelectable(true);
         }
 
