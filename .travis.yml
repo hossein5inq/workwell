@@ -4,9 +4,12 @@ node_js:
 cache:
   directories:
     - "node_modules"
+before_install:
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
 install:
   - npm install -g npm-cli-login
 deploy:
   provider: script
-  script: bash deploy.sh $NPM_USERNAME $NPM_PASSWORD $NPM_EMAIL
+  script: bash deploy.sh $NPM_USERNAME $NPM_PASSWORD $NPM_EMAIL $AWS_BUCKET $AWS_ACCESS_ID $AWS_ACCESS_SECRET
   skip_cleanup: true

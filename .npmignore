@@ -6,3 +6,9 @@ requirements.txt
 webpack.*
 tests
 v2
+.npmignore
+.travis.yml
+deploy.sh
+package-lock.json
+css
+fonts
