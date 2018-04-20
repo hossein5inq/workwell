@@ -1,11 +1,11 @@
 #!/bin/bash
 
-npm_user_name = $1
-npm_user_password = $2
-npm_user_email = $3
-aws_bucket = $4
-aws_access_id = $5
-aws_access_secret = $6
+npm_user_name=$1
+npm_user_password=$2
+npm_user_email=$3
+aws_bucket=$4
+aws_access_id=$5
+aws_access_secret=$6
 
 npm-cli-login -u $npm_user_name -p $npm_user_password -e $npm_user_email
 npm install
