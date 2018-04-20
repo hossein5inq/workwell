@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-  - "8"
+  - "iojs"
+  - "7"
 cache:
   directories:
     - "node_modules"
@@ -8,5 +9,5 @@ install:
   - npm install -g npm-cli-login
 deploy:
   provider: script
-  skip_cleanup: true
   script: bash deploy.sh $NPM_USERNAME $NPM_PASSWORD $NPM_EMAIL
+  skip_cleanup: true
