@@ -8,6 +8,7 @@ var ui = require("./ui/ui.js");
 var errorHandler = require("./bridge/error-handler.js");
 var config = require("./bridge/config");
 var constants = require("./bridge/constants");
+const style = require("../../dist/css/workwell.css");
 
 window["Workwell_onShow"] = function () {
     // nothing
