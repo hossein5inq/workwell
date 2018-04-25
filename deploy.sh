@@ -10,7 +10,7 @@ aws_access_secret=$6
 npm-cli-login -u $npm_user_name -p $npm_user_password -e $npm_user_email
 
 # publish our newest version of the lib to npm
-# npm publish
+npm publish
 
 # the version number of the library to deploy (retrieved from package.json)
 version=$(cat package.json \
