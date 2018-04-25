@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "watch": "rollup -c --watch",
-    "build": "rollup -c && NODE_ENV=production rollup -c"
+    "css": "node-sass sass -o dist/css",
+    "build": "npm run css && rollup -c && NODE_ENV=production rollup -c"
   },
   "keywords": [
     "workwell",
