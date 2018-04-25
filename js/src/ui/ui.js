@@ -9,7 +9,6 @@ var pagingIndicator = require("./ww-paging-indicator");
 var textArea = require("./ww-textarea");
 var utils = require("../bridge/utils.js");
 var uiUtils = require("./ui-utils");
-const style = require("../../../css/workwell.css");
 
 module.exports = {
     os: utils.getMobileOperatingSystem(),

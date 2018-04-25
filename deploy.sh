@@ -9,8 +9,7 @@ aws_access_secret=$6
 
 npm-cli-login -u $npm_user_name -p $npm_user_password -e $npm_user_email
 npm install
-npm run dev-no-watch    # to generate the full dist/js/workwell.js file (no minimization/uglification)
-npm run prod    # to generate the minimized dist/js/workwell.min.js file and the map file associated
+npm run build
 
 # publish our newest version of the lib to npm
 npm publish
