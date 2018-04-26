@@ -1,19 +1,35 @@
+@import "../abstracts/variables";
+
+// Button-specific variables (iOS)
+$button-bg-color-ios: white;
+$button-text-color-ios: #1f5295;
+$button-text-color-destructive-ios: #da1e50;
+$button-text-color-active-ios: #94B3D5;
+$button-text-color-destructive-active-ios: #ff699b;
+$button-text-color-disabled-ios: #94B3D5;
+
+// Button-specific variables (material)
+$button-bg-color-material: #1f5295;
+$button-text-color-material: #FFFFFF;
+$button-bg-color-destructive-material: #c1362a;
+$button-text-color-destructive-material: black;
+$button-text-color-active-material: #FFFFFF;
+$button-text-color-destructive-active-material: black;
+$button-text-color-disabled-material: rgba(0, 0, 0, .26);
+$button-bg-color-disabled-material: rgba(79, 79, 79, .26);
+
 .ww-button {
   position: relative;
-  display: inline-block;
   box-sizing: border-box;
   background-clip: padding-box;
-  padding: 0;
   margin: 0;
   font: inherit;
-  color: inherit;
-  background-color: #FFFFFF;
-  color: #1f5295;
+  background-color: $button-bg-color-ios;
+  color: $button-text-color-ios;
   border: none;
   border-top: 0.5px solid #d2d2d2;
   border-bottom: 0.5px solid #d2d2d2;
-  line-height: normal;
-  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  font-family: $ios-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -27,32 +43,22 @@
   overflow: hidden;
   height: auto;
   text-decoration: none;
-  padding: 4px 10px;
   font-size: 16px;
-  line-height: 32px;
   letter-spacing: 0;
   vertical-align: middle;
   -webkit-transition: none;
   transition: none;
-  font-weight: 400;
   line-height: 36px;
   padding: 4px 12px;
   width: 100%;
   text-align: center;
   display: block;
   -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  /* Non-prefixed version, currently
-                                   supported by Chrome and Opera */
 }
 
 .ww-button-destructive {
-  color: #da1e50;
+  color: $button-text-color-destructive-ios;
 }
 
 .ww-button--material {
@@ -60,14 +66,7 @@
   display: inline-block;
   box-sizing: border-box;
   background-clip: padding-box;
-  padding: 0;
-  margin: 0;
   font: inherit;
-  color: inherit;
-  background: transparent;
-  border: none;
-  line-height: normal;
-  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -81,36 +80,30 @@
   overflow: hidden;
   height: auto;
   text-decoration: none;
-  padding: 4px 10px;
-  font-size: 16px;
-  line-height: 32px;
   letter-spacing: 0;
-  color: white;
+  color: $button-text-color-material;
   vertical-align: middle;
-  background-color: #1f5295;
+  background-color: $button-bg-color-material;
   border: 0 solid currentColor;
-  border-radius: 3px;
   -webkit-transition: none;
   transition: none;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
   0 1px 5px 0 rgba(0, 0, 0, .12),
   0 3px 1px -2px rgba(0, 0, 0, .2);
-  font-family: 'Roboto', 'Noto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-weight: 400;
+  font-family: $material-font;
   min-height: 36px;
   line-height: 36px;
   padding: 0 16px;
   text-align: center;
   font-size: 15px;
   width: 94%;
-  margin-left: 3%;
+  margin: 0 0 0 3%;
   border-radius: 2px;
 }
 
 .ww-button-destructive--material {
-  background-color: #c1362a;
-  color: black;
+  background-color: $button-bg-color-destructive-material;
+  color: $button-text-color-destructive-material;
 }
 
 .ww-button:hover {
@@ -123,7 +116,7 @@
 }
 
 .ww-button:active {
-  color: #94B3D5;
+  color: $button-text-color-active-ios;
   -webkit-transition: none;
   transition: none;
 }
@@ -138,13 +131,13 @@
 }
 
 .ww-button-destructive:active {
-  color: #ff699b;
+  color: $button-text-color-destructive-active-ios;
   -webkit-transition: none;
   transition: none;
 }
 
 .ww-button--material:active {
-  color: #fff;
+  color: $button-text-color-active-material;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
   0 1px 18px 0 rgba(0, 0, 0, .12),
   0 3px 5px -1px rgba(0, 0, 0, .4);
@@ -154,7 +147,7 @@
 }
 
 .ww-button-destructive--material:active {
-  color: black;
+  color: $button-text-color-destructive-active-material;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
   0 1px 18px 0 rgba(0, 0, 0, .12),
   0 3px 5px -1px rgba(0, 0, 0, .4);
@@ -165,7 +158,7 @@
 
 .ww-button:disabled,
 .ww-button[disabled] {
-  color: #94B3D5;
+  color: $button-text-color-disabled-ios;
   cursor: default;
   pointer-events: none;
 }
@@ -175,7 +168,7 @@
   -webkit-transition: none;
   transition: none;
   box-shadow: none;
-  background-color: rgba(79, 79, 79, .26);
-  color: rgba(0, 0, 0, .26);
+  background-color: $button-bg-color-disabled-material;
+  color: $button-text-color-disabled-material;
   opacity: 1;
 }
