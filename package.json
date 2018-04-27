@@ -1,10 +1,10 @@
 {
   "name": "workwell",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "description": "Workwell JS is the SDK to communicate between a web-application and the Workwell mobile application",
   "main": "src/index.js",
   "scripts": {
-    "watch": "rollup -c --watch",
+    "watch": "npm run css && rollup -c --watch",
     "css": "node-sass sass -o dist/css",
     "build": "npm run css && rollup -c && NODE_ENV=production rollup -c"
   },
