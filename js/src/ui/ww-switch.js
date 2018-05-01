@@ -91,11 +91,11 @@ function switchComponent() {
     this.setId = function (id_) {
         id = id_;
         div.id = id_;
-    }
+    };
 
     this.getId = function () {
         return id;
-    }
+    };
 
     this.toggleSwitch = function () {
         if (isSwitched) {
@@ -103,7 +103,7 @@ function switchComponent() {
         } else {
             this.switchOn();
         }
-    }
+    };
 
     this.switchOn = function () {
         isSwitched = true;
@@ -112,7 +112,7 @@ function switchComponent() {
         uiUtils.removeClass(handleContainer, defaultHandleContainerClass + "-off");
         uiUtils.addClass(handleContainer, defaultHandleContainerClass + "-on");
         uiUtils.addClass(div, defaultClass + "-on");
-    }
+    };
 
     this.switchOff = function () {
         isSwitched = false;
@@ -121,11 +121,11 @@ function switchComponent() {
         uiUtils.removeClass(handleContainer, defaultHandleContainerClass + "-on");
         uiUtils.addClass(handleContainer, defaultHandleContainerClass + "-off");
         uiUtils.removeClass(div, defaultClass + "-on");
-    }
+    };
 
     this.isOn = function () {
         return isSwitched;
-    }
+    };
 
     this.toHTMLElement = function () {
         return div;

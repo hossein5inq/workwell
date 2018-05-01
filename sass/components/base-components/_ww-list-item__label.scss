@@ -1,0 +1,23 @@
+@import "../../abstracts/variables";
+
+// ListItem-label-specific variables (iOS)
+$list-item-label-color-ios: #bebebe;
+$list-item-label-font-size-ios: 14px;
+
+// ListItem-label-specific variables (material)
+$list-item-label-color-material: #bebebe;
+$list-item-label-font-size-material: 14px;
+
+.ww-list-item__label {
+  font-family: $ios-font;
+  font-size: $list-item-label-font-size-ios;
+  color: $list-item-label-color-ios;
+  min-width: 100%;
+  text-align: right;
+}
+
+.ww-list-item--material__label {
+  font-family: $material-font;
+  font-size: $list-item-label-font-size-material;
+  color: $list-item-label-color-material;
+}
