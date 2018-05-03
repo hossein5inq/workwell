@@ -8,7 +8,6 @@ var ui = require("./ui/ui.js");
 var errorHandler = require("./bridge/error-handler.js");
 var config = require("./bridge/config");
 var constants = require("./bridge/constants");
-const ww_ = require("./ui/ww_");
 const style = require("../../dist/css/workwell.css");
 
 let mutationObserver;
@@ -16,8 +15,6 @@ let mutationObserver;
 window["Workwell_onShow"] = function () {
     // nothing
 };
-
-window["ww_"] = ww_;
 
 function ready(fn) {
     if (typeof document !== "undefined" && document.readyState != 'loading') {
@@ -57,30 +54,6 @@ ready(function () {
 
     ui.format();
 });
-
-/*let mutationObserver = new MutationObserver(function (mutations) {
-    for (let mutation of mutations) {
-        if (mutation.type === 'childList') {
-            console.log('A child node has been added or removed.');
-            for (let addedNode of mutation.addedNodes) {
-                console.log(addedNode);
-                console.log(addedNode.troudballe);
-            }
-        }
-        else if (mutation.type === 'attributes') {
-            console.log('The ' + mutation.attributeName + ' attribute was modified.');
-        }
-    }
-});
-
-mutationObserver.observe(document.body, {
-    attributes: true,
-    characterData: true,
-    childList: true,
-    subtree: true,
-    attributeOldValue: true,
-    characterDataOldValue: true
-});*/
 
 /**
  * @namespace

@@ -43,17 +43,17 @@ class Slider extends BaseComponent {
             this.onSlide(event);
         }, false);
 
-        this.onChangeFunction = function () {
+        this.el.onAttached = () => {
+            this.setCurrentValue(this.el.currentValue);
+        };
+
+        this.onChangeFunction = () => {
 
         };
 
-        this.el.onChange = function (fn) {
+        this.onChange = (fn) => {
             this.onChangeFunction = fn;
-        }.bind(this);
-    }
-
-    onAttachedToDom(el_) {
-        this.setCurrentValue(this.el.currentValue);
+        };
     }
 
     onHandleTouchDown(this_, event) {
@@ -101,8 +101,6 @@ class Slider extends BaseComponent {
 
         this.setCurrentValue(middle / step);
 
-        this.onChangeFunction(this.el.currentValue);
-
         uiUtils.addClass(this.handleContainer, "ww-slider__handle-active-container");
         uiUtils.addClass(this.handleBackground, "ww-slider__handle-active-background");
     }
@@ -110,12 +108,12 @@ class Slider extends BaseComponent {
     setCurrentValue(value) {
         this.el.currentValue = parseInt(value);
         let width = this.el.offsetWidth;
-
         let style_ = this.el.currentStyle || window.getComputedStyle(this.el);
 
         let step = width / this.el.max;
         let middle = step * value;
 
+        this.onChangeFunction(this.el.currentValue);
         this.handleContainer.style.left = parseInt(middle - this.handleContainer.offsetWidth / 2) + "px";
 
         this.el.style.background = style_.backgroundColor + " linear-gradient(" +

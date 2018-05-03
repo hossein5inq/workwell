@@ -30,6 +30,22 @@ function listItem(title_, subtitle_) {
     this.parent = null;
     var switchComponent = undefined;
 
+    li.onAttached = function () {
+        for (var i = 0; i < li.childNodes.length; i++) {
+            if (li.childNodes[i].hasOwnProperty("onAttached")) {
+                li.childNodes[i].onAttached();
+            }
+        }
+    };
+
+    centerDiv.onAttached = function () {
+        for (var i = 0; i < centerDiv.childNodes.length; i++) {
+            if (centerDiv.childNodes[i].hasOwnProperty("onAttached")) {
+                centerDiv.childNodes[i].onAttached();
+            }
+        }
+    };
+
     uiUtils.addClass(centerDiv, "ww-list-item__center");
     li.appendChild(centerDiv);
 
@@ -141,37 +157,6 @@ function listItem(title_, subtitle_) {
         );
     };
 
-    var onTouchStart2 = function () {
-        var computedStyle = window.getComputedStyle(this, null);
-        var tab = computedStyle["border-color"].split("(")[1].split(")")[0].split(",");
-        var borderColorAsHex = uiUtils.fullColorHex(parseInt(tab[0]), parseInt(tab[1]), parseInt(tab[2]));
-
-        Velocity(
-            this,
-            {
-                backgroundColor: "#" + borderColorAsHex
-            },
-            {
-                duration: 200,
-                easing: "ease-out-expo"
-            }
-        );
-    };
-
-    var onTouchEnd2 = function () {
-        Velocity(this, 'stop');
-        Velocity(
-            this,
-            {
-                backgroundColor: "#FFFFFF"
-            },
-            {
-                duration: 180,
-                easing: "ease-out-expo"
-            }
-        );
-    };
-
     this.setTappable = function (tappable_) {
         if (this.isTappable && !tappable_) {
             // remove tappable
@@ -183,20 +168,6 @@ function listItem(title_, subtitle_) {
             //uiUtils.addClass(li, "ww-list-item--tappable");
             li.addEventListener('touchstart', onTouchStart);
             li.addEventListener('touchend', onTouchEnd);
-        }
-    };
-
-    this.setTappable2 = function (tappable_) {
-        if (this.isTappable && !tappable_) {
-            // remove tappable
-            //uiUtils.removeClass(li, "ww-list-item--tappable");
-            this.removeEventListener('touchstart', onTouchStart2);
-            this.removeEventListener('touchend', onTouchEnd2);
-        } else if (!this.isTappable && tappable_) {
-            // add tappable
-            //uiUtils.addClass(li, "ww-list-item--tappable");
-            this.addEventListener('touchstart', onTouchStart2);
-            this.addEventListener('touchend', onTouchEnd2);
         }
     };
 
@@ -453,6 +424,10 @@ function listItem(title_, subtitle_) {
             else if (target === "title")
                 title = input.value;
         });
+    };
+
+    this.addToCenter = function (el) {
+        centerDiv.appendChild(el.toHTMLElement());
     };
 
     // json obj may contain 'target', 'options', 'selectedIndex'

@@ -1,19 +1,11 @@
 module.exports = class BaseComponent {
     constructor(htmlElement) {
         this.el = document.createElement(htmlElement);
-        let _ = this;
-        this.el.onAttached = function () {
-            _.onAttachedToDom(this);
-        }
     }
 
-    onAttachedToDom(el_) {
-
-    }
-
-    setId(id_) {
-        this.id = id_;
-        this.el.id = id_;
+    setId(id) {
+        this.id = id;
+        this.el.id = id;
     }
 
     getId() {

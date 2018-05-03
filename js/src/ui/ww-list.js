@@ -10,6 +10,13 @@ function list() {
     var el = this;
     var selectedItem = null;
 
+    ul.onAttached = function () {
+        for (var i = 0; i < ul.childNodes.length; i++) {
+            if (ul.childNodes[i].hasOwnProperty("onAttached"))
+                ul.childNodes[i].onAttached();
+        }
+    };
+
     ul.checkedItems = function () {
         return el.getCheckedItems();
     };
