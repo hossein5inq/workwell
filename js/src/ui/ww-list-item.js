@@ -30,6 +30,22 @@ function listItem(title_, subtitle_) {
     this.parent = null;
     var switchComponent = undefined;
 
+    li.onAttached = function () {
+        for (var i = 0; i < li.childNodes.length; i++) {
+            if (li.childNodes[i].hasOwnProperty("onAttached")) {
+                li.childNodes[i].onAttached();
+            }
+        }
+    };
+
+    centerDiv.onAttached = function () {
+        for (var i = 0; i < centerDiv.childNodes.length; i++) {
+            if (centerDiv.childNodes[i].hasOwnProperty("onAttached")) {
+                centerDiv.childNodes[i].onAttached();
+            }
+        }
+    };
+
     uiUtils.addClass(centerDiv, "ww-list-item__center");
     li.appendChild(centerDiv);
 
@@ -262,27 +278,6 @@ function listItem(title_, subtitle_) {
         uiUtils.addClass(badgeSpan, badgeClass);
     };
 
-    this.setValue = function (val) {
-        value = val;
-        badge = 0;
-        //div.removeAttribute("data-badge");
-        if (val != undefined) {
-            li.setAttribute("data-value", val);
-        } else {
-            li.removeAttribute("data-value");
-        }
-        this.refresh();
-    };
-
-    this.setValueColor = function (color) {
-        if (color == "default") {
-            li.removeAttribute("data-value-color");
-        } else {
-            li.setAttribute("data-value-color", color);
-        }
-        this.refresh();
-    };
-
     this.removeIcon = function () {
         if (icon) {
             rightDiv.removeChild(icon);
@@ -429,6 +424,10 @@ function listItem(title_, subtitle_) {
             else if (target === "title")
                 title = input.value;
         });
+    };
+
+    this.addToCenter = function (el) {
+        centerDiv.appendChild(el.toHTMLElement());
     };
 
     // json obj may contain 'target', 'options', 'selectedIndex'

@@ -1,18 +1,30 @@
-var button = require("./ww-button.js");
-var listItem = require("./ww-list-item.js");
-var list = require("./ww-list.js");
-var listHeader = require("./ww-list-header.js");
-var input = require("./ww-input.js");
-var searchInput = require("./ww-search-input");
-var switchComponent = require("./ww-switch.js");
-var pagingIndicator = require("./ww-paging-indicator");
-var textArea = require("./ww-textarea");
-var utils = require("../bridge/utils.js");
-var uiUtils = require("./ui-utils");
+const Button = require("./ww-button.js");
+const ListItem = require("./ww-list-item.js");
+const List = require("./ww-list.js");
+const ListHeader = require("./ww-list-header.js");
+const Input = require("./ww-input.js");
+const SearchInput = require("./ww-search-input");
+const Slider = require("./base-components/ww-slider");
+const SwitchComponent = require("./ww-switch.js");
+const PagingIndicator = require("./ww-paging-indicator");
+const TextArea = require("./ww-textarea");
+const utils = require("../bridge/utils.js");
+const uiUtils = require("./ui-utils");
 
 module.exports = {
     os: utils.getMobileOperatingSystem(),
-    elements: ["ww-button", "ww-list", "ww-list-header", "ww-list-item", "ww-input", "ww-textarea"],
+    elements: [
+        "ww-button",
+        "ww-list",
+        "ww-list-header",
+        "ww-list-item",
+        "ww-list-item__left",
+        "ww-list-item__center",
+        "ww-list-item__right",
+        "ww-list-item__title",
+        "ww-list-item__subtitle",
+        "ww-list-item__label"
+    ],
     addClass: function (el, className) {
         if (el.classList)
             el.classList.add(className);
@@ -26,63 +38,21 @@ module.exports = {
             el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     },
     createButton: function (text) {
-        return new button(text);
+        return new Button(text);
     },
     createList: function () {
-        return new list();
+        return new List();
     },
     createListHeader: function (text) {
-        return new listHeader(text);
+        return new ListHeader(text);
     },
     createListItem: function (title, subtitle) {
-        return new listItem(title, subtitle);
+        return new ListItem(title, subtitle);
     },
     createInput: function (type) {
-        return new input(type);
+        return new Input(type);
     },
     format: function () {
-        /*
-         When loading large images, the 'onload' event attached to the window (index.js) has to wait for the image
-         to completely load before executing the 'format' function. So when an external user uses for instance $(document).ready
-         from JQuery and dynamically creates Workwell UI elements, the 'format' method is then called (after the large image is loaded)
-         and so a second 'styling' pass is done on those newly created objects, and that's not good ! So to prevent that, we check if the os
-         attribute has already been defined (object already created and styled) or not (object needs to be styled).
-         */
-        /*if (module.exports.os == "android") {
-         var elements = document.querySelectorAll("[class^=ww-]");
-         for (var i = 0; i < elements.length; i++) {
-         for (var j = elements[i].classList.length - 1; j >= 0; j--) {
-         var class_ = elements[i].classList[j];
-         if (class_.startsWith("ww-")) {
-         var arr = class_.split("__");
-         var replacement = arr[0] + "--material";
-         if (arr.length > 1) {
-         replacement += "__" + arr[1];
-         }
-         elements[i].classList.add(replacement);
-         }
-         }
-         }
-         var badges = document.querySelectorAll("[class=badge-default]");
-         for (var i = 0; i < badges.length; i++) {
-         var replacement = "badge-default--material";
-         badges[i].classList.add(replacement);
-         }
-         }
-
-         // begin -> special case - to take care of a UI bug when adding an icon on the right
-         var elements = document.querySelectorAll("[class^=ww-list-item__right]");
-         for (var i = 0; i < elements.length; i++) {
-         var parent = elements[i].parentNode;
-         var centerDiv = parent.querySelector("[class^=ww-list-item__center]");
-         var titleDiv = centerDiv.querySelector("[class^=ww-list-item__title]");
-         var subtitleDiv = centerDiv.querySelector("[class^=ww-list-item__subtitle]");
-         if (titleDiv && titleDiv.innerHTML.trim() != "" && subtitleDiv && subtitleDiv.innerHTML.trim() != "") {
-         elements[i].style.maxHeight = "inherit";
-         }
-         }
-         // end -> special case*/
-
         var listElements = document.getElementsByClassName('ww-list');
         for (var i = 0; i < listElements.length; i++) {
             var el = listElements[i];
@@ -98,7 +68,7 @@ module.exports = {
 
             // Add all the other classes that were put in the html
             for (var c = 0; c < el.classList.length; c++) {
-                if (el.classList[c] != "ww-list") {
+                if (el.classList[c] !== "ww-list") {
                     newEl.addClass(el.classList[c]);
                 }
             }
@@ -167,9 +137,29 @@ module.exports = {
                     newListItem.setThumbnail(src);
                 }
 
-                var switchElements = listItem.getElementsByClassName('ww-switch');
-                for (var i = 0; i < switchElements.length; i++) {
+                let switchElements = listItem.getElementsByClassName('ww-switch');
+                for (let se = 0; se < switchElements.length; se++) {
                     newListItem.setSwitch(module.exports.createSwitch());
+                }
+
+                let sliderElements = listItem.getElementsByClassName('ww-slider');
+                for (let se = 0; se < sliderElements.length; se++) {
+                    let el = sliderElements[se];
+                    let newEl = module.exports.createSlider();
+
+                    if (el.style.width) {
+                        newEl.css("width", el.style.width);
+                    }
+
+                    if (el.hasAttribute("id")) {
+                        newEl.setId(el.getAttribute("id"));
+                    }
+
+                    if (el.hasAttribute("value")) {
+                        newEl.setCurrentValue(el.getAttribute("value"));
+                    }
+
+                    newListItem.addToCenter(newEl);
                 }
 
                 newEl.add(newListItem);
@@ -178,10 +168,10 @@ module.exports = {
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        var buttonElements = document.getElementsByClassName('ww-button');
-        for (var i = 0; i < buttonElements.length; i++) {
-            var el = buttonElements[i];
-            var newEl = module.exports.createButton(buttonElements[i].textContent.trim());
+        let buttonElements = document.getElementsByClassName('ww-button');
+        for (let i = 0; i < buttonElements.length; i++) {
+            let el = buttonElements[i];
+            let newEl = module.exports.createButton(buttonElements[i].textContent.trim());
 
             if (el.hasAttribute("id")) {
                 newEl.setId(el.getAttribute("id"));
@@ -194,22 +184,38 @@ module.exports = {
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        var switchElements = document.getElementsByClassName('ww-switch');
-        for (var i = 0; i < switchElements.length; i++) {
-            var el = switchElements[i];
-            var newEl = module.exports.createSwitch();
+        let sliderElements = document.getElementsByClassName("ww-slider");
+        for (let i = 0; i < sliderElements.length; i++) {
+            let el = sliderElements[i];
+            let newEl = module.exports.createSlider();
+
+            if (el.style.width) {
+                newEl.css("width", el.style.width);
+            }
 
             if (el.hasAttribute("id")) {
                 newEl.setId(el.getAttribute("id"));
             }
 
+            if (el.hasAttribute("value")) {
+                newEl.setCurrentValue(el.getAttribute("value"));
+            }
+
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        var pagingIndicatorElements = document.getElementsByClassName('ww-paging-indicator');
-        for (var i = 0; i < pagingIndicatorElements.length; i++) {
-            var el = pagingIndicatorElements[i];
-            var newEl = module.exports.createPagingIndicator();
+        let switchElements = document.getElementsByClassName("ww-switch");
+        for (let i = 0; i < switchElements.length; i++) {
+            let el = switchElements[i];
+            let newEl = module.exports.createSwitch();
+
+            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+        }
+
+        let pagingIndicatorElements = document.getElementsByClassName('ww-paging-indicator');
+        for (let i = 0; i < pagingIndicatorElements.length; i++) {
+            let el = pagingIndicatorElements[i];
+            let newEl = module.exports.createPagingIndicator();
 
             if (el.hasAttribute("id")) {
                 newEl.setId(el.getAttribute("id"));
@@ -226,18 +232,18 @@ module.exports = {
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        var searchInputElements = document.getElementsByClassName('ww-search-input');
-        for (var i = 0; i < searchInputElements.length; i++) {
-            var el = searchInputElements[i];
-            var newEl = module.exports.createSearchInput();
+        let searchInputElements = document.getElementsByClassName('ww-search-input');
+        for (let i = 0; i < searchInputElements.length; i++) {
+            let el = searchInputElements[i];
+            let newEl = module.exports.createSearchInput();
 
             if (el.hasAttribute("id")) {
                 newEl.setId(el.getAttribute("id"));
             }
 
-            var method = "get";
-            var action = "";
-            var fnName = undefined;
+            let method = "get";
+            let action = "";
+            let fnName = undefined;
 
             if (el.hasAttribute("placeholder")) {
                 newEl.setValue(el.getAttribute("placeholder"), false);
@@ -252,9 +258,9 @@ module.exports = {
             }
 
             if (el.hasAttribute("resultConverter")) {
-                var fn = el.getAttribute("resultConverter");
-                var str = fn.split("(");
-                var fnName = str[0];
+                let fn = el.getAttribute("resultConverter");
+                let str = fn.split("(");
+                let fnName = str[0];
 
                 if (window[fnName]) {
 
@@ -269,19 +275,21 @@ module.exports = {
 
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
-
     },
     createPagingIndicator: function (pageCount, selectedPage) {
-        return new pagingIndicator(pageCount, selectedPage);
+        return new PagingIndicator(pageCount, selectedPage);
     },
     createSearchInput: function () {
-        return new searchInput();
+        return new SearchInput();
+    },
+    createSlider: function () {
+        return new Slider();
     },
     createSwitch: function () {
-        return new switchComponent();
+        return new SwitchComponent();
     },
     createTextArea: function () {
-        return new textArea();
+        return new TextArea();
     }
 }
 ;

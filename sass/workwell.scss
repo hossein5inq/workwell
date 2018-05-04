@@ -1,8 +1,11 @@
 @charset "utf-8";
 
+@import "abstracts/_variables.scss";
 @import "abstracts/mixins/_font-face.scss";
-@import "components/ww-button";
-@import "components/ww-switch";
+@import "components/base-components/ww-button";
+@import "components/base-components/ww-slider";
+@import "components/base-components/ww-switch";
+@import "components/base-components/ww-list-item__label";
 
 @include font-face(workwell-font, "/assets/fonts/workwell-font", normal, normal, eot svg ttf woff);
 
@@ -123,29 +126,12 @@ body {
   background-color: #fafafa;
 }
 
-/*~
-  name: List
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Dog</div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Cat</div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Hamster</div>
-      </li>
-    </ul>
-*/
 .ww-list {
   padding: 0;
   margin: 0;
+  margin-top: 12px;
   font: inherit;
   color: inherit;
-  background: transparent;
   /*border: none;*/
   line-height: normal;
   cursor: default;
@@ -162,7 +148,7 @@ body {
   display: block;
   -webkit-overflow-scrolling: touch;
   overflow: hidden;
-  border-top: solid 0.5px #ccc;
+  /*border-top: solid 0.5px #ccc;*/
   border-bottom: solid 0.5px #ccc;
   background-image: -webkit-linear-gradient(#ccc, #ccc),
   -webkit-linear-gradient(#ccc, #ccc);
@@ -250,7 +236,6 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -265,21 +250,15 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -ms-flex-item-align: stretch;
   align-self: stretch;
   margin-left: 0;
-  /*border-bottom: none;*/
-  /*background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;*/
-  /*background-image: -webkit-linear-gradient(bottom, #ccc, #ccc 100%);
-  background-image: linear-gradient(0deg, #ccc, #ccc 100%);*/
   border-color: #ccc;
   border-bottom: 0.5px solid #ccc;
   padding: 12px 6px 12px 0;
   line-height: 1.2em;
   min-height: 44px;
   min-width: 0;
+  flex: 1;
 }
 
 .ww-list-item:last-child > .ww-list-item__center {
@@ -322,7 +301,8 @@ body {
   border-bottom: 0.5px solid #ccc;
   line-height: 1.2em;
   min-height: 44px;
-  max-height: 44px;
+  min-width: 40px;
+  /*max-height: 44px;*/
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -367,20 +347,6 @@ body {
   border-bottom: none;
 }
 
-/*~
-  name: Noborder List
-  category: List
-  elements: ww-list-item
-  markup: |
-    <ul class="ww-list ww-list--noborder">
-      <li class="ww-list-item ww-list-item--noborder">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-      <li class="ww-list-item ww-list-item--noborder">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-    </ul>
- */
 .ww-list--noborder {
   border-top: none;
   border-bottom: none;
@@ -395,97 +361,12 @@ body {
   border-top: none;
 }
 
-/*~
-  name: Category List Header
-  category: List
-  elements: ww-list ww-list-header ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-header">
-        Header
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-    </ul>
- */
-/*~
-  name: Tappable List
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__center">Tappable Item</div>
-      </li>
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__center">Tappable Item</div>
-      </li>
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__center">Tappable Item</div>
-      </li>
-    </ul>
- */
 .ww-list-item--tappable:active {
   /*-webkit-transition: none;
   transition: none;
   background-color: #d9d9d9;*/
 }
 
-/*~
-  name: Switch in List Item
-  category: List
-  elements: ww-list ww-list-item ww-switch
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          Label
-        </div>
-        <div class="ww-list-item__right">
-          <label class="ww-switch">
-            <input type="checkbox" class="ww-switch__input" checked>
-            <div class="ww-switch__toggle">
-              <div class="ww-switch__handle"></div>
-            </div>
-          </label>
-        </div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          Label
-        </div>
-        <div class="ww-list-item__right">
-          <label class="ww-switch">
-            <input type="checkbox" class="ww-switch__input">
-            <div class="ww-switch__toggle">
-              <div class="ww-switch__handle"></div>
-            </div>
-          </label>
-        </div>
-      </li>
-    </ul>
-*/
-/*~
-  name: List Item with Chevron
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--chevron">
-        <div class="ww-list-item__center">Item A</div>
-      </li>
-      <li class="ww-list-item ww-list-item--chevron">
-        <div class="ww-list-item__center">Item B</div>
-      </li>
-    </ul>
- */
 .ww-list-item--chevron:before {
   border-right: 2px solid #c7c7cc;
   border-bottom: 2px solid #c7c7cc;
@@ -502,168 +383,11 @@ body {
 
 }
 
-/*~
-  name: Inset List
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list ww-list--inset">
-      <li class="ww-list-item ww-list--inset__item ww-list-item--chevron ww-list-item--tappable">
-        <div class="ww-list-item__center">List Item with Chevron</div>
-      </li>
-      <li class="ww-list-item ww-list--inset__item ww-list-item--chevron ww-list-item--tappable">
-        <div class="ww-list-item__center">List Item with Chevron</div>
-      </li>
-    </ul>
- */
 .ww-list--inset {
   margin: 0 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-image: none;
-}
-
-/*~
-  name: Radio Button in List Item
-  category: List
-  elements: ww-list ww-list-item ww-input
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__left">
-          <label class="ww-radio-button">
-            <input type="radio" id="r1" class="ww-radio-button__input" name="r" checked="checked">
-            <div class="ww-radio-button__checkmark"></div>
-          </label>
-        </div>
-        <label for="r1" class="ww-list-item__center">
-          Radio Button
-        </label>
-      </li>
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__left">
-          <label class="ww-radio-button">
-            <input type="radio" id="r2" class="ww-radio-button__input" name="r">
-            <div class="ww-radio-button__checkmark"></div>
-          </label>
-        </div>
-        <label for="r2" class="ww-list-item__center">
-          Radio Button
-        </label>
-      </li>
-    </ul>
-*/
-/*~
-  name: Checkbox in List Item
-  category: List
-  elements: ww-list ww-list-item ww-input
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__left">
-          <label class="ww-checkbox">
-            <input type="checkbox" id="checkbox1" class="ww-checkbox__input" name="c" checked="checked">
-            <div class="ww-checkbox__checkmark"></div>
-          </label>
-        </div>
-        <label for="checkbox1" class="ww-list-item__center">
-          Checkbox
-        </label>
-      </li>
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__left">
-          <label class="ww-checkbox">
-            <input type="checkbox" id="checkbox2" class="ww-checkbox__input" name="c">
-            <div class="ww-checkbox__checkmark"></div>
-          </label>
-        </div>
-        <label for="checkbox2" class="ww-list-item__center">
-          Checkbox
-        </label>
-      </li>
-    </ul>
-*/
-/*~
-  name: No border Checkbox in List Item
-  category: List
-  elements: ww-list ww-list-item ww-input
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__left">
-          <label class="ww-checkbox ww-checkbox--noborder">
-            <input id="s1" type="checkbox" class="ww-checkbox__input ww-checkbox--noborder__input">
-            <div class="ww-checkbox__checkmark ww-checkbox--noborder ww-checkbox--noborder__checkmark"></div>
-          </label>
-        </div>
-        <label for="s1" class="ww-list-item__center">
-          Checkbox
-        </label>
-      </li>
-      <li class="ww-list-item ww-list-item--tappable">
-        <div class="ww-list-item__left">
-          <label class="ww-checkbox ww-checkbox--noborder">
-            <input id="s2" type="checkbox" class="ww-checkbox__input ww-checkbox--noborder__input" checked>
-            <div class="ww-checkbox__checkmark ww-checkbox--noborder ww-checkbox--noborder__checkmark"></div>
-          </label>
-        </div>
-        <label for="s2" class="ww-list-item__center">
-          Checkbox
-        </label>
-      </li>
-    </ul>
-*/
-/*~
-  name: Text Input in List Item
-  category: List
-  elements: ww-list ww-list-item ww-input
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          <input type="text" class="ww-text-input" placeholder="Name">
-        </div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          <input type="text" class="ww-text-input" placeholder="Email">
-        </div>
-      </li>
-    </ul>
-*/
-/*~
-  name: Textarea in List Item
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          <textarea class="ww-textarea ww-textarea--transparent" placeholder="Text message"></textarea>
-        </div>
-      </li>
-    </ul>
-*/
-/*~
-  name: Right Label in List Item
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          Title
-        </div>
-        <div class="ww-list-item__right">
-          <div class="ww-list-item__label">Label</div>
-        </div>
-      </li>
-    </ul>
-*/
-.ww-list-item__label {
-  font-size: 14px;
-  /*padding: 0 4px;*/
-  color: #bebebe;
 }
 
 /*~
@@ -750,69 +474,12 @@ body {
   margin: 0;
 }
 
-/*~
-  name: List Item with Icon
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__left">
-          <img class="ww-list-item__thumbnail" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwJCB8v/9zErgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAvSURBVFjD7c0BDQAACAMgtX+KJzWGm4MCdJK6MHVELBaLxWKxWCwWi8VisVj8MV7qBgI2A8rYpgAAAABJRU5ErkJggg==">
-        </div>
-
-        <div class="ww-list-item__center">
-          <div class="ww-list-item__title">Alice</div>
-          <div class="ww-list-item__subtitle">Description</div>
-        </div>
-
-        <div class="ww-list-item__right">
-          <i class="ww-ion-ios-information ww-list-item__icon"></i>
-        </div>
-      </li>
-
-      <li class="ww-list-item">
-        <div class="ww-list-item__left">
-          <img class="ww-list-item__thumbnail" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwJCB8v/9zErgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAvSURBVFjD7c0BDQAACAMgtX+KJzWGm4MCdJK6MHVELBaLxWKxWCwWi8VisVj8MV7qBgI2A8rYpgAAAABJRU5ErkJggg==">
-        </div>
-
-        <div class="ww-list-item__center">
-          <div class="ww-list-item__title">Bob</div>
-          <div class="ww-list-item__subtitle">Description</div>
-        </div>
-
-        <div class="ww-list-item__right">
-          <i class="ww-ion-ios-information ww-list-item__icon"></i>
-        </div>
-      </li>
-    </ul>
-*/
 .ww-list-item__icon {
   margin-left: 11px;
   font-size: 22px;
   padding: 0 6px;
 }
 
-/*~
-  name: Material List
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list ww-list--material">
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Orange</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Sweet fruit that grows on trees.</div>
-        </div>
-      </li>
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Pear</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Funny-shaped fruit.</div>
-        </div>
-      </li>
-    </ul>
-*/
 .ww-list--material {
   font-family: 'Roboto', 'Noto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -904,23 +571,6 @@ body {
   }
 }
 
-/*~
-  name: Material List with Header
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list ww-list--material">
-      <li class="ww-list-header ww-list-header--material">
-        Fruits
-      </li>
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Orange</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Sweet fruit that grows on trees.</div>
-        </div>
-      </li>
-    </ul>
-*/
 .ww-list-header--material {
   background: #fff;
   border: none;
@@ -949,131 +599,17 @@ body {
   }
 }
 
-/*~
-  name: Material List with Checkboxes
-  category: List
-  elements: ww-list ww-list-item ww-input
-  markup: |
-    <ul class="ww-list ww-list--material">
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__left ww-list-item--material__left">
-          <label class="ww-checkbox ww-checkbox--material">
-            <input type="checkbox" id="checkbox3" class="ww-checkbox__input ww-checkbox--material__input">
-            <div class="ww-checkbox__checkmark ww-checkbox--material__checkmark"></div>
-          </label>
-        </div>
-
-        <label for="checkbox3" class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Notifications</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Allow notifications</div>
-        </label>
-      </li>
-
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__left ww-list-item--material__left">
-          <label class="ww-checkbox ww-checkbox--material">
-            <input type="checkbox" id="checkbox4" class="ww-checkbox__input ww-checkbox--material__input" checked="checked">
-            <div class="ww-checkbox__checkmark ww-checkbox--material__checkmark"></div>
-          </label>
-        </div>
-
-        <label for="checkbox4" class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Sound</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Hangouts message</div>
-        </label>
-      </li>
-
-    </ul>
-*/
-/*~
-  name: Material List with Thumbnails
-  category: List
-  markup: |
-    <ul class="ww-list ww-list--material">
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__left ww-list-item--material__left">
-          <img class="ww-list-item__thumbnail ww-list-item--material__thumbnail" src="http://placekitten.com/g/42/41" alt="Cute kitten">
-        </div>
-
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Lily</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Very friendly cat</div>
-        </div>
-      </li>
-
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__left ww-list-item--material__left">
-          <img class="ww-list-item__thumbnail ww-list-item--material__thumbnail" src="http://placekitten.com/g/40/40" alt="Cute kitten">
-        </div>
-
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Molly</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Loves tuna!</div>
-        </div>
-      </li>
-
-    </ul>
-*/
 .ww-list-item--material__thumbnail {
   width: 40px;
   height: 40px;
   border-radius: 100%;
 }
 
-/*~
-  name: Material List with Icons
-  category: List
-  markup: |
-    <ul class="ww-list ww-list--material">
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__left ww-list-item--material__left">
-          <img class="ww-list-item__thumbnail ww-list-item--material__thumbnail" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwJCB8v/9zErgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAvSURBVFjD7c0BDQAACAMgtX+KJzWGm4MCdJK6MHVELBaLxWKxWCwWi8VisVj8MV7qBgI2A8rYpgAAAABJRU5ErkJggg==">
-        </div>
-
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Alice</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Description</div>
-        </div>
-
-        <div class="ww-list-item__right ww-list-item--material__right">
-          <i style="color:#4db6ac" class="ww-list-item__icon ww-list-item--material__icon ww-zmdi ww-zmdi-comment"></i>
-        </div>
-      </li>
-
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__left ww-list-item--material__left">
-          <img class="ww-list-item__thumbnail ww-list-item--material__thumbnail" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwJCB8v/9zErgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAvSURBVFjD7c0BDQAACAMgtX+KJzWGm4MCdJK6MHVELBaLxWKxWCwWi8VisVj8MV7qBgI2A8rYpgAAAABJRU5ErkJggg==">
-        </div>
-
-        <div class="ww-list-item__center ww-list-item--material__center">
-          <div class="ww-list-item__title ww-list-item--material__title">Bob</div>
-          <div class="ww-list-item__subtitle ww-list-item--material__subtitle">Description</div>
-        </div>
-
-        <div class="ww-list-item__right ww-list-item--material__right">
-          <i style="color:#4db6ac" class="ww-list-item__icon ww-list-item--material__icon ww-zmdi ww-zmdi-comment"></i>
-        </div>
-      </li>
-    </ul>
-*/
 .ww-list-item--material__icon {
   font-size: 20px;
   padding: 0 4px;
 }
 
-/*~
-  name: List item without divider
-  category: List
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--nodivider">
-        <div class="ww-list-item__center ww-list-item--nodivider__center">Item</div>
-      </li>
-      <li class="ww-list-item ww-list-item--nodivider">
-        <div class="ww-list-item__center ww-list-item--nodivider__center">Item</div>
-      </li>
-    </ul>
- */
 .ww-list-item--nodivider__center,
 .ww-list-item--nodivider__right,
 .ww-list-item--nodivider:before {
@@ -1081,19 +617,6 @@ body {
   background-image: none;
 }
 
-/*~
-  name: List item with long divider
-  category: List
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item ww-list-item--longdivider">
-        <div class="ww-list-item__center ww-list-item--longdivider__center">Item</div>
-      </li>
-      <li class="ww-list-item ww-list-item--longdivider">
-        <div class="ww-list-item__center ww-list-item--longdivider__center">Item</div>
-      </li>
-    </ul>
- */
 .ww-list-item--longdivider {
   border-bottom: 1px solid #ccc;
   border-bottom: none;
@@ -1131,20 +654,6 @@ body {
   background-image: none;
 }
 
-/*~
-  name: List title
-  category: List
-  markup: |
-    <div class="ww-list-title">LIST TITLE</div>
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">Item</div>
-      </li>
-    </ul>
- */
 .ww-list-title {
   padding: 0;
   margin: 0;
@@ -1173,20 +682,6 @@ body {
   line-height: 24px;
 }
 
-/*~
-  name: Material List Title
-  category: List
-  markup: |
-    <h3 class="ww-list-title ww-list-title--material">LIST TITLE</h3>
-    <ul class="ww-list ww-list--material">
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__center ww-list-item--material__center">Item</div>
-      </li>
-      <li class="ww-list-item ww-list-item--material">
-        <div class="ww-list-item__center ww-list-item--material__center">Item</div>
-      </li>
-    </ul>
- */
 .ww-list-title--material {
   font-family: 'Roboto', 'Noto', sans-serif;
   -webkit-font-smoothing: antialiased;

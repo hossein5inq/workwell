@@ -10,6 +10,8 @@ var config = require("./bridge/config");
 var constants = require("./bridge/constants");
 const style = require("../../dist/css/workwell.css");
 
+let mutationObserver;
+
 window["Workwell_onShow"] = function () {
     // nothing
 };
@@ -27,6 +29,29 @@ ready(function () {
     document.body.addEventListener('touchstart', function () {
 
     });
+    mutationObserver = new MutationObserver(function (mutations) {
+        for (let mutation of mutations) {
+            if (mutation.type === 'childList') {
+                for (let addedNode of mutation.addedNodes) {
+                    if (addedNode.onAttached) {
+                        addedNode.onAttached();
+                    }
+                }
+            } else if (mutation.type === 'attributes') {
+
+            }
+        }
+    });
+
+    mutationObserver.observe(document.body, {
+        attributes: true,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: true,
+        characterDataOldValue: true
+    });
+
     ui.format();
 });
 

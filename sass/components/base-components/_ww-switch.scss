@@ -1,4 +1,4 @@
-@import "../abstracts/variables";
+@import "../../abstracts/variables";
 
 // switch-specific variables (iOS)
 $switch-bg-color-ios: #FFFFFF;
@@ -62,6 +62,7 @@ $switch-handle-on-bg-color-material: #1f5295;
   left: 0;
   line-height: 17px;
   list-style: none outside none;
+
   position: relative;
   padding: 0;
   right: 0;
