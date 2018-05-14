@@ -1,15 +1,17 @@
-const Button = require("./ww-button.js");
-const ListItem = require("./ww-list-item.js");
-const List = require("./ww-list.js");
-const ListHeader = require("./ww-list-header.js");
+const Button = require("./base-components/ww-button.js");
+const ListItem = require("./base-components/ww-list-item");
+const List = require("./base-components/ww-list");
+const ListItemTitle = require("./base-components/ww-list-item__title");
+const ListItemLabel = require("./base-components/ww-list-item__label");
 const Input = require("./ww-input.js");
 const SearchInput = require("./ww-search-input");
 const Slider = require("./base-components/ww-slider");
-const SwitchComponent = require("./ww-switch.js");
+const Switch = require("./base-components/ww-switch.js");
 const PagingIndicator = require("./ww-paging-indicator");
 const TextArea = require("./ww-textarea");
 const utils = require("../bridge/utils.js");
 const uiUtils = require("./ui-utils");
+const ww_ = require("./ww_");
 
 module.exports = {
     os: utils.getMobileOperatingSystem(),
@@ -25,26 +27,11 @@ module.exports = {
         "ww-list-item__subtitle",
         "ww-list-item__label"
     ],
-    addClass: function (el, className) {
-        if (el.classList)
-            el.classList.add(className);
-        else
-            el.className += " " + className;
-    },
-    removeClass: function (el, className) {
-        if (el.classList)
-            el.classList.remove(className);
-        else
-            el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-    },
     createButton: function (text) {
         return new Button(text);
     },
     createList: function () {
         return new List();
-    },
-    createListHeader: function (text) {
-        return new ListHeader(text);
     },
     createListItem: function (title, subtitle) {
         return new ListItem(title, subtitle);
@@ -52,123 +39,48 @@ module.exports = {
     createInput: function (type) {
         return new Input(type);
     },
+    createPagingIndicator: function (pageCount, selectedPage) {
+        return new PagingIndicator(pageCount, selectedPage);
+    },
+    createSearchInput: function () {
+        return new SearchInput();
+    },
+    createSlider: function () {
+        return new Slider();
+    },
+    createSwitch: function () {
+        return new Switch();
+    },
+    createTextArea: function () {
+        return new TextArea();
+    },
+    createListItemTitle: function () {
+        return new ListItemTitle();
+    },
+    createListItemLabel: function () {
+        return new ListItemLabel();
+    },
     format: function () {
-        var listElements = document.getElementsByClassName('ww-list');
-        for (var i = 0; i < listElements.length; i++) {
-            var el = listElements[i];
-            var newEl = module.exports.createList();
 
-            if (el.hasAttribute("id")) {
-                newEl.setId(el.getAttribute("id"));
+        uiUtils.addClass(document.body, "ww-body");
+
+        for (let i = 0; i < module.exports.elements.length; i++) {
+            let els = document.getElementsByClassName(module.exports.elements[i]);
+            for (let j = 0; j < els.length; j++) {
+                uiUtils.addClass(els[j], module.exports.elements[i]);
             }
-
-            if (el.hasAttribute("data-list-type")) {
-                newEl.setType(el.getAttribute("data-list-type"));
-            }
-
-            // Add all the other classes that were put in the html
-            for (var c = 0; c < el.classList.length; c++) {
-                if (el.classList[c] !== "ww-list") {
-                    newEl.addClass(el.classList[c]);
-                }
-            }
-
-            var listHeaderElements = el.getElementsByClassName('ww-list-header');
-            for (var h = 0; h < listHeaderElements.length; h++) {
-                var header = listHeaderElements[h];
-                var newHeader = module.exports.createListHeader(header.textContent.trim());
-
-                // Add all the other classes that were put in the html
-                for (var c = 0; c < header.classList.length; c++) {
-                    if (header.classList[c] != "ww-list-header") {
-                        newHeader.addClass(header.classList[c]);
-                    }
-                }
-
-                newEl.setHeader(newHeader);
-            }
-
-            var listItemElements = el.getElementsByClassName('ww-list-item');
-            for (var li = 0; li < listItemElements.length; li++) {
-                var listItem = listItemElements[li];
-                var newListItem = module.exports.createListItem();
-
-                // Add all the other classes that were put in the html
-                for (var c = 0; c < listItem.classList.length; c++) {
-                    if (listItem.classList[c] != "ww-list-item") {
-                        if (listItem.classList[c] == "ww-list-item--tappable") {
-                            newListItem.setTappable(true);
-                        } else {
-                            newListItem.addClass(listItem.classList[c]);
-                        }
-                    }
-                }
-
-                var listItemTitleElements = listItem.getElementsByClassName('ww-list-item__title');
-                for (var lit = 0; lit < listItemTitleElements.length; lit++) {
-                    newListItem.setTitle(listItemTitleElements[lit].textContent.trim());
-                }
-
-                var listItemSubtitleElements = listItem.getElementsByClassName('ww-list-item__subtitle');
-                for (var lis = 0; lis < listItemSubtitleElements.length; lis++) {
-                    newListItem.setSubtitle(listItemSubtitleElements[lis].textContent.trim());
-                }
-
-                var listItemIconElements = listItem.getElementsByClassName('ww-list-item__icon');
-                for (var lii = 0; lii < listItemIconElements.length; lii++) {
-                    var iconClass = "";
-                    for (var c = 0; c < listItemIconElements[lii].classList.length; c++) {
-                        if (listItemIconElements[lii].classList[c].startsWith("icon-")) {
-                            iconClass = listItemIconElements[lii].classList[c];
-                            break;
-                        }
-                    }
-                    newListItem.setIcon(iconClass);
-                }
-
-                var listItemLabelElements = listItem.getElementsByClassName('ww-list-item__label');
-                for (var lil = 0; lil < listItemLabelElements.length; lil++) {
-                    newListItem.setLabel(listItemLabelElements[lil].textContent.trim());
-                }
-
-                var listItemThumbnailElements = listItem.getElementsByClassName('ww-list-item__thumbnail');
-                for (var lit = 0; lit < listItemThumbnailElements.length; lit++) {
-                    var src = listItemThumbnailElements[lit].src;
-                    newListItem.setThumbnail(src);
-                }
-
-                let switchElements = listItem.getElementsByClassName('ww-switch');
-                for (let se = 0; se < switchElements.length; se++) {
-                    newListItem.setSwitch(module.exports.createSwitch());
-                }
-
-                let sliderElements = listItem.getElementsByClassName('ww-slider');
-                for (let se = 0; se < sliderElements.length; se++) {
-                    let el = sliderElements[se];
-                    let newEl = module.exports.createSlider();
-
-                    if (el.style.width) {
-                        newEl.css("width", el.style.width);
-                    }
-
-                    if (el.hasAttribute("id")) {
-                        newEl.setId(el.getAttribute("id"));
-                    }
-
-                    if (el.hasAttribute("value")) {
-                        newEl.setCurrentValue(el.getAttribute("value"));
-                    }
-
-                    newListItem.addToCenter(newEl);
-                }
-
-                newEl.add(newListItem);
-            }
-
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        let buttonElements = document.getElementsByClassName('ww-button');
+        let listItems = document.getElementsByClassName("ww-list-item");
+        for (let i = 0; i < listItems.length; i++) {
+            let el = listItems[i];
+
+            if (uiUtils.hasClass(el, "ww-list-item--tappable")) {
+                ww_(el).setTappable(true);
+            }
+        }
+
+        let buttonElements = document.getElementsByClassName("ww-button");
         for (let i = 0; i < buttonElements.length; i++) {
             let el = buttonElements[i];
             let newEl = module.exports.createButton(buttonElements[i].textContent.trim());
@@ -212,7 +124,7 @@ module.exports = {
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        let pagingIndicatorElements = document.getElementsByClassName('ww-paging-indicator');
+        let pagingIndicatorElements = document.getElementsByClassName("ww-paging-indicator");
         for (let i = 0; i < pagingIndicatorElements.length; i++) {
             let el = pagingIndicatorElements[i];
             let newEl = module.exports.createPagingIndicator();
@@ -232,7 +144,7 @@ module.exports = {
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
-        let searchInputElements = document.getElementsByClassName('ww-search-input');
+        let searchInputElements = document.getElementsByClassName("ww-search-input");
         for (let i = 0; i < searchInputElements.length; i++) {
             let el = searchInputElements[i];
             let newEl = module.exports.createSearchInput();
@@ -257,16 +169,6 @@ module.exports = {
                 method = el.getAttribute("onInputMethod");
             }
 
-            if (el.hasAttribute("resultConverter")) {
-                let fn = el.getAttribute("resultConverter");
-                let str = fn.split("(");
-                let fnName = str[0];
-
-                if (window[fnName]) {
-
-                }
-            }
-
             newEl.setOnInputAction(action);
             newEl.setOnInputMethod(method);
 
@@ -275,21 +177,5 @@ module.exports = {
 
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
-    },
-    createPagingIndicator: function (pageCount, selectedPage) {
-        return new PagingIndicator(pageCount, selectedPage);
-    },
-    createSearchInput: function () {
-        return new SearchInput();
-    },
-    createSlider: function () {
-        return new Slider();
-    },
-    createSwitch: function () {
-        return new SwitchComponent();
-    },
-    createTextArea: function () {
-        return new TextArea();
     }
-}
-;
+};

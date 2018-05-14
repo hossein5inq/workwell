@@ -14,10 +14,10 @@ $list-item-label-font-size-material: 14px;
   color: $list-item-label-color-ios;
   min-width: 100%;
   text-align: right;
-}
 
-.ww-list-item--material__label {
-  font-family: $material-font;
-  font-size: $list-item-label-font-size-material;
-  color: $list-item-label-color-material;
+  &--material {
+    font-family: $material-font;
+    font-size: $list-item-label-font-size-material;
+    color: $list-item-label-color-material;
+  }
 }

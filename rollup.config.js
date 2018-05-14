@@ -6,6 +6,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require("rollup-plugin-commonjs");
 const postcss = require("rollup-plugin-postcss");
 const uglify = require("rollup-plugin-uglify");
+const eslint = require("rollup-plugin-eslint");
 
 const env = process.env.NODE_ENV || 'development';
 var uglifyScript = {};
@@ -37,6 +38,7 @@ module.exports = {
             main: true,
             browser: true,
         }),
+        eslint({}),
         commonjs(),
         babel({
             exclude: '/node_modules/**',

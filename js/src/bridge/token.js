@@ -10,4 +10,4 @@ module.exports = {
     getServiceToken: function () {
         return this.serviceToken;
     }
-}
+};

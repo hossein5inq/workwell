@@ -1,0 +1,202 @@
+@import "../../abstracts/variables";
+
+// ListItem-specific variables (iOS)
+$list-item-bg-color-ios: #ffffff;
+$list-item-bg-color-active-ios: #d3d3d3;
+$list-item-left-padding-ios: 14;
+
+// ListItem-specific variables (material)
+$list-item-bg-color-material: #ffffff;
+$list-item-bg-color-active-material: #eee;
+$list-item-left-padding-material: 16;
+
+.ww-list-item {
+  width: 100%;
+  position: relative;
+  list-style: none;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 0 0 $list-item-left-padding-ios + unquote("px");
+
+  &--material {
+    padding: 0 0 0 $list-item-left-padding-material + unquote("px");
+    line-height: normal;
+    background-color: $list-item-bg-color-ios;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-image: -webkit-linear-gradient(top, $list-item-bg-color-active-material, $list-item-bg-color-active-material 100%);
+    background-image: linear-gradient(0deg, $list-item-bg-color-active-material, $list-item-bg-color-active-material 100%);
+  }
+}
+
+@keyframes list-item-active-ios {
+  from {
+    background-color: $list-item-bg-color-ios;
+  }
+  to {
+    background-color: $list-item-bg-color-active-ios;
+  }
+}
+
+@keyframes list-item-active-material {
+  from {
+    background-color: $list-item-bg-color-material;
+  }
+  to {
+    background-color: $list-item-bg-color-active-material;
+  }
+}
+
+.ww-list-item__left {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 12px 14px 12px 0;
+  -webkit-box-ordinal-group: 1;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  align-self: stretch;
+  line-height: 1.2em;
+  min-height: 44px;
+
+  &:empty {
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  &--material {
+    padding: 14px 0;
+    min-width: 56px;
+    line-height: 1;
+    min-height: 48px;
+
+    &:empty {
+      padding: 14px 6px 14px 0;
+      border-color: #f4f4f4;
+      min-height: 48px;
+    }
+  }
+}
+
+.ww-list-item__center {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+  margin-right: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  align-self: stretch;
+  margin-left: 0;
+  border-color: #ccc;
+  padding: 12px 6px 12px 0;
+  line-height: 1.2em;
+  min-height: 44px;
+  min-width: 0;
+  flex: 1;
+  background-color: $list-item-bg-color-ios;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: -webkit-linear-gradient(top, $list-item-bg-color-active-ios, $list-item-bg-color-active-ios 100%);
+  background-image: linear-gradient(0deg, $list-item-bg-color-active-ios, $list-item-bg-color-active-ios 100%);
+
+  &--material {
+    padding: 14px 6px 14px 0;
+    border-color: #f4f4f4;
+    min-height: 48px;
+    background: none;
+  }
+}
+
+.ww-list-item__right {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  padding: 12px 12px 12px 0;
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  align-self: stretch;
+  border-color: #ccc;
+  line-height: 1.2em;
+  min-height: 44px;
+  min-width: 40px;
+  background-color: $list-item-bg-color-ios;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: -webkit-linear-gradient(top, $list-item-bg-color-active-ios, $list-item-bg-color-active-ios 100%);
+  background-image: linear-gradient(0deg, $list-item-bg-color-active-ios, $list-item-bg-color-active-ios 100%);
+
+  &--material {
+    padding: 12px 16px 12px 0;
+    line-height: 1;
+    min-height: 48px;
+    background: none;
+  }
+}
+
+.ww-list-item:last-child .ww-list-item__center {
+  background: none;
+}
+
+.ww-list-item:last-child .ww-list-item__right {
+  background: none;
+}
+
+.ww-list-item[data-active], .ww-list-item__left[data-active], .ww-list-item__center[data-active], .ww-list-item__right[data-active] {
+  background-color: $list-item-bg-color-ios;
+  animation-name: list-item-active-ios;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.ww-list-item--material[data-active] {
+  background-color: $list-item-bg-color-material;
+  animation-name: list-item-active-material;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.ww-list-item__left--material[data-active], .ww-list-item__center--material[data-active], .ww-list-item__right--material[data-active] {
+  background: none;
+  animation-name: none;
+}
