@@ -8,7 +8,8 @@ var ui = require("./ui/ui.js");
 var errorHandler = require("./bridge/error-handler.js");
 var config = require("./bridge/config");
 var constants = require("./bridge/constants");
-const style = require("../../dist/css/workwell.css");
+const ww_ = require("./ui/ww_");
+require("../../dist/css/workwell.css");
 
 let mutationObserver;
 
@@ -16,29 +17,29 @@ window["Workwell_onShow"] = function () {
     // nothing
 };
 
+window.ww_ = ww_;
+
 function ready(fn) {
-    if (typeof document !== "undefined" && document.readyState != 'loading') {
+    if (typeof document !== "undefined" && document.readyState !== "loading") {
         fn();
     } else {
         if (typeof document !== "undefined")
-            document.addEventListener('DOMContentLoaded', fn);
+            document.addEventListener("DOMContentLoaded", fn);
     }
 }
 
 ready(function () {
-    document.body.addEventListener('touchstart', function () {
+    document.body.addEventListener("touchstart", function () {
 
     });
     mutationObserver = new MutationObserver(function (mutations) {
         for (let mutation of mutations) {
-            if (mutation.type === 'childList') {
+            if (mutation.type === "childList") {
                 for (let addedNode of mutation.addedNodes) {
-                    if (addedNode.onAttached) {
-                        addedNode.onAttached();
+                    if (addedNode.onAttachedToDom) {
+                        addedNode.onAttachedToDom();
                     }
                 }
-            } else if (mutation.type === 'attributes') {
-
             }
         }
     });
@@ -143,11 +144,11 @@ var Workwell = {
         window["Workwell_onShow"] = fn;
     },
     ready: function (fn) {
-        if (typeof document !== "undefined" && document.readyState != 'loading') {
+        if (typeof document !== "undefined" && document.readyState !== "loading") {
             fn();
         } else {
             if (typeof document !== "undefined")
-                document.addEventListener('DOMContentLoaded', fn);
+                document.addEventListener("DOMContentLoaded", fn);
         }
     },
     init: function (obj) {
@@ -208,12 +209,6 @@ var Workwell = {
     openPaymentModule: function (obj) {
         var jsonObj = engine.createJSONFrom("open", "payment", obj);
         bridge.sendFromJS(JSON.stringify(jsonObj));
-    },
-    create: function (viewId, left, top) {
-        var view = $("<div id='" + viewId + "' class='ww-view'></div>");
-        view.css("left", left + "px");
-        view.css("top", top + "px");
-        return view;
     },
     refreshView: function () {
         var jsonObj = engine.createJSONFrom("ui", "refresh", {});
@@ -341,7 +336,7 @@ var Workwell = {
     },
     preprocessLinks: function () {
         if (typeof document !== "undefined") {
-            var anchors = document.getElementsByTagName('a');
+            var anchors = document.getElementsByTagName("a");
             for (var z = 0; z < anchors.length; z++) {
                 var elem = anchors[z];
                 elem.onclick = function () {

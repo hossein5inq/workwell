@@ -5,11 +5,16 @@
 @import "components/base-components/ww-button";
 @import "components/base-components/ww-slider";
 @import "components/base-components/ww-switch";
+@import "components/base-components/ww-list";
 @import "components/base-components/ww-list-item__label";
+@import "components/base-components/ww-list-item__title";
+@import "components/base-components/ww-list-item";
 
 @include font-face(workwell-font, "/assets/fonts/workwell-font", normal, normal, eot svg ttf woff);
 
-$roboto: 'Roboto', serif;
+.ww-body--material {
+  background-color: white;
+}
 
 [data-icon]:before {
   font-family: "workwell-font", serif !important;
@@ -23,6 +28,7 @@ $roboto: 'Roboto', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
@@ -126,49 +132,6 @@ body {
   background-color: #fafafa;
 }
 
-.ww-list {
-  padding: 0;
-  margin: 0;
-  margin-top: 12px;
-  font: inherit;
-  color: inherit;
-  /*border: none;*/
-  line-height: normal;
-  cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  list-style-type: none;
-  text-align: left;
-  display: block;
-  -webkit-overflow-scrolling: touch;
-  overflow: hidden;
-  /*border-top: solid 0.5px #ccc;*/
-  border-bottom: solid 0.5px #ccc;
-  background-image: -webkit-linear-gradient(#ccc, #ccc),
-  -webkit-linear-gradient(#ccc, #ccc);
-  background-image: linear-gradient(#ccc, #ccc),
-  linear-gradient(#ccc, #ccc);
-  background-size: 100% 0px, 100% 0px;
-  background-repeat: no-repeat;
-  background-position: bottom, top;
-  background-color: #fff;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  /* Non-prefixed version, currently
-                                   supported by Chrome and Opera */
-}
-
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .ww-list {
     background-image: -webkit-linear-gradient(bottom, #ccc, #ccc 50%, transparent 50%),
@@ -178,169 +141,12 @@ body {
   }
 }
 
-.ww-list-item {
-  width: 100%;
-  position: relative;
-  list-style: none;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 0 0 14px;
-  /*margin: 0 0 -1px 0;*/
-  color: #1f1f21;
-  background-color: #ffffff;
-  border-color: #ccc;
-  /*-webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;*/
-}
-
-.ww-list-item__left {
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 12px 14px 12px 0;
-  -webkit-box-ordinal-group: 1;
-  -ms-flex-order: 0;
-  order: 0;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
-  line-height: 1.2em;
-  min-height: 44px;
-}
-
-.ww-list-item__left:empty {
-  width: 0;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-}
-
-.ww-list-item__center {
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-ordinal-group: 2;
-  -ms-flex-order: 1;
-  order: 1;
-  margin-right: auto;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  align-self: stretch;
-  margin-left: 0;
-  border-color: #ccc;
-  border-bottom: 0.5px solid #ccc;
-  padding: 12px 6px 12px 0;
-  line-height: 1.2em;
-  min-height: 44px;
-  min-width: 0;
-  flex: 1;
-}
-
 .ww-list-item:last-child > .ww-list-item__center {
   border-bottom: none;
 }
 
 .ww-list-item:last-child > .ww-list-item__right {
   border-bottom: none;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .ww-list-item__center {
-    /*background-image: -webkit-linear-gradient(bottom, #ccc, #ccc 50%, transparent 50%);
-    background-image: linear-gradient(0deg, #ccc, #ccc 50%, transparent 50%);*/
-  }
-}
-
-.ww-list-item__right {
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: auto;
-  padding: 12px 12px 12px 0;
-  -webkit-box-ordinal-group: 3;
-  -ms-flex-order: 2;
-  order: 2;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
-  /*border-bottom: none;*/
-  /*background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;*/
-  /*background-image: -webkit-linear-gradient(bottom, #ccc, #ccc 100%);
-  background-image: linear-gradient(0deg, #ccc, #ccc 100%);*/
-  border-color: #ccc;
-  border-bottom: 0.5px solid #ccc;
-  line-height: 1.2em;
-  min-height: 44px;
-  min-width: 40px;
-  /*max-height: 44px;*/
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .ww-list-item__right {
-    /*background-image: -webkit-linear-gradient(bottom, #ccc, #ccc 50%, transparent 50%);
-    background-image: linear-gradient(0deg, #ccc, #ccc 50%, transparent 50%);*/
-  }
-}
-
-.ww-list-header {
-  margin: 0;
-  list-style: none;
-  text-align: left;
-  display: block;
-  box-sizing: border-box;
-  padding: 0 0 0 15px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #989898;
-  min-height: 24px;
-  line-height: 25px;
-  text-transform: uppercase;
-  position: relative;
-  border-bottom: solid 0.5px #ccc;
-  /*background-color: #efeff4;*/
-  background-color: #fafafa;
-  background-size: 100% 0px;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-image: -webkit-linear-gradient(bottom, #ccc, #ccc 100%);
-  background-image: linear-gradient(0deg, #ccc, #ccc 100%);
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .ww-list-header {
-    background-image: -webkit-linear-gradient(top, #ccc, #ccc 50%, transparent 50%);
-    background-image: linear-gradient(180deg, #ccc, #ccc 50%, transparent 50%);
-  }
 }
 
 .ww-list-header--noborderbottom {
@@ -361,12 +167,6 @@ body {
   border-top: none;
 }
 
-.ww-list-item--tappable:active {
-  /*-webkit-transition: none;
-  transition: none;
-  background-color: #d9d9d9;*/
-}
-
 .ww-list-item--chevron:before {
   border-right: 2px solid #c7c7cc;
   border-bottom: 2px solid #c7c7cc;
@@ -380,7 +180,6 @@ body {
   right: 16px;
   top: 50%;
   z-index: 5;
-
 }
 
 .ww-list--inset {
@@ -388,37 +187,6 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-image: none;
-}
-
-/*~
-  name: List Item with Subtitle
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__center">
-          <div class="ww-list-item__title">
-            Title
-          </div>
-          <div class="ww-list-item__subtitle">
-            Subtitle
-          </div>
-        </div>
-      </li>
-    </ul>
-*/
-.ww-list-item__title {
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  /*-ms-flex-item-align: end;
-  align-self: flex-end;*/
-  -webkit-box-ordinal-group: 1;
-  -ms-flex-order: 0;
-  order: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .ww-list-item__subtitle {
@@ -437,35 +205,6 @@ body {
   text-overflow: ellipsis;
 }
 
-/*~
-  name: List Item with Thumbnail
-  category: List
-  elements: ww-list ww-list-item
-  markup: |
-    <ul class="ww-list">
-      <li class="ww-list-item">
-        <div class="ww-list-item__left">
-          <img class="ww-list-item__thumbnail" src="http://placekitten.com/g/40/40" alt="Cute kitten">
-        </div>
-
-        <div class="ww-list-item__center">
-          <div class="ww-list-item__title">Lily</div>
-          <div class="ww-list-item__subtitle">Very friendly cat</div>
-        </div>
-      </li>
-
-      <li class="ww-list-item">
-        <div class="ww-list-item__left">
-          <img class="ww-list-item__thumbnail" src="http://placekitten.com/g/40/40" alt="Cute kitten">
-        </div>
-
-        <div class="ww-list-item__center">
-          <div class="ww-list-item__title">Molly</div>
-          <div class="ww-list-item__subtitle">Loves tuna!</div>
-        </div>
-      </li>
-    </ul>
-*/
 .ww-list-item__thumbnail {
   width: 40px;
   height: 40px;
@@ -480,78 +219,12 @@ body {
   padding: 0 6px;
 }
 
-.ww-list--material {
-  font-family: 'Roboto', 'Noto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-weight: 400;
-  background-image: none;
-}
-
-.ww-list-item--material {
-  border: 0;
-  padding: 0 0 0 16px;
-  line-height: normal;
-  border-color: #f4f4f4;
-}
-
 .ww-list-item--material__subtitle {
   margin-top: 4px;
 }
 
 .ww-list-item--material:first-child {
   box-shadow: none;
-}
-
-.ww-list-item--material__left {
-  padding: 14px 0;
-  min-width: 56px;
-  line-height: 1;
-  min-height: 48px;
-}
-
-.ww-list-item--material__left:empty,
-.ww-list-item--material__center {
-  padding: 14px 6px 14px 0;
-  /*border-color: #eee;*/
-  /*border-bottom: none;*/
-  border-color: #f4f4f4;
-  border-bottom: solid 0.5px #f4f4f4;
-  /*background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;*/
-  /*background-image: -webkit-linear-gradient(bottom, #eee, #eee 100%);
-  background-image: linear-gradient(0deg, #eee, #eee 100%);*/
-  min-height: 48px;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .ww-list-item--material__left:empty,
-  .ww-list-item--material__center {
-    /*background-image: -webkit-linear-gradient(bottom, #eee, #eee 50%, transparent 50%);
-    background-image: linear-gradient(0deg, #eee, #eee 50%, transparent 50%);*/
-  }
-}
-
-.ww-list-item--material__right {
-  padding: 12px 16px 12px 0;
-  line-height: 1;
-  /*border-color: #eee;*/
-  border-color: #f4f4f4;
-  border-bottom: solid 0.5px #f4f4f4;
-  /*border-bottom: none;
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-image: -webkit-linear-gradient(bottom, #eee, #eee 100%);
-  background-image: linear-gradient(0deg, #eee, #eee 100%);*/
-  min-height: 48px;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .ww-list-item--material__right {
-    /*background-image: -webkit-linear-gradient(bottom, #eee, #eee 50%, transparent 50%);
-    background-image: linear-gradient(0deg, #eee, #eee 50%, transparent 50%);*/
-  }
 }
 
 .ww-list-item--material.list-item--longdivider {
@@ -562,24 +235,6 @@ body {
   background-position: bottom;
   background-image: -webkit-linear-gradient(bottom, #eee, #eee 100%);
   background-image: linear-gradient(0deg, #eee, #eee 100%);
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .ww-list-item--material.list-item--longdivider {
-    /*background-image: -webkit-linear-gradient(bottom, #eee, #eee 50%, transparent 50%);
-    background-image: linear-gradient(0deg, #eee, #eee 50%, transparent 50%);*/
-  }
-}
-
-.ww-list-header--material {
-  background: #fff;
-  border: none;
-  font-size: 14px;
-  text-transform: none;
-  margin: -1px 0 0 0;
-  color: #757575;
-  font-weight: 500;
-  padding: 8px 16px;
 }
 
 .ww-list-header--material:not(:first-of-type) {

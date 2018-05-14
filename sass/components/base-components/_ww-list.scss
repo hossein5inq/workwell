@@ -1,0 +1,97 @@
+@import "../../abstracts/variables";
+
+// list-specific variables (iOS)
+$list-header-color-ios: #989898;
+$list-header-bg-color-ios: #fafafa;
+$list-border-color-ios: #d3d3d3;
+
+// list-specific variables (material)
+$list-header-color-material: #757575;
+$list-header-bg-color-material: #fff;
+
+.ww-list {
+  padding: 0;
+  margin: 12px 0 0;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: $ios-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  list-style-type: none;
+  text-align: left;
+  display: block;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  border-bottom: solid 1px $list-border-color-ios;
+  background-image: -webkit-linear-gradient($list-border-color-ios, $list-border-color-ios),
+  -webkit-linear-gradient($list-border-color-ios, $list-border-color-ios);
+  background-image: linear-gradient($list-border-color-ios, $list-border-color-ios),
+  linear-gradient($list-border-color-ios, $list-border-color-ios);
+  background-size: 100% 0, 100% 0;
+  background-repeat: no-repeat;
+  background-position: bottom, top;
+  background-color: #fff;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &--material {
+    font-family: $material-font;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    background-image: none;
+    border-bottom: none;
+  }
+}
+
+.ww-list-header {
+  margin: 0;
+  list-style: none;
+  text-align: left;
+  display: block;
+  box-sizing: border-box;
+  padding: 0 0 0 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $list-header-color-ios;
+  min-height: 24px;
+  line-height: 25px;
+  text-transform: uppercase;
+  position: relative;
+  border-bottom: solid 1px $list-border-color-ios;
+  background-color: $list-header-bg-color-ios;
+  background-size: 100% 0;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-image: -webkit-linear-gradient(bottom, $list-border-color-ios, $list-border-color-ios 100%);
+  background-image: linear-gradient(0deg, $list-border-color-ios, $list-border-color-ios 100%);
+
+  &--material {
+    background: $list-header-bg-color-material;
+    border: none;
+    font-size: 14px;
+    text-transform: none;
+    margin: -1px 0 0 0;
+    color: $list-header-color-material;
+    font-weight: 500;
+    padding: 8px 16px;
+  }
+}
+
+.ww-list .ww-list-item:first-child {
+  border-top: solid 1px $list-border-color-ios;
+}
+
+.ww-list--material .ww-list-item--material:first-child {
+  border-top: none;
+}
+
+.ww-list--material .ww-list-item--material:last-child {
+  background: none;
+}

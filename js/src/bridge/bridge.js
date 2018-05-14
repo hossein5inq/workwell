@@ -9,4 +9,4 @@ module.exports = {
             window.webkit.messageHandlers.jsbridge.postMessage(json);
         }
     }
-}
+};

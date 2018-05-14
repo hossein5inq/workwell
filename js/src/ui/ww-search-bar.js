@@ -29,7 +29,7 @@ function searchBar() {
     uiUtils.addClass(clearIcon, "icon-clear");
     uiUtils.addClass(textContainer, "ww-search-bar-text-container");
 
-    input.addEventListener('input', function (evt) {
+    input.addEventListener("input", function () {
         if (searchView) {
             searchView.onInput();
         }
@@ -53,11 +53,11 @@ function searchBar() {
         div.appendChild(inputContainer);
         div.appendChild(textContainer);
 
-        textContainer.addEventListener('click', function () {
+        textContainer.addEventListener("click", function () {
             searchView.close();
         });
 
-        clearIconContainer.addEventListener('click', function () {
+        clearIconContainer.addEventListener("click", function () {
             input.value = "";
             input.focus();
             searchView.onInput();

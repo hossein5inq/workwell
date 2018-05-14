@@ -40,6 +40,14 @@ function input(type_) {
         input.setAttribute("placeholder", placeholder_);
     };
 
+    this.getPlaceholder = function () {
+        return placeholder;
+    };
+
+    this.getMaxLength = function () {
+        return maxLength;
+    };
+
     this.setMaxLength = function (maxLength_) {
         maxLength = maxLength_;
         input.maxLength = maxLength_;

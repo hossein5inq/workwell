@@ -1,5 +1,3 @@
-var token = require("./token.js");
-
 module.exports = {
     requestToken: "",
     maxRetries: 5,
@@ -13,7 +11,7 @@ module.exports = {
                 this.tryNb = 0;
                 console.log("Number of max bridge calls exceeded !! Something is wrong with the token ID !");
             }
-        }
+        };
     },
     getRequestTokenFunction: function () {
         return this.requestToken;
@@ -21,4 +19,4 @@ module.exports = {
     resetTries: function () {
         this.tryNb = 0;
     }
-}
+};

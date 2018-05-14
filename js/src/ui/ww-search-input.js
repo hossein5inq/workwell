@@ -1,4 +1,3 @@
-var utils = require("../bridge/utils.js");
 var uiUtils = require("./ui-utils.js");
 var searchView = require("./ww-search-view");
 

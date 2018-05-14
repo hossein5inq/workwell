@@ -1,13 +1,11 @@
-var util = require("./utils.js");
-var token = require("./token.js");
-var auth = require("./auth.js");
-var bridge = require("./bridge.js");
-var errorHandler = require("./error-handler.js");
-var config = require("./config");
+const util = require("./utils.js");
+const token = require("./token.js");
+const errorHandler = require("./error-handler.js");
+const config = require("./config");
 
 module.exports = {
     createJSONFrom: function (action, target, obj) {
-        if (token.getServiceToken().tokenId.trim() == "") {
+        if (token.getServiceToken().tokenId.trim() === "") {
             // empty service token
             throw new Error("You need to set the service token before using any methods from the SDK !");
         }
@@ -40,37 +38,30 @@ module.exports = {
                     }
                 }
 
-                switch (action) {
-                    case "ui":
-                    case "open":
-                    case "core":
-                    case "get":
-                        var successCallback = util.generateCallbackName("success");
-                        var errorCallback = util.generateCallbackName("error");
-                        json.successCallback = successCallback;
-                        json.errorCallback = errorCallback;
-                        if (typeof window !== "undefined") {
-                            if (obj.success) {
-                                //json.successCallback = successCallback;
-                                window[successCallback] = obj.success;
-                            } else {
-                                window[successCallback] = function () {
+                if (action === "ui" || action === "open" || action === "core" || action === "get") {
+                    var successCallback = util.generateCallbackName("success");
+                    var errorCallback = util.generateCallbackName("error");
+                    json.successCallback = successCallback;
+                    json.errorCallback = errorCallback;
+                    if (typeof window !== "undefined") {
+                        if (obj.success) {
+                            //json.successCallback = successCallback;
+                            window[successCallback] = obj.success;
+                        } else {
+                            window[successCallback] = function () {
 
-                                };
-                            }
-
-                            if (obj.error) {
-                                //json.errorCallback = errorCallback;
-                                window[errorCallback] = obj.error;
-                            } else {
-                                window[errorCallback] = function () {
-
-                                };
-                            }
+                            };
                         }
-                        break;
-                    default:
-                        break;
+
+                        if (obj.error) {
+                            //json.errorCallback = errorCallback;
+                            window[errorCallback] = obj.error;
+                        } else {
+                            window[errorCallback] = function () {
+
+                            };
+                        }
+                    }
                 }
 
                 if (obj && obj.transition) {

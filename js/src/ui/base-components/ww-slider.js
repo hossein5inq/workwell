@@ -1,4 +1,3 @@
-const uiUtils = require("../ui-utils");
 const BaseComponent = require("./ww-base-component");
 
 class Slider extends BaseComponent {
@@ -12,10 +11,10 @@ class Slider extends BaseComponent {
         this.handleContainer = document.createElement("div");
         this.longPressTimerDuration = 220;
 
-        uiUtils.addClass(this.el, "ww-slider");
-        uiUtils.addClass(this.handle, "ww-slider__handle");
-        uiUtils.addClass(this.handleBackground, "ww-slider__handle-background");
-        uiUtils.addClass(this.handleContainer, "ww-slider__handle-container");
+        this.addClass("ww-slider");
+        BaseComponent.addClass(this.handle, "ww-slider__handle");
+        BaseComponent.addClass(this.handleBackground, "ww-slider__handle-background");
+        BaseComponent.addClass(this.handleContainer, "ww-slider__handle-container");
 
         this.handleContainer.appendChild(this.handleBackground);
         this.handleContainer.appendChild(this.handle);
@@ -27,7 +26,7 @@ class Slider extends BaseComponent {
 
         this.el.addEventListener("touchstart", (event) => {
             event.preventDefault();
-            if (uiUtils.hasClass(event.target, "ww-slider")) {
+            if (BaseComponent.hasClass(event.target, "ww-slider")) {
                 this.onSliderBarTouchDown(element, event);
             } else {
                 this.onHandleTouchDown(this, event);
@@ -47,27 +46,31 @@ class Slider extends BaseComponent {
             this.setCurrentValue(this.el.currentValue);
         };
 
-        this.onChangeFunction = () => {
+        this.el.onChangeFunction = () => {
 
         };
 
-        this.onChange = (fn) => {
-            this.onChangeFunction = fn;
+        this.el.onAttachedToDom = () => {
+            this.setCurrentValue(this.el.currentValue);
         };
+    }
+
+    onChange(fn) {
+        this.el.onChangeFunction = fn;
     }
 
     onHandleTouchDown(this_, event) {
         let touchObj = event.changedTouches[0];
         this.startX = parseInt(touchObj.clientX);
         this.longPressTimer = setTimeout(function () {
-            uiUtils.addClass(this_.handleBackground, "ww-slider__handle-active-background");
+            BaseComponent.addClass(this_.handleBackground, "ww-slider__handle-active-background");
         }, this.longPressTimerDuration);
     }
 
     onHandleTouchUp() {
         window.clearTimeout(this.longPressTimer);
-        uiUtils.removeClass(this.handleBackground, "ww-slider__handle-active-background");
-        uiUtils.removeClass(this.handleContainer, "ww-slider__handle-active-container");
+        BaseComponent.removeClass(this.handleBackground, "ww-slider__handle-active-background");
+        BaseComponent.removeClass(this.handleContainer, "ww-slider__handle-active-container");
     }
 
     onSliderBarTouchDown(element, event) {
@@ -101,8 +104,12 @@ class Slider extends BaseComponent {
 
         this.setCurrentValue(middle / step);
 
-        uiUtils.addClass(this.handleContainer, "ww-slider__handle-active-container");
-        uiUtils.addClass(this.handleBackground, "ww-slider__handle-active-background");
+        BaseComponent.addClass(this.handleContainer, "ww-slider__handle-active-container");
+        BaseComponent.addClass(this.handleBackground, "ww-slider__handle-active-background");
+    }
+
+    getCurrentValue() {
+        return this.el.currentValue;
     }
 
     setCurrentValue(value) {
@@ -113,7 +120,7 @@ class Slider extends BaseComponent {
         let step = width / this.el.max;
         let middle = step * value;
 
-        this.onChangeFunction(this.el.currentValue);
+        this.el.onChangeFunction(this.el.currentValue);
         this.handleContainer.style.left = parseInt(middle - this.handleContainer.offsetWidth / 2) + "px";
 
         this.el.style.background = style_.backgroundColor + " linear-gradient(" +
@@ -122,6 +129,8 @@ class Slider extends BaseComponent {
             style_.color + " " + middle + "px," +
             style_.backgroundColor + " " + middle + "px," +
             style_.backgroundColor + " 100%)";
+
+        return this;
     }
 }
 

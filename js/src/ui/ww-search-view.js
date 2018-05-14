@@ -2,8 +2,8 @@ var uiUtils = require("./ui-utils");
 var ajax = require("../bridge/ajax");
 var Velocity = require("velocity-animate");
 var searchBar = require("./ww-search-bar");
-var list = require("./ww-list");
-var listItem = require("./ww-list-item");
+var list = require("./base-components/ww-list");
+var listItem = require("./base-components/ww-list-item");
 
 function searchView() {
     var el = this;

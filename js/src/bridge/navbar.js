@@ -75,4 +75,4 @@ module.exports = {
             this.dataToUpdate.data.title = title;
         }
     }
-}
+};

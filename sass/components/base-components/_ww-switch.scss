@@ -4,6 +4,9 @@
 $switch-bg-color-ios: #FFFFFF;
 $switch-on-bg-color-ios: #1f5295;
 $switch-handle-container-bg-color-ios: white;
+$switch-width-ios: 45;
+$switch-height-ios: 27;
+$switch-handle-size-ios: 23;
 
 // switch-specific variables (material)
 $switch-bg-color-material: #b0afaf;
@@ -11,6 +14,10 @@ $switch-text-color-material: #1f1f21;
 $switch-on-bg-color-material: #94b3d5;
 $switch-handle-bg-color-material: #f1f1f1;
 $switch-handle-on-bg-color-material: #1f5295;
+$switch-active-radius-material: 12;
+$switch-width-material: 36;
+$switch-height-material: 14;
+$switch-handle-size-material: 20;
 
 .ww-switch {
   background-color: $switch-bg-color-ios;
@@ -31,52 +38,53 @@ $switch-handle-on-bg-color-material: #1f5295;
   box-sizing: border-box;
   background-clip: padding-box;
   position: relative;
-  min-width: 51px;
+  min-width: $switch-width-ios + unquote("px");
   font-size: 17px;
   padding: 0 20px;
   border: none;
   overflow: visible;
-  width: 51px;
-  height: 32px;
+  width: $switch-width-ios + unquote("px");
+  height: $switch-height-ios + unquote("px");
   z-index: 0;
   text-align: left;
-}
 
-.ww-switch--material {
-  background-color: $switch-bg-color-material;
-  border-radius: 30px;
-  bottom: 0;
-  box-shadow: none;
-  color: $switch-text-color-material;
-  cursor: default;
-  display: block;
-  font-family: $material-font;
-  font-size: 17px;
-  font-stretch: normal;
-  font-style: normal;
-  font-variant-caps: normal;
-  font-variant-ligatures: normal;
-  font-variant-numeric: normal;
-  font-weight: normal;
-  height: 14px;
-  left: 0;
-  line-height: 17px;
-  list-style: none outside none;
+  &--material {
+    background-color: $switch-bg-color-material;
+    border-radius: 30px;
+    bottom: 0;
+    box-shadow: none;
+    color: $switch-text-color-material;
+    cursor: default;
+    display: block;
+    font-family: $material-font;
+    font-size: 17px;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: normal;
+    height: $switch-height-material + unquote("px");
+    left: 0;
+    line-height: 17px;
+    list-style: none outside none;
 
-  position: relative;
-  padding: 0;
-  right: 0;
-  text-align: left;
-  top: 0;
-  transition-duration: 0.35s;
-  transition-property: all;
-  transition-timing-function: ease-out;
-  user-select: none;
-  width: 36px;
-  min-width: 36px;
-  -webkit-box-direction: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    position: relative;
+    padding: 0;
+    margin: $switch-active-radius-material + unquote("px");
+    right: 0;
+    text-align: left;
+    top: 0;
+    transition-duration: 0.35s;
+    transition-property: all;
+    transition-timing-function: ease-out;
+    user-select: none;
+    width: $switch-width-material + unquote("px");
+    min-width: $switch-width-material + unquote("px");
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 }
 
 .ww-switch__handle-container {
@@ -84,9 +92,9 @@ $switch-handle-on-bg-color-material: #1f5295;
   background-clip: padding-box;
   position: absolute;
   content: '';
-  border-radius: 28px;
-  height: 28px;
-  width: 28px;
+  border-radius: 50%;
+  height: $switch-handle-size-ios + unquote("px");
+  width: $switch-handle-size-ios + unquote("px");
   background-color: $switch-handle-container-bg-color-ios;
   left: 1px;
   top: 2px;
@@ -97,33 +105,33 @@ $switch-handle-on-bg-color-material: #1f5295;
   -webkit-transition-timing-function: cubic-bezier(.59, .01, .5, .99);
   transition-timing-function: cubic-bezier(.59, .01, .5, .99);
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, .25), 0 3px 2px rgba(0, 0, 0, .25);
-}
 
-.ww-switch--material__handle-container {
-  height: 20px;
-  width: 20px;
-  box-sizing: border-box;
-  border-radius: 28px;
-  position: relative;
-  left: 0;
-  top: -3px;
-  -webkit-box-direction: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transition-duration: 0.35s;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.59, 0.01, 0.5, 0.99);
-  user-select: none;
+  &--material {
+    height: $switch-handle-size-material + unquote("px");
+    width: $switch-handle-size-material + unquote("px");
+    box-sizing: border-box;
+    border-radius: 50%;
+    position: relative;
+    left: 0;
+    top: -3px;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.35s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.59, 0.01, 0.5, 0.99);
+    user-select: none;
+  }
 }
 
 .ww-switch__handle-active-container {
   -webkit-transition: none;
   transition: none;
-}
 
-.ww-switch--material__handle-active-container {
-  -webkit-transition: none;
-  transition: none;
+  &--material {
+    -webkit-transition: none;
+    transition: none;
+  }
 }
 
 .ww-switch__handle-background {
@@ -140,8 +148,10 @@ $switch-handle-on-bg-color-material: #1f5295;
   transition-property: all;
 }
 
-.ww-switch--material__handle-active-background {
-  box-shadow: 0 0 0 15px rgba(0, 0, 0, 0.15);
+.ww-switch__handle-active-background {
+  &--material {
+    box-shadow: 0 0 0 $switch-active-radius-material + unquote("px") rgba(0, 0, 0, 0.15);
+  }
 }
 
 .ww-switch__handle {
@@ -149,57 +159,55 @@ $switch-handle-on-bg-color-material: #1f5295;
   border-radius: 28px;
   height: 100%;
   width: 100%;
-}
 
-.ww-switch--material__handle {
-  z-index: 1;
-  position: absolute;
-  background-color: $switch-handle-bg-color-material;
-  background-clip: padding-box;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  border-radius: 28px;
-  -webkit-box-direction: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transition-duration: 0.35s;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.59, 0.01, 0.5, 0.99);
-  box-shadow: rgba(0, 0, 0, 0.14) 0 4px 5px 0, rgba(0, 0, 0, 0.12) 0 1px 10px 0, rgba(0, 0, 0, 0.4) 0 2px 4px -1px;
+  &--material {
+    z-index: 1;
+    position: absolute;
+    background-color: $switch-handle-bg-color-material;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.35s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.59, 0.01, 0.5, 0.99);
+    box-shadow: rgba(0, 0, 0, 0.14) 0 4px 5px 0, rgba(0, 0, 0, 0.12) 0 1px 10px 0, rgba(0, 0, 0, 0.4) 0 2px 4px -1px;
+  }
 }
 
 .ww-switch__handle-on {
-
-}
-
-.ww-switch--material__handle-on {
-  background-color: $switch-handle-on-bg-color-material;
+  &--material {
+    background-color: $switch-handle-on-bg-color-material;
+  }
 }
 
 .ww-switch__handle-container-on {
   left: 21px;
   box-shadow: 0 3px 2px rgba(0, 0, 0, .25);
-}
 
-.ww-switch--material__handle-container-on {
-  left: 16px;
+  &--material {
+    left: 16px;
+  }
 }
 
 .ww-switch__handle-container-off {
   left: 0;
 }
 
-.ww-switch--material__handle-container-off {
-  left: 0;
-}
-
 .ww-switch-on {
   box-shadow: inset 0 0 0 2px #1f5295;
   background-color: $switch-on-bg-color-ios;
+
+  &--material {
+    box-shadow: none;
+    background-color: $switch-on-bg-color-material;
+  }
 }
 
-.ww-switch-on--material {
-  box-shadow: none;
-  background-color: $switch-on-bg-color-material;
+.ww-list-item .ww-switch {
+  margin: 0;
 }
