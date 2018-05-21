@@ -8,116 +8,11 @@
 @import "components/base-components/ww-list";
 @import "components/base-components/ww-list-item__label";
 @import "components/base-components/ww-list-item__title";
+@import "components/base-components/ww-list-item__icon";
 @import "components/base-components/ww-list-item";
+@import "components/base-components/ww-input";
+@import "components/ww-icon";
 
-@include font-face(workwell-font, "/assets/fonts/workwell-font", normal, normal, eot svg ttf woff);
-
-.ww-body--material {
-  background-color: white;
-}
-
-[data-icon]:before {
-  font-family: "workwell-font", serif !important;
-  content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  font-family: "workwell-font", serif !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-chevron:before {
-  -webkit-transform: translateY(-50%) rotate(-45deg);
-  transform: translateY(-50%) rotate(-45deg);
-  border-right: 2px solid #c7c7cc;
-  border-bottom: 2px solid #c7c7cc;
-  position: absolute;
-  content: '';
-  width: 7px;
-  height: 7px;
-  background-color: transparent;
-  -webkit-transform: translateY(-50%) rotate(-45deg);
-  transform: translateY(-50%) rotate(-45deg);
-  right: 16px;
-  top: 50%;
-  z-index: 5;
-}
-
-/*.icon-chevron:before {
-    content: "\61";
-    color: #989898;
-}*/
-
-.icon-check:before {
-  content: "a";
-  color: #1c5094;
-  margin-right: -4px;
-}
-
-.icon-check--material:before {
-  content: "c";
-  color: #1f5295;
-  margin-right: -4px;
-}
-
-.icon-check-off--material:before {
-  content: "b";
-  color: #a8a8a8;
-  margin-right: -4px;
-}
-
-.icon-select:before {
-  content: "a";
-  color: #1c5094;
-  margin-right: -4px;
-}
-
-.icon-select--material:before {
-  content: "f";
-  color: #1f5295;
-  margin-right: -4px;
-}
-
-.icon-select-off--material:before {
-  content: "e";
-  color: #a8a8a8;
-  margin-right: -4px;
-}
-
-.icon-close--material:before {
-  content: "g";
-  color: #fff;
-  font-size: 25px;
-}
-
-.icon-clear:before {
-  content: "h";
-  color: #b5b5b5;
-  font-size: 14px;
-}
-
-.icon-search-input:before {
-  content: "i";
-  font-size: 25px;
-  color: black;
-}
 
 html {
   width: 100%;
@@ -130,6 +25,10 @@ body {
   height: 100%;
   margin: 0;
   background-color: #fafafa;
+}
+
+.ww-body--material {
+  background-color: white;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -211,12 +110,6 @@ body {
   border-radius: 6px;
   display: block;
   margin: 0;
-}
-
-.ww-list-item__icon {
-  margin-left: 11px;
-  font-size: 22px;
-  padding: 0 6px;
 }
 
 .ww-list-item--material__subtitle {
@@ -413,35 +306,6 @@ body {
   margin-right: 3px;
 }
 
-.ww-input {
-  box-sizing: border-box;
-  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: 16px;
-  width: 100%;
-  border-top: 0.5px solid #d2d2d2;
-  border-bottom: 0.5px solid #d2d2d2;
-  border-left: none;
-  border-right: none;
-  /*padding: 0 0 0 14px;*/
-  margin: 0 0 -1px 0;
-  /*line-height: 14px;*/
-  /* avoid cutting the placeholder in safari */
-  border-radius: 0px !important;
-  color: #1f1f21;
-  outline: none;
-  padding: 12px 6px 12px 14px;
-  line-height: 1.2em;
-  min-height: 44px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.ww-input--material {
-  font-family: 'Roboto', 'Noto', sans-serif;
-}
-
 .ww-textarea {
   box-sizing: border-box;
   font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
@@ -484,24 +348,6 @@ textarea {
   -moz-appearance: none;
   appearance: none;
   resize: none;
-}
-
-input[type=text] {
-  /* Remove First */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-input[type=number] {
-  /* Remove First */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-size: 17px;
 }
 
 .ww-paging-indicator {

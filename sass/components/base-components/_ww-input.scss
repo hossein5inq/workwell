@@ -1,0 +1,106 @@
+@import "../../abstracts/variables";
+
+// Input-specific variables (ios)
+$input-border-color-ios: #d3d3d3;
+
+// Input-specific variables (material)
+$input-bg-color-material: #c6c6c6;
+$input-label-container-bg-color-material: #f4f5f5;
+$input-border-bottom-color-material: #c6c6c6;
+$input-label-color-material: #a5a5a5;
+
+.ww-input__container {
+  &--material {
+    position: relative;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 13px;
+    width: 100%;
+  }
+}
+
+.ww-input__center {
+  &--material {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.ww-input__label-container {
+  &--material {
+    padding-left: 11px;
+    font-family: $material-font;
+    font-size: 16px;
+    position: absolute;
+    z-index: 0;
+    background-color: $input-label-container-bg-color-material;
+    box-sizing: border-box;
+  }
+}
+
+.ww-input {
+  width: 100%;
+  outline: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 0;
+  font-family: $ios-font;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 15px;
+  border-top: solid 1px $input-border-color-ios;
+  border-bottom: solid 1px $input-border-color-ios;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  &--material {
+    z-index: 1;
+    position: relative;
+    background-color: transparent;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: solid 2px $input-border-bottom-color-material;
+    padding: 26px 11px 9px;
+    font-family: $material-font;
+    font-size: 16px;
+  }
+}
+
+.ww-input__label {
+  &--material {
+    color: $input-label-color-material;
+    position: absolute;
+  }
+}
+
+.ww-input__assistive-text {
+  &--material {
+    color: $input-label-color-material;
+    margin-left: 11px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-family: $material-font;
+    font-size: 12px;
+    height: 16px;
+  }
+}
+
+.ww-list-item .ww-input {
+  padding: 0;
+  border: none;
+  &--material {
+    border-bottom: solid 2px $input-border-bottom-color-material;
+    padding: 26px 11px 9px;
+  }
+}
+
+.ww-list-item .ww-input__container--material {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.ww-list-item .ww-input__assistive-text--material {
+  margin-bottom: 0;
+}
