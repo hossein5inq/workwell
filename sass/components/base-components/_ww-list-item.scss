@@ -139,6 +139,10 @@ $list-item-left-padding-material: 16;
   }
 }
 
+.ww-list-item__center--material:last-child {
+  padding-right: 16px;
+}
+
 .ww-list-item__right {
   box-sizing: border-box;
   display: -webkit-box;

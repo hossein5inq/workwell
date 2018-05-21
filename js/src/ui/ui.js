@@ -3,7 +3,9 @@ const ListItem = require("./base-components/ww-list-item");
 const List = require("./base-components/ww-list");
 const ListItemTitle = require("./base-components/ww-list-item__title");
 const ListItemLabel = require("./base-components/ww-list-item__label");
-const Input = require("./ww-input.js");
+const ListItemChevronIcon = require("./base-components/ww-list-item__chevron-icon");
+const Input = require("./base-components/ww-input");
+const InputMaterial = require("./base-components/ww-input--material");
 const SearchInput = require("./ww-search-input");
 const Slider = require("./base-components/ww-slider");
 const Switch = require("./base-components/ww-switch.js");
@@ -18,6 +20,7 @@ module.exports = {
     elements: [
         "ww-button",
         "ww-list",
+        "ww-input",
         "ww-list-header",
         "ww-list-item",
         "ww-list-item__left",
@@ -25,7 +28,8 @@ module.exports = {
         "ww-list-item__right",
         "ww-list-item__title",
         "ww-list-item__subtitle",
-        "ww-list-item__label"
+        "ww-list-item__label",
+        "ww-list-item__icon"
     ],
     createButton: function (text) {
         return new Button(text);
@@ -37,6 +41,9 @@ module.exports = {
         return new ListItem(title, subtitle);
     },
     createInput: function (type) {
+        if (utils.getMobileOperatingSystem() === "android") {
+            return new InputMaterial(type);
+        }
         return new Input(type);
     },
     createPagingIndicator: function (pageCount, selectedPage) {
@@ -59,6 +66,9 @@ module.exports = {
     },
     createListItemLabel: function () {
         return new ListItemLabel();
+    },
+    createListItemChevronIcon: function () {
+        return new ListItemChevronIcon();
     },
     format: function () {
 
@@ -111,6 +121,24 @@ module.exports = {
 
             if (el.hasAttribute("value")) {
                 newEl.setCurrentValue(el.getAttribute("value"));
+            }
+
+            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+        }
+
+        let inputElements = document.getElementsByClassName("ww-input");
+        for (let i = 0; i < inputElements.length; i++) {
+            let el = inputElements[i];
+            let newEl = module.exports.createInput();
+
+            if (el.hasAttribute("type")) {
+                newEl.setType(el.getAttribute("type"));
+            }
+            if (el.hasAttribute("placeholder")) {
+                newEl.setPlaceholder(el.getAttribute("placeholder"));
+            }
+            if (el.hasAttribute("data-assistive-text")) {
+                newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
             }
 
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);

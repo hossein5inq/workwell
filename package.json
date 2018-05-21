@@ -1,6 +1,6 @@
 {
   "name": "workwell-v2",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Workwell JS is the SDK to communicate between a web-application and the Workwell mobile application",
   "main": "dist/js/workwell.js",
   "scripts": {
@@ -18,6 +18,7 @@
     "sass"
   ],
   "devDependencies": {
+    "animejs": "^2.2.0",
     "babel-core": "^6.26.3",
     "babel-preset-es2015-rollup": "^3.0.0",
     "chai": "^3.5.0",
