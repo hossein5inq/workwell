@@ -45,7 +45,7 @@ class InputMaterial extends BaseComponent {
             });
 
             anime({
-                targets: this.input,
+                targets: this.inputSubContainer,
                 borderColor: this.labelActiveColor,
                 duration: 100,
                 easing: "easeOutExpo"
@@ -64,7 +64,7 @@ class InputMaterial extends BaseComponent {
                 });
 
                 anime({
-                    targets: this.input,
+                    targets: this.inputSubContainer,
                     borderColor: this.borderColor,
                     duration: 100,
                     easing: "easeOutExpo"
@@ -77,7 +77,7 @@ class InputMaterial extends BaseComponent {
             let computedStyle = getComputedStyle(obj);
             let val = obj.offsetWidth - parseFloat(computedStyle.paddingLeft) - parseFloat(computedStyle.paddingRight);
             this.labelContainer.style.width = val + "px";
-            this.labelContainer.style.height = obj.offsetHeight + "px";
+            this.labelContainer.style.height = obj.offsetHeight - 2 + "px";
             this.label.style.top = obj.offsetHeight / 2 - this.label.offsetHeight / 2 + "px";
         };
     }

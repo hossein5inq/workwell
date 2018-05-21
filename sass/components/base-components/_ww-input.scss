@@ -28,6 +28,12 @@ $input-label-color-material: #a5a5a5;
   }
 }
 
+.ww-input__sub-container {
+  &--material {
+    border-bottom: solid $input-border-bottom-color-material 2px;
+  }
+}
+
 .ww-input__label-container {
   &--material {
     padding-left: 11px;
@@ -44,6 +50,7 @@ $input-label-color-material: #a5a5a5;
   width: 100%;
   outline: none;
   -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
   border: none;
   border-radius: 0;
   font-family: $ios-font;
@@ -52,7 +59,8 @@ $input-label-color-material: #a5a5a5;
   padding: 15px;
   border-top: solid 1px $input-border-color-ios;
   border-bottom: solid 1px $input-border-color-ios;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin: 0 !important;
   &--material {
     z-index: 1;
     position: relative;
@@ -61,7 +69,6 @@ $input-label-color-material: #a5a5a5;
     width: 100%;
     outline: none;
     border: none;
-    border-bottom: solid 2px $input-border-bottom-color-material;
     padding: 26px 11px 9px;
     font-family: $material-font;
     font-size: 16px;

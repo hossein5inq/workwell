@@ -10,7 +10,8 @@ const SearchInput = require("./ww-search-input");
 const Slider = require("./base-components/ww-slider");
 const Switch = require("./base-components/ww-switch.js");
 const PagingIndicator = require("./ww-paging-indicator");
-const TextArea = require("./ww-textarea");
+const TextArea = require("./base-components/ww-textarea");
+const TextAreaMaterial = require("./base-components/ww-textarea--material");
 const utils = require("../bridge/utils.js");
 const uiUtils = require("./ui-utils");
 const ww_ = require("./ww_");
@@ -59,6 +60,9 @@ module.exports = {
         return new Switch();
     },
     createTextArea: function () {
+        if (utils.getMobileOperatingSystem() === "android") {
+            return new TextAreaMaterial();
+        }
         return new TextArea();
     },
     createListItemTitle: function () {
@@ -130,6 +134,24 @@ module.exports = {
         for (let i = 0; i < inputElements.length; i++) {
             let el = inputElements[i];
             let newEl = module.exports.createInput();
+
+            if (el.hasAttribute("type")) {
+                newEl.setType(el.getAttribute("type"));
+            }
+            if (el.hasAttribute("placeholder")) {
+                newEl.setPlaceholder(el.getAttribute("placeholder"));
+            }
+            if (el.hasAttribute("data-assistive-text")) {
+                newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
+            }
+
+            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+        }
+
+        let textAreaAlements = document.getElementsByClassName("ww-textarea");
+        for (let i = 0; i < textAreaAlements.length; i++) {
+            let el = textAreaAlements[i];
+            let newEl = module.exports.createTextArea();
 
             if (el.hasAttribute("type")) {
                 newEl.setType(el.getAttribute("type"));
