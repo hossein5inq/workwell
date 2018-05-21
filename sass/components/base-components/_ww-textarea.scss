@@ -1,0 +1,58 @@
+@import "../../abstracts/variables";
+
+// Textarea-specific variables (ios)
+$textarea-border-color-ios: #d3d3d3;
+
+// Textarea-specific variables (material)
+$input-bg-color-material: #c6c6c6;
+$input-label-container-bg-color-material: #f4f5f5;
+$textarea-border-bottom-color-material: #c6c6c6;
+$input-label-color-material: #a5a5a5;
+
+
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  resize: none;
+  display: block;
+}
+
+.ww-textarea {
+  box-sizing: border-box;
+  font-family: $ios-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-top: 1px solid $textarea-border-color-ios;
+  border-bottom: 1px solid $textarea-border-color-ios;
+  border-left: none;
+  border-right: none;
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  width: 100%;
+  min-height: 80px;
+  border-radius: 0 !important;
+  outline: none;
+  padding: 12px 6px 14px 14px;
+  line-height: 1.2em;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  &--material {
+    outline: none;
+    font-family: $material-font;
+    min-height: 111px;
+    border: none;
+    z-index: 1;
+    position: relative;
+    background-color: transparent;
+    padding: 26px 11px 9px;
+  }
+}
+
+.ww-list-item .ww-textarea {
+  padding: 0;
+  border: none;
+  &--material {
+    padding: 26px 11px 9px;
+  }
+}
