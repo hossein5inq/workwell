@@ -2,6 +2,8 @@ const uiUtils = require("./ui-utils");
 const Slider = require("./base-components/ww-slider");
 const ListItem = require("./base-components/ww-list-item");
 const ListItemLabel = require("./base-components/ww-list-item__label");
+const Button = require("./base-components/ww-button");
+const List = require("./base-components/ww-list");
 
 module.exports = function (el) {
     let obj = {};
@@ -22,6 +24,10 @@ module.exports = function (el) {
         obj = new ListItemLabel();
     } else if (uiUtils.hasClass(el, "ww-list-item")) {
         obj = new ListItem();
+    } else if (uiUtils.hasClass(el, "ww-button")) {
+        obj = new Button();
+    } else if (uiUtils.hasClass(el, "ww-list")) {
+        obj = new List();
     }
 
     Object.assign(obj, el);

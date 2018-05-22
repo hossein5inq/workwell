@@ -8,6 +8,7 @@
 @import "components/base-components/ww-list";
 @import "components/base-components/ww-list-item__label";
 @import "components/base-components/ww-list-item__title";
+@import "components/base-components/ww-list-item__subtitle";
 @import "components/base-components/ww-list-item__icon";
 @import "components/base-components/ww-list-item";
 @import "components/base-components/ww-input";
@@ -89,32 +90,12 @@ body {
   background-image: none;
 }
 
-.ww-list-item__subtitle {
-  opacity: 0.75;
-  font-size: 14px;
-  color: #989898;
-  -webkit-box-ordinal-group: 2;
-  -ms-flex-order: 1;
-  order: 1;
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .ww-list-item__thumbnail {
   width: 40px;
   height: 40px;
   border-radius: 6px;
   display: block;
   margin: 0;
-}
-
-.ww-list-item--material__subtitle {
-  margin-top: 4px;
 }
 
 .ww-list-item--material:first-child {

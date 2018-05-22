@@ -2,6 +2,7 @@ const Button = require("./base-components/ww-button.js");
 const ListItem = require("./base-components/ww-list-item");
 const List = require("./base-components/ww-list");
 const ListItemTitle = require("./base-components/ww-list-item__title");
+const ListItemSubtitle = require("./base-components/ww-list-item__subtitle");
 const ListItemLabel = require("./base-components/ww-list-item__label");
 const ListItemChevronIcon = require("./base-components/ww-list-item__chevron-icon");
 const Input = require("./base-components/ww-input");
@@ -67,6 +68,9 @@ module.exports = {
     },
     createListItemTitle: function () {
         return new ListItemTitle();
+    },
+    createListItemSubtitle: function () {
+        return new ListItemSubtitle();
     },
     createListItemLabel: function () {
         return new ListItemLabel();

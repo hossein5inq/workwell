@@ -1,0 +1,25 @@
+@import "../../abstracts/variables";
+
+// ListItem-title-specific variables (iOS)
+$list-item-subtitle-color-ios: #989898;
+
+// ListItem-title-specific variables (material)
+$list-item-subtitle-color-material: #989898;
+
+.ww-list-item__subtitle {
+  font-family: $ios-font;
+  opacity: 0.75;
+  font-size: 14px;
+  color: $list-item-subtitle-color-ios;
+  align-self: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  &--material {
+    color: $list-item-subtitle-color-material;
+    font-family: $material-font;
+    margin-top: 4px;
+  }
+}
