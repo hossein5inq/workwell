@@ -73,7 +73,12 @@ class ListItem extends BaseComponent {
             this.centerAdded = true;
             this.el.appendChild(this.centerDiv);
         }
-        this.centerDiv.appendChild(el.toHTMLElement());
+        if (typeof el.toHTMLElement === "function") {
+            // the method is defined
+            this.centerDiv.appendChild(el.toHTMLElement());
+        } else {
+            this.centerDiv.appendChild(el);
+        }
         return this;
 
     }
@@ -83,7 +88,12 @@ class ListItem extends BaseComponent {
             this.rightAdded = true;
             this.el.appendChild(this.rightDiv);
         }
-        this.rightDiv.appendChild(el.toHTMLElement());
+        if (typeof el.toHTMLElement === "function") {
+            // the method is defined
+            this.rightDiv.appendChild(el.toHTMLElement());
+        } else {
+            this.rightDiv.appendChild(el);
+        }
         return this;
     }
 
@@ -92,7 +102,12 @@ class ListItem extends BaseComponent {
             this.leftAdded = true;
             this.el.appendChild(this.leftDiv);
         }
-        this.leftDiv.appendChild(el.toHTMLElement());
+        if (typeof el.toHTMLElement === "function") {
+            // the method is defined
+            this.leftDiv.appendChild(el.toHTMLElement());
+        } else {
+            this.leftDiv.appendChild(el);
+        }
         return this;
     }
 
