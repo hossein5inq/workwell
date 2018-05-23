@@ -175,6 +175,10 @@ module.exports = {
             let el = switchElements[i];
             let newEl = module.exports.createSwitch();
 
+            if (el.hasAttribute("id")) {
+                newEl.setId(el.getAttribute("id"));
+            }
+
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
 
