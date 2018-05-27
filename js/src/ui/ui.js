@@ -119,16 +119,24 @@ module.exports = {
             let el = sliderElements[i];
             let newEl = module.exports.createSlider();
 
-            if (el.style.width) {
-                newEl.css("width", el.style.width);
-            }
-
             if (el.hasAttribute("id")) {
                 newEl.setId(el.getAttribute("id"));
             }
 
-            if (el.hasAttribute("value")) {
-                newEl.setCurrentValue(el.getAttribute("value"));
+            if (el.hasAttribute("data-value")) {
+                newEl.setCurrentValue(el.getAttribute("data-value"));
+            }
+
+            if (el.hasAttribute("data-step")) {
+                newEl.setStep(el.getAttribute("data-step"));
+            }
+
+            if (el.hasAttribute("data-min")) {
+                newEl.setMin(el.getAttribute("data-min"));
+            }
+
+            if (el.hasAttribute("data-max")) {
+                newEl.setMax(el.getAttribute("data-max"));
             }
 
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
