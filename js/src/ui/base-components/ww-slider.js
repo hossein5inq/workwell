@@ -2,7 +2,7 @@ const BaseComponent = require("./ww-base-component");
 
 class Slider extends BaseComponent {
 
-    constructor(currentValue = 0, min = 0, max = 100) {
+    constructor(currentValue = 0, min = 0, max = 100, step = 1) {
         super("div");
 
         let element = this.el;
@@ -22,6 +22,7 @@ class Slider extends BaseComponent {
 
         this.el.min = min;
         this.el.max = max;
+        this.el.step = step;
         this.el.currentValue = currentValue;
 
         this.el.addEventListener("touchstart", (event) => {
@@ -55,8 +56,27 @@ class Slider extends BaseComponent {
         };
     }
 
+    setMin(min) {
+        this.el.min = min;
+        if (this.el.currentValue < this.el.min) {
+            this.setCurrentValue(this.el.min);
+        }
+        return this;
+    }
+
+    setMax(max) {
+        this.el.max = max;
+        return this;
+    }
+
+    setStep(step) {
+        this.el.step = step;
+        return this;
+    }
+
     onChange(fn) {
         this.el.onChangeFunction = fn;
+        return this;
     }
 
     onHandleTouchDown(this_, event) {
@@ -79,30 +99,30 @@ class Slider extends BaseComponent {
 
         let targetInPixels = touchObj.clientX - this.el.offsetLeft;
         let width = this.el.offsetWidth;
-        let step = width / this.el.max;
 
-        this.setCurrentValue(targetInPixels / step);
+        let steps = (this.el.max - this.el.min) / this.el.step;
+        let pixelsPerStep = width / steps;
+        let stepNumber = Math.floor(targetInPixels / pixelsPerStep);
+
+        this.setCurrentValue(stepNumber * this.el.step);
     }
 
     onSlide(event) {
         let touchObj = event.changedTouches[0];
-        let dist = parseInt(touchObj.clientX) - this.startX;
         this.startX = parseInt(touchObj.clientX);
-        let handleContainerStyle = this.handleContainer.currentStyle || window.getComputedStyle(this.handleContainer);
-        let left = parseInt(handleContainerStyle.left) + dist;
 
-        let w = parseInt(this.el.offsetWidth - (this.handleContainer.offsetWidth / 2));
+        let targetInPixels = touchObj.clientX - this.el.offsetLeft;
+        let steps = (this.el.max - this.el.min) / this.el.step;
+        let pixelsPerStep = this.el.offsetWidth / steps;
 
-        if (left < -(this.handleContainer.offsetWidth / 2)) {
-            left = -(this.handleContainer.offsetWidth / 2);
-        } else if (left > w) {
-            left = w + 1;
+        if (targetInPixels > this.el.offsetWidth) {
+            targetInPixels = this.el.offsetWidth;
+        } else if (targetInPixels < 0) {
+            targetInPixels = 0;
         }
+        let stepNumber = Math.floor(targetInPixels / pixelsPerStep);
 
-        let step = this.el.offsetWidth / this.el.max;
-        let middle = left + this.handleContainer.offsetWidth / 2;
-
-        this.setCurrentValue(middle / step);
+        this.setCurrentValue((stepNumber * this.el.step) + parseFloat(this.el.min));
 
         BaseComponent.addClass(this.handleContainer, "ww-slider__handle-active-container");
         BaseComponent.addClass(this.handleBackground, "ww-slider__handle-active-background");
@@ -113,12 +133,16 @@ class Slider extends BaseComponent {
     }
 
     setCurrentValue(value) {
-        this.el.currentValue = parseInt(value);
-        let width = this.el.offsetWidth;
+        if(Math.round(value) !== value){
+            this.el.currentValue = Number(value).toFixed(1);
+        } else {
+            this.el.currentValue = value;
+        }
         let style_ = this.el.currentStyle || window.getComputedStyle(this.el);
 
-        let step = width / this.el.max;
-        let middle = step * value;
+        let steps = (this.el.max - this.el.min) / this.el.step;
+        let pixelsPerStep = this.el.offsetWidth / steps;
+        let middle = ((value - this.el.min) / this.el.step) * pixelsPerStep;
 
         this.el.onChangeFunction(this.el.currentValue);
         this.handleContainer.style.left = parseInt(middle - this.handleContainer.offsetWidth / 2) + "px";
@@ -132,6 +156,7 @@ class Slider extends BaseComponent {
 
         return this;
     }
+
 }
 
 module.exports = Slider;

@@ -64,7 +64,7 @@ class TextAreaMaterial extends InputMaterial {
                 });
 
                 anime({
-                    targets: this.textarea,
+                    targets: this.inputSubContainer,
                     borderColor: this.borderColor,
                     duration: 100,
                     easing: "easeOutExpo"
