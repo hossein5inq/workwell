@@ -47,7 +47,11 @@ class Slider extends BaseComponent {
             this.setCurrentValue(this.el.currentValue);
         };
 
-        this.el.onChangeFunction = () => {
+        this.el.onDragFunction = () => {
+
+        };
+
+        this.el.onReleaseFunction = () => {
 
         };
 
@@ -74,8 +78,13 @@ class Slider extends BaseComponent {
         return this;
     }
 
-    onChange(fn) {
-        this.el.onChangeFunction = fn;
+    onDrag(fn) {
+        this.el.onDragFunction = fn;
+        return this;
+    }
+
+    onRelease(fn) {
+        this.el.onReleaseFunction = fn;
         return this;
     }
 
@@ -91,6 +100,7 @@ class Slider extends BaseComponent {
         window.clearTimeout(this.longPressTimer);
         BaseComponent.removeClass(this.handleBackground, "ww-slider__handle-active-background");
         BaseComponent.removeClass(this.handleContainer, "ww-slider__handle-active-container");
+        this.el.onReleaseFunction(this.el.currentValue);
     }
 
     onSliderBarTouchDown(element, event) {
@@ -104,7 +114,7 @@ class Slider extends BaseComponent {
         let pixelsPerStep = width / steps;
         let stepNumber = Math.floor(targetInPixels / pixelsPerStep);
 
-        this.setCurrentValue(stepNumber * this.el.step);
+        this.setCurrentValue((stepNumber * this.el.step) + parseFloat(this.el.min));
     }
 
     onSlide(event) {
@@ -133,7 +143,7 @@ class Slider extends BaseComponent {
     }
 
     setCurrentValue(value) {
-        if(Math.round(value) !== value){
+        if (Math.round(value) !== value) {
             this.el.currentValue = Number(value).toFixed(1);
         } else {
             this.el.currentValue = value;
@@ -144,7 +154,7 @@ class Slider extends BaseComponent {
         let pixelsPerStep = this.el.offsetWidth / steps;
         let middle = ((value - this.el.min) / this.el.step) * pixelsPerStep;
 
-        this.el.onChangeFunction(this.el.currentValue);
+        this.el.onDragFunction(this.el.currentValue);
         this.handleContainer.style.left = parseInt(middle - this.handleContainer.offsetWidth / 2) + "px";
 
         this.el.style.background = style_.backgroundColor + " linear-gradient(" +
