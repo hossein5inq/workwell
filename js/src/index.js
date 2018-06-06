@@ -389,6 +389,39 @@ var Workwell = {
         }
         var jsonObj = engine.createJSONFrom("core", "track", obj);
         bridge.sendFromJS(JSON.stringify(jsonObj));
+    },
+    startListening: function (obj) {
+        if (!obj.id) {
+            throw new Error("An id is required in the json to call this method");
+        } else if (!obj.type) {
+            throw new Error("A type is require in the json to call this method");
+        } else {
+            let objCopy = Object.assign({}, obj);
+            obj.data = {};
+            for (let key in objCopy) {
+                if (key !== "change")
+                    obj.data[key] = objCopy[key];
+            }
+
+            if (obj.change) {
+                obj.success = obj.change;
+            }
+
+            let jsonObj = engine.createJSONFrom("core", "startListening", obj);
+            bridge.sendFromJS(JSON.stringify(jsonObj));
+        }
+    },
+    stopListening: function (id) {
+        if (typeof id === "undefined") {
+            throw new Error("An id is required to call this method");
+        } else {
+            let obj = {};
+            obj.data = {
+                id: id
+            };
+            let jsonObj = engine.createJSONFrom("core", "stopListening", obj);
+            bridge.sendFromJS(JSON.stringify(jsonObj));
+        }
     }
 };
 
