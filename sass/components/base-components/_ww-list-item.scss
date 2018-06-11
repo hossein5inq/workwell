@@ -198,3 +198,9 @@ $list-item-left-padding-material: 16;
   background: none;
   animation-name: none;
 }
+
+.ww-list-item__left > img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}

@@ -1,0 +1,47 @@
+@import "../../abstracts/variables";
+
+// FAB-specific variables (iOS)
+
+// FAB-specific variables (material)
+$FAB-size-material: 56;
+
+.ww-fab {
+  display: none;
+
+  &--material {
+    z-index: 100;
+    position: absolute;
+    font-family: $material-font;
+    width: $FAB-size-material + unquote("px");
+    height: $FAB-size-material + unquote("px");
+    border-radius: 50%;
+    background-color: #2b5290;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.91);
+    -moz-box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.91);
+    box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.91);
+
+    &[black] {
+      background-color: black;
+    }
+  }
+}
+
+.ww-banner > .ww-fab[data-position="center"] {
+  left: calc(50% - #{$FAB-size-material/2}px);
+}
+
+.ww-banner > .ww-fab[data-position="left"] {
+  left: 13px;
+}
+
+.ww-banner > .ww-fab[data-position="right"] {
+  left: calc(100% - #{$FAB-size-material}px - 13px);
+}
+
+.ww-fab > .ww-icon:before {
+  color: white;
+  font-size: 25px;
+}

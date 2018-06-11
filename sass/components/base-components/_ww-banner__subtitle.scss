@@ -1,0 +1,18 @@
+@import "../../abstracts/variables";
+
+// BannerSubtitle-specific variables (iOS)
+
+// BannerSubtitlte-specific variables (material)
+
+.ww-banner__subtitle {
+  font-family: $ios-font;
+  color: white;
+  font-size: 18px;
+  margin-top: 2px;
+
+  &--material {
+    font-family: $material-font;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+}

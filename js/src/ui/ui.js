@@ -13,6 +13,11 @@ const Switch = require("./base-components/ww-switch.js");
 const PagingIndicator = require("./base-components/ww-paging-indicator");
 const TextArea = require("./base-components/ww-textarea");
 const TextAreaMaterial = require("./base-components/ww-textarea--material");
+const Banner = require("./base-components/ww-banner");
+const BannerTitle = require("./base-components/ww-banner-title");
+const BannerSubtitle = require("./base-components/ww-banner-subtitle");
+const FAB = require("./base-components/ww-fab");
+const Icon = require("./base-components/ww-icon");
 const utils = require("../bridge/utils.js");
 const uiUtils = require("./ui-utils");
 const ww_ = require("./ww_");
@@ -31,7 +36,12 @@ module.exports = {
         "ww-list-item__title",
         "ww-list-item__subtitle",
         "ww-list-item__label",
-        "ww-list-item__icon"
+        "ww-list-item__icon",
+        "ww-banner",
+        "ww-banner__title",
+        "ww-banner__subtitle",
+        "ww-fab",
+        "ww-icon"
     ],
     createButton: function (text) {
         return new Button(text);
@@ -77,6 +87,21 @@ module.exports = {
     },
     createListItemChevronIcon: function () {
         return new ListItemChevronIcon();
+    },
+    createBanner: function () {
+        return new Banner();
+    },
+    createBannerTitle: function () {
+        return new BannerTitle();
+    },
+    createBannerSubtitle: function () {
+        return new BannerSubtitle();
+    },
+    createFAB: function () {
+        return new FAB();
+    },
+    createIcon: function () {
+        return new Icon();
     },
     format: function () {
 
@@ -243,5 +268,39 @@ module.exports = {
 
             el.parentNode.replaceChild(newEl.toHTMLElement(), el);
         }
+
+        let bannerElements = document.getElementsByClassName("ww-banner");
+        for (let i = 0; i < bannerElements.length; i++) {
+            let el = bannerElements[i];
+
+            if (el.hasAttribute("data-image")) {
+                ww_(el).setBackgroundImage(el.getAttribute("data-image"));
+            }
+        }
+
+        let fabElements = document.getElementsByClassName("ww-fab");
+        for (let i = 0; i < fabElements.length; i++) {
+            let el = fabElements[i];
+
+            if (el.hasAttribute("data-theme")) {
+                ww_(el).setTheme(el.getAttribute("data-theme"));
+            }
+
+            if (el.hasAttribute("data-position")) {
+                ww_(el).setPosition(el.getAttribute("data-position"));
+            }
+
+            ww_(el).updateTopPosition();
+        }
+
+        let iconElements = document.getElementsByClassName("ww-icon");
+        for (let i = 0; i < iconElements.length; i++) {
+            let el = iconElements[i];
+
+            if (el.hasAttribute("data-type")) {
+                ww_(el).setType(el.getAttribute("data-type"));
+            }
+        }
+
     }
 };

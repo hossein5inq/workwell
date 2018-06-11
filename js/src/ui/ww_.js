@@ -5,6 +5,9 @@ const ListItemLabel = require("./base-components/ww-list-item__label");
 const Button = require("./base-components/ww-button");
 const List = require("./base-components/ww-list");
 const Switch = require("./base-components/ww-switch");
+const Banner = require("./base-components/ww-banner");
+const FAB = require("./base-components/ww-fab");
+const Icon = require("./base-components/ww-icon");
 
 module.exports = function (el) {
     let obj = {};
@@ -31,6 +34,12 @@ module.exports = function (el) {
         obj = new List();
     } else if (uiUtils.hasClass(el, "ww-switch")) {
         obj = new Switch();
+    } else if (uiUtils.hasClass(el, "ww-banner")) {
+        obj = new Banner();
+    } else if (uiUtils.hasClass(el, "ww-fab")) {
+        obj = new FAB();
+    } else if (uiUtils.hasClass(el, "ww-icon")) {
+        obj = new Icon();
     }
 
     Object.assign(obj, el);
