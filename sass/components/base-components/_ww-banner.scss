@@ -1,0 +1,24 @@
+@import "../../abstracts/variables";
+
+// Banner-specific variables (iOS)
+
+// Banner-specific variables (material)
+
+.ww-banner {
+  height: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 14px;
+  padding-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &--material {
+    padding: 20px;
+    padding-bottom: 28px;
+  }
+}

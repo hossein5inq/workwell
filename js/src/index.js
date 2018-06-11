@@ -32,6 +32,7 @@ ready(function () {
     document.body.addEventListener("touchstart", function () {
 
     });
+
     mutationObserver = new MutationObserver(function (mutations) {
         for (let mutation of mutations) {
             if (mutation.type === "childList") {
@@ -45,12 +46,8 @@ ready(function () {
     });
 
     mutationObserver.observe(document.body, {
-        attributes: true,
-        characterData: true,
         childList: true,
-        subtree: true,
-        attributeOldValue: true,
-        characterDataOldValue: true
+        subtree: true
     });
 
     ui.format();
