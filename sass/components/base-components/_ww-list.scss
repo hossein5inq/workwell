@@ -84,6 +84,10 @@ $list-header-bg-color-material: #fff;
   }
 }
 
+.ww-list:first-child {
+  margin-top: 0;
+}
+
 .ww-list .ww-list-item:first-child {
   border-top: solid 1px $list-border-color-ios;
 }
