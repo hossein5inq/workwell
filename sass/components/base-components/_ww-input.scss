@@ -30,12 +30,14 @@ $input-label-color-material: #a5a5a5;
 
 .ww-input__sub-container {
   &--material {
+    width: 100%;
     border-bottom: solid $input-border-bottom-color-material 2px;
   }
 }
 
 .ww-input__label-container {
   &--material {
+    width: calc(100% - 30px);
     padding-left: 11px;
     font-family: $material-font;
     font-size: 16px;
@@ -72,6 +74,12 @@ $input-label-color-material: #a5a5a5;
     padding: 26px 11px 9px;
     font-family: $material-font;
     font-size: 16px;
+  }
+  & + & {
+    border-top: none;
+  }
+  & + .ww-textarea {
+    border-top: none;
   }
 }
 

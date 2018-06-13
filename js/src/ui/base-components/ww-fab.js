@@ -19,6 +19,11 @@ class FAB extends BaseComponent {
         this.setPosition("right");
     }
 
+    onClick(fn) {
+        this.el.addEventListener("click", fn);
+        return this;
+    }
+
     onAttachedToDom() {
         this.updateTopPosition();
     }

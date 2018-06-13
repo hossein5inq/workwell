@@ -47,6 +47,9 @@ textarea {
     background-color: transparent;
     padding: 26px 11px 9px;
   }
+  & + & {
+    border-top: none;
+  }
 }
 
 .ww-list-item .ww-textarea {
