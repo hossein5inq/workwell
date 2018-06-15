@@ -60,7 +60,7 @@ class ListItem extends BaseComponent {
 
                 // HACK FOR IOS
                 let previousSibling = this.el.previousElementSibling;
-                if (Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                if (previousSibling && Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
                     this.isTouching = true;
                     let gradients = {
                         start: "#FFFFFF",
@@ -92,7 +92,7 @@ class ListItem extends BaseComponent {
 
                 // HACK FOR IOS
                 let previousSibling = this.el.previousElementSibling;
-                if (Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                if (previousSibling && Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
                     this.isTouching = false;
                     let gradients = {
                         start: "#FFFFFF",
