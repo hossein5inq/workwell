@@ -29,6 +29,9 @@ $list-item-left-padding-material: 16;
   -ms-flex-align: center;
   align-items: center;
   padding: 0 0 0 $list-item-left-padding-ios + unquote("px");
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
 
   &--material {
     padding: 0 0 0 $list-item-left-padding-material + unquote("px");
@@ -197,10 +200,4 @@ $list-item-left-padding-material: 16;
 .ww-list-item__left--material[data-active], .ww-list-item__center--material[data-active], .ww-list-item__right--material[data-active] {
   background: none;
   animation-name: none;
-}
-
-.ww-list-item__left > img {
-  height: 40px;
-  width: 40px;
-  object-fit: cover;
 }

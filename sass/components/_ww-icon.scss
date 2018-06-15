@@ -34,18 +34,10 @@
 }
 
 .icon-chevron:before {
-  -webkit-transform: translateY(-50%) rotate(-45deg);
-  transform: translateY(-50%) rotate(-45deg);
-  border-right: 2px solid #c7c7cc;
-  border-bottom: 2px solid #c7c7cc;
-  position: absolute;
-  content: '';
-  width: 7px;
-  height: 7px;
-  background-color: transparent;
-  right: 16px;
-  top: 50%;
-  z-index: 5;
+  content: "d";
+  color: #c7c7cc;
+  font-size: 14px;
+  margin-right: -2px;
 }
 
 .icon-check:before {

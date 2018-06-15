@@ -1,4 +1,6 @@
 const BaseComponent = require("./ww-base-component");
+const anime = require("animejs");
+const Utils = require("../../bridge/utils");
 
 class ListItem extends BaseComponent {
 
@@ -10,6 +12,7 @@ class ListItem extends BaseComponent {
         this.leftDiv = document.createElement("div");
         this.centerDiv = document.createElement("div");
         this.rightDiv = document.createElement("div");
+        this.isTouching = false;
 
         this.addClass("ww-list-item");
         BaseComponent.addClass(this.leftDiv, "ww-list-item__left");
@@ -54,6 +57,31 @@ class ListItem extends BaseComponent {
                 this.getLeftDiv().setAttribute("data-active", "");
                 this.getCenterDiv().setAttribute("data-active", "");
                 this.getRightDiv().setAttribute("data-active", "");
+
+                // HACK FOR IOS
+                let previousSibling = this.el.previousElementSibling;
+                if (Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                    this.isTouching = true;
+                    let gradients = {
+                        start: "#FFFFFF",
+                        end: "#FFFFFF"
+                    };
+
+                    anime({
+                        targets: gradients,
+                        start: "#FFFFFF",
+                        end: "#D3D3D3",
+                        duration: 200,
+                        easing: "easeOutExpo",
+                        update: (a) => {
+                            if (this.isTouching) {
+                                let value = a.animations[1].currentValue;
+                                previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                            }
+                        }
+                    });
+                }
+                // END OF HACK
             }, true);
 
             this.el.addEventListener("touchend", () => {
@@ -61,6 +89,34 @@ class ListItem extends BaseComponent {
                 this.getLeftDiv().removeAttribute("data-active");
                 this.getCenterDiv().removeAttribute("data-active");
                 this.getRightDiv().removeAttribute("data-active");
+
+                // HACK FOR IOS
+                let previousSibling = this.el.previousElementSibling;
+                if (Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                    this.isTouching = false;
+                    let gradients = {
+                        start: "#FFFFFF",
+                        end: "#FFFFFF"
+                    };
+
+                    anime({
+                        targets: gradients,
+                        start: "#FFFFFF",
+                        end: "#FFFFFF",
+                        duration: 200,
+                        easing: "easeOutExpo",
+                        complete: () => {
+                            previousSibling.style.backgroundImage = "none";
+                        },
+                        update: (a) => {
+                            if (!this.isTouching) {
+                                let value = a.animations[1].currentValue;
+                                previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                            }
+                        }
+                    });
+                }
+                // END OF HACK
             }, true);
         } else {
             this.removeClass("ww-list-item--tappable");
