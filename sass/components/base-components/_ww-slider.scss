@@ -112,3 +112,17 @@ $slider-handle-size-material: 15;
     margin: 0 $slider-handle-size-material/2 + $slider-handle-shadow-size-material - 4 + unquote("px") 0 0;
   }
 }
+
+.ww-list-item__left .ww-slider {
+  min-width: 46px;
+  &--material {
+    margin: 0 $slider-handle-size-material/2 + $slider-handle-shadow-size-material + unquote("px") 0 2px;
+  }
+}
+
+.ww-list-item__right .ww-slider {
+  min-width: 46px;
+  &--material {
+    margin: 0 2px 0 0;
+  }
+}
