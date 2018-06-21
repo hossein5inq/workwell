@@ -399,11 +399,11 @@ var Workwell = {
         var jsonObj = engine.createJSONFrom("core", "track", obj);
         bridge.sendFromJS(JSON.stringify(jsonObj));
     },
-    startListening: function (obj) {
+    subscribe: function (obj) {
         if (!obj.id) {
             throw new Error("An id is required in the json to call this method");
         } else if (!obj.type) {
-            throw new Error("A type is require in the json to call this method");
+            throw new Error("A type is required in the json to call this method");
         } else {
             let objCopy = Object.assign({}, obj);
             obj.data = {};
@@ -416,19 +416,22 @@ var Workwell = {
                 obj.success = obj.change;
             }
 
-            let jsonObj = engine.createJSONFrom("core", "startListening", obj);
+            let jsonObj = engine.createJSONFrom(obj.type, "subscribe", obj);
             bridge.sendFromJS(JSON.stringify(jsonObj));
         }
     },
-    stopListening: function (id) {
-        if (typeof id === "undefined") {
-            throw new Error("An id is required to call this method");
+    unsubscribe: function (obj_) {
+        if (!obj_.id) {
+            throw new Error("An id is required in the json to call this method");
+        } else if (!obj_.type) {
+            throw new Error("A type is required in the json to call this method");
         } else {
             let obj = {};
             obj.data = {
-                id: id
+                id: obj_.id,
+                type: obj_.type
             };
-            let jsonObj = engine.createJSONFrom("core", "stopListening", obj);
+            let jsonObj = engine.createJSONFrom(obj_.type, "unsubscribe", obj);
             bridge.sendFromJS(JSON.stringify(jsonObj));
         }
     }

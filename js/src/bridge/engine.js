@@ -18,7 +18,7 @@ module.exports = {
 
         try {
             if (obj) {
-                if (action === "ui" || action === "core")
+                if (action === "ui" || action === "core" || action === "location")
                     json.data = obj.data;
                 else if (action === "get") {
                     json.data = {};
@@ -38,7 +38,7 @@ module.exports = {
                     }
                 }
 
-                if (action === "ui" || action === "open" || action === "core" || action === "get") {
+                if (action === "ui" || action === "open" || action === "core" || action === "get" || action === "location") {
                     var successCallback = util.generateCallbackName("success");
                     var errorCallback = util.generateCallbackName("error");
                     json.successCallback = successCallback;
