@@ -38,10 +38,23 @@ class Input extends BaseComponent {
         return this;
     }
 
+    getPlaceholder() {
+        return this.el.placeholder;
+    }
+
     setPlaceholder(placeholder) {
         this.placeholder = placeholder;
         this.el.placeholder = placeholder;
         return this;
+    }
+
+    onInput(fn) {
+        this.el.addEventListener("input", fn);
+        return this;
+    }
+
+    getValue() {
+        return this.el.value;
     }
 }
 

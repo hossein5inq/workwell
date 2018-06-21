@@ -8,6 +8,8 @@ const Switch = require("./base-components/ww-switch");
 const Banner = require("./base-components/ww-banner");
 const FAB = require("./base-components/ww-fab");
 const Icon = require("./base-components/ww-icon");
+const Input = require("./base-components/ww-input");
+const InputMaterial = require("./base-components/ww-input--material");
 
 module.exports = function (el) {
     let obj = {};
@@ -40,6 +42,10 @@ module.exports = function (el) {
         obj = new FAB();
     } else if (uiUtils.hasClass(el, "ww-icon")) {
         obj = new Icon();
+    } else if (uiUtils.hasClass(el, "ww-input")) {
+        obj = new Input();
+    } else if (uiUtils.hasClass(el, "ww-input__container")) {
+        obj = new InputMaterial();
     }
 
     Object.assign(obj, el);
