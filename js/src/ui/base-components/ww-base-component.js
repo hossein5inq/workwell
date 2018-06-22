@@ -70,7 +70,7 @@ module.exports = class BaseComponent {
     }
 
     getId() {
-        return this.id;
+        return this.el.id;
     }
 
     css(attribute, value) {
