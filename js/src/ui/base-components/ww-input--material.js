@@ -11,7 +11,7 @@ class InputMaterial extends BaseComponent {
         this.labelColor = "#a5a5a5";
         this.borderColor = "#c6c6c6";
 
-        this.inputSubContainer = document.createElement("div");
+        this.el.inputSubContainer = document.createElement("div");
         this.inputSubContainerCenterPart = document.createElement("div");
         this.labelContainer = document.createElement("div");
         this.el.label = document.createElement("span");
@@ -21,12 +21,12 @@ class InputMaterial extends BaseComponent {
         this.labelContainer.appendChild(this.el.label);
         this.inputSubContainerCenterPart.appendChild(this.labelContainer);
         this.inputSubContainerCenterPart.appendChild(this.el.input);
-        this.inputSubContainer.appendChild(this.inputSubContainerCenterPart);
-        this.el.appendChild(this.inputSubContainer);
+        this.el.inputSubContainer.appendChild(this.inputSubContainerCenterPart);
+        this.el.appendChild(this.el.inputSubContainer);
 
         this.addClass("ww-input__container");
         BaseComponent.addClass(this.el.label, "ww-input__label");
-        BaseComponent.addClass(this.inputSubContainer, "ww-input__sub-container");
+        BaseComponent.addClass(this.el.inputSubContainer, "ww-input__sub-container");
         BaseComponent.addClass(this.inputSubContainerCenterPart, "ww-input__center");
         BaseComponent.addClass(this.labelContainer, "ww-input__label-container");
         BaseComponent.addClass(this.assistiveText, "ww-input__assistive-text");
@@ -45,7 +45,7 @@ class InputMaterial extends BaseComponent {
             });
 
             anime({
-                targets: this.inputSubContainer,
+                targets: this.el.inputSubContainer,
                 borderColor: this.labelActiveColor,
                 duration: 100,
                 easing: "easeOutExpo"
@@ -64,7 +64,7 @@ class InputMaterial extends BaseComponent {
                 });
 
                 anime({
-                    targets: this.inputSubContainer,
+                    targets: this.el.inputSubContainer,
                     borderColor: this.borderColor,
                     duration: 100,
                     easing: "easeOutExpo"
@@ -73,7 +73,7 @@ class InputMaterial extends BaseComponent {
         });
 
         this.el.onAttachedToDom = () => {
-            let obj = this.inputSubContainer;
+            let obj = this.el.inputSubContainer;
             this.labelContainer.style.height = obj.offsetHeight - 2 + "px";
             this.el.label.style.top = obj.offsetHeight / 2 - this.el.label.offsetHeight / 2 + "px";
         };
@@ -104,8 +104,10 @@ class InputMaterial extends BaseComponent {
     }
 
     setPlaceholder(placeholder) {
+        let obj = this.el.inputSubContainer;
         this.el.placeholder = placeholder;
         this.el.label.innerHTML = placeholder;
+        this.el.label.style.top = obj.offsetHeight / 2 - this.el.label.offsetHeight / 2 + "px";
         return this;
     }
 
