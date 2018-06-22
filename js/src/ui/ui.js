@@ -172,6 +172,9 @@ module.exports = {
             let el = inputElements[i];
             let newEl = module.exports.createInput();
 
+            if (el.hasAttribute("id")) {
+                newEl.setId(el.getAttribute("id"));
+            }
             if (el.hasAttribute("type")) {
                 newEl.setType(el.getAttribute("type"));
             }
@@ -190,6 +193,9 @@ module.exports = {
             let el = textAreaAlements[i];
             let newEl = module.exports.createTextArea();
 
+            if (el.hasAttribute("id")) {
+                newEl.setId(el.getAttribute("id"));
+            }
             if (el.hasAttribute("type")) {
                 newEl.setType(el.getAttribute("type"));
             }
