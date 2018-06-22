@@ -2,6 +2,7 @@ const uiUtils = require("./ui-utils");
 const Slider = require("./base-components/ww-slider");
 const ListItem = require("./base-components/ww-list-item");
 const ListItemLabel = require("./base-components/ww-list-item__label");
+const ListItemTitle = require("./base-components/ww-list-item__title");
 const Button = require("./base-components/ww-button");
 const List = require("./base-components/ww-list");
 const Switch = require("./base-components/ww-switch");
@@ -28,6 +29,8 @@ module.exports = function (el) {
         obj = new Slider();
     } else if (uiUtils.hasClass(el, "ww-list-item__label")) {
         obj = new ListItemLabel();
+    } else if (uiUtils.hasClass(el, "ww-list-item__title")) {
+        obj = new ListItemTitle();
     } else if (uiUtils.hasClass(el, "ww-list-item")) {
         obj = new ListItem();
     } else if (uiUtils.hasClass(el, "ww-button")) {
