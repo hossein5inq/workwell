@@ -9,11 +9,11 @@ class ListItemTitle extends BaseComponent {
     }
 
     getValue() {
-        return this.value;
+        return this.el.value;
     }
 
     setValue(value) {
-        this.value = value;
+        this.el.value = value;
         this.el.innerHTML = value;
         return this;
     }

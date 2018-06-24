@@ -8,12 +8,12 @@ class ListItemLabel extends BaseComponent {
         this.addClass("ww-list-item__label");
     }
 
-    getValue(){
-        return this.value;
+    getValue() {
+        return this.el.value;
     }
 
-    setValue(value){
-        this.value = value;
+    setValue(value) {
+        this.el.value = value;
         this.el.innerHTML = value;
         return this;
     }
