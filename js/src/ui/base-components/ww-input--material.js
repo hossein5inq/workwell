@@ -17,6 +17,7 @@ class InputMaterial extends BaseComponent {
         this.el.label = document.createElement("span");
         this.el.input = document.createElement("input");
         this.assistiveText = document.createElement("div");
+        this.el.hasBeenAttached = false;
 
         this.labelContainer.appendChild(this.el.label);
         this.inputSubContainerCenterPart.appendChild(this.labelContainer);
@@ -35,21 +36,7 @@ class InputMaterial extends BaseComponent {
         this.setType(type);
 
         this.el.input.addEventListener("focus", () => {
-            anime({
-                targets: this.el.label,
-                translateY: "-9",
-                fontSize: "12px",
-                color: this.labelActiveColor,
-                duration: 100,
-                easing: "easeOutExpo"
-            });
-
-            anime({
-                targets: this.el.inputSubContainer,
-                borderColor: this.labelActiveColor,
-                duration: 100,
-                easing: "easeOutExpo"
-            });
+            this.onFocusAnimation();
         });
 
         this.el.input.addEventListener("blur", () => {
@@ -76,7 +63,29 @@ class InputMaterial extends BaseComponent {
             let obj = this.el.inputSubContainer;
             this.labelContainer.style.height = obj.offsetHeight - 2 + "px";
             this.el.label.style.top = obj.offsetHeight / 2 - this.el.label.offsetHeight / 2 + "px";
+            if (this.el.input.value.trim() !== "") {
+                this.onFocusAnimation();
+            }
+            this.el.hasBeenAttached = true;
         };
+    }
+
+    onFocusAnimation() {
+        anime({
+            targets: this.el.label,
+            translateY: "-9",
+            fontSize: "12px",
+            color: this.labelActiveColor,
+            duration: 100,
+            easing: "easeOutExpo"
+        });
+
+        anime({
+            targets: this.el.inputSubContainer,
+            borderColor: this.labelActiveColor,
+            duration: 100,
+            easing: "easeOutExpo"
+        });
     }
 
     disable() {
@@ -122,6 +131,14 @@ class InputMaterial extends BaseComponent {
 
     onInput(fn) {
         this.el.addEventListener("input", fn);
+        return this;
+    }
+
+    setValue(value) {
+        this.el.input.value = value;
+        if (this.el.hasBeenAttached) {
+            this.onFocusAnimation();
+        }
         return this;
     }
 

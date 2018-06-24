@@ -53,6 +53,11 @@ class Input extends BaseComponent {
         return this;
     }
 
+    setValue(value) {
+        this.el.value = value;
+        return this;
+    }
+
     getValue() {
         return this.el.value;
     }

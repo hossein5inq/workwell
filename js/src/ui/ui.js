@@ -181,6 +181,9 @@ module.exports = {
             if (el.hasAttribute("placeholder")) {
                 newEl.setPlaceholder(el.getAttribute("placeholder"));
             }
+            if (el.hasAttribute("data-value")) {
+                newEl.setValue(el.getAttribute("data-value"));
+            }
             if (el.hasAttribute("data-assistive-text")) {
                 newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
             }
