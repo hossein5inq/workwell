@@ -1,6 +1,6 @@
 {
   "name": "workwell-v2",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "Workwell JS is the SDK to communicate between a web-application and the Workwell mobile application",
   "main": "dist/js/workwell.js",
   "scripts": {

@@ -4,7 +4,7 @@ class List extends BaseComponent {
 
     constructor() {
         super("ul");
-        this.items = [];
+        this.el.items = [];
         this.headerAdded = false;
         this.headerDiv = document.createElement("li");
 
@@ -22,9 +22,31 @@ class List extends BaseComponent {
     }
 
     add(el) {
-        this.items.push(el);
+        this.el.items.push(el);
         this.el.appendChild(el.toHTMLElement());
         return this;
+    }
+
+    removeItemWithId(listItemId) {
+        let index = -1;
+        let el = null;
+        for (let i = 0; i < this.el.items.length; i++) {
+            if (this.el.items[i].getId() === listItemId) {
+                index = i;
+                el = this.el.items[i];
+                break;
+            }
+        }
+
+        if (el)
+            el.remove();
+        if (index > -1) {
+            this.el.items.splice(index, 1);
+        }
+
+        if (this.el.items.length === 0) {
+            this.remove();
+        }
     }
 }
 

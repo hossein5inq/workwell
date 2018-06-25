@@ -78,6 +78,12 @@ module.exports = class BaseComponent {
         return this;
     }
 
+    remove() {
+        if (this.el.parentNode) {
+            this.el.parentNode.removeChild(this.el);
+        }
+    }
+
     toHTMLElement() {
         return this.el;
     }

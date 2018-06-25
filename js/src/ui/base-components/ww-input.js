@@ -55,6 +55,11 @@ class Input extends BaseComponent {
 
     setValue(value) {
         this.el.value = value;
+        if (value === "") {
+            // To fix safari-mobile issue
+            this.el.focus();
+            this.el.blur();
+        }
         return this;
     }
 
