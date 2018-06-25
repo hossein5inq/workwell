@@ -22,6 +22,9 @@ class List extends BaseComponent {
     }
 
     add(el) {
+        if (typeof this.el.items === "undefined") {
+            this.el.items = [];
+        }
         this.el.items.push(el);
         this.el.appendChild(el.toHTMLElement());
         return this;
