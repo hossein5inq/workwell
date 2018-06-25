@@ -41,21 +41,7 @@ class InputMaterial extends BaseComponent {
 
         this.el.input.addEventListener("blur", () => {
             if (this.el.input.value.trim() === "") {
-                anime({
-                    targets: this.el.label,
-                    translateY: "1",
-                    fontSize: "16px",
-                    color: this.labelColor,
-                    duration: 100,
-                    easing: "easeOutExpo"
-                });
-
-                anime({
-                    targets: this.el.inputSubContainer,
-                    borderColor: this.borderColor,
-                    duration: 100,
-                    easing: "easeOutExpo"
-                });
+                this.onBlurAnimation();
             }
         });
 
@@ -83,6 +69,24 @@ class InputMaterial extends BaseComponent {
         anime({
             targets: this.el.inputSubContainer,
             borderColor: this.labelActiveColor,
+            duration: 100,
+            easing: "easeOutExpo"
+        });
+    }
+
+    onBlurAnimation() {
+        anime({
+            targets: this.el.label,
+            translateY: "1",
+            fontSize: "16px",
+            color: this.labelColor,
+            duration: 100,
+            easing: "easeOutExpo"
+        });
+
+        anime({
+            targets: this.el.inputSubContainer,
+            borderColor: this.borderColor,
             duration: 100,
             easing: "easeOutExpo"
         });
@@ -137,7 +141,11 @@ class InputMaterial extends BaseComponent {
     setValue(value) {
         this.el.input.value = value;
         if (this.el.hasBeenAttached) {
-            this.onFocusAnimation();
+            if (value === "") {
+                this.onBlurAnimation();
+            } else {
+                this.onFocusAnimation();
+            }
         }
         return this;
     }
