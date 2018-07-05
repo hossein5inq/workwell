@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class TextArea extends BaseComponent {
+export default class TextArea extends BaseComponent {
 
     constructor() {
         super("textarea");
@@ -43,5 +43,3 @@ class TextArea extends BaseComponent {
         return this;
     }
 }
-
-module.exports = TextArea;

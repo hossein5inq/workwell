@@ -1,16 +1,16 @@
 'use strict';
 
 // Rollup plugins
-const babel = require('rollup-plugin-babel');
-const resolve = require('rollup-plugin-node-resolve');
-const commonjs = require("rollup-plugin-commonjs");
-const postcss = require("rollup-plugin-postcss");
-const uglify = require("rollup-plugin-uglify");
-const eslint = require("rollup-plugin-eslint");
+import babel from "rollup-plugin-babel";
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import postcss from "rollup-plugin-postcss";
+import uglify from "rollup-plugin-uglify";
+import eslint from "rollup-plugin-eslint";
 
 const env = process.env.NODE_ENV || 'development';
-var uglifyScript = {};
-var ext = '';
+let uglifyScript = {};
+let ext = '';
 
 if (env === 'production') {
     uglifyScript = uglify({

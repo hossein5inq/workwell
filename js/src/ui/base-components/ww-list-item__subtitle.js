@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class ListItemSubtitle extends BaseComponent {
+export default class ListItemSubtitle extends BaseComponent {
 
     constructor() {
         super("div");
@@ -19,5 +19,3 @@ class ListItemSubtitle extends BaseComponent {
     }
 
 }
-
-module.exports = ListItemSubtitle;

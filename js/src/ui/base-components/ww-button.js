@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class Button extends BaseComponent {
+export default class Button extends BaseComponent {
 
     constructor(text) {
         super("button");
@@ -35,5 +35,3 @@ class Button extends BaseComponent {
         return this;
     }
 }
-
-module.exports = Button;

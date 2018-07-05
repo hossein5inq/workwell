@@ -1,8 +1,8 @@
-const InputMaterial = require("./ww-input--material");
-const BaseComponent = require("./ww-base-component");
-const anime = require("animejs");
+import InputMaterial from "./ww-input--material";
+import BaseComponent from "./ww-base-component";
+import anime from "animejs";
 
-class TextAreaMaterial extends InputMaterial {
+export default class TextAreaMaterial extends InputMaterial {
     constructor() {
         super();
 
@@ -73,5 +73,3 @@ class TextAreaMaterial extends InputMaterial {
         });
     }
 }
-
-module.exports = TextAreaMaterial;

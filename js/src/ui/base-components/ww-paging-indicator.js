@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class PagingIndicator extends BaseComponent {
+export default class PagingIndicator extends BaseComponent {
     constructor(pageCount = 3, selectedPage = 0) {
         super("div");
         this.setPageCount(pageCount);
@@ -51,5 +51,3 @@ class PagingIndicator extends BaseComponent {
         return this.pageCount;
     }
 }
-
-module.exports = PagingIndicator;

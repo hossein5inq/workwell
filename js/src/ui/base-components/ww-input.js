@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class Input extends BaseComponent {
+export default class Input extends BaseComponent {
 
     constructor(type = "text") {
         super("input");
@@ -67,5 +67,3 @@ class Input extends BaseComponent {
         return this.el.value;
     }
 }
-
-module.exports = Input;

@@ -1,78 +1,44 @@
-var engine = require("./engine.js");
-var bridge = require("./bridge.js");
+import {createJSONFrom} from "./engine";
+import {sendFromJS} from "./bridge";
 
-/**
- * @type {{
- *  title: string,
- *  backgroundColor: string,
- *  textColor: string,
- *  begin: boolean,
- *  beginUpdate: module.exports.beginUpdate,
- *  commitUpdate: module.exports.commitUpdate,
- *  getInstance: module.exports.getInstance,
- *  setBackgroundColor: module.exports.setBackgroundColor,
- *  setTextColor: module.exports.setTextColor,
- *  setTitle: module.exports.setTitle
- * }}
- */
-module.exports = {
-    title: "Title",
-    backgroundColor: "#000000",
-    textcolor: "#FFFFFF",
-    begin: false,
-    dataToUpdate: {data: {}},
-    /**
-     * This function tells the object that you can now update it (before committing).
-     */
-    beginUpdate: function () {
-        this.begin = true;
-    },
-    /**
-     * This function tells the app to update the navigation bar (with everything that has been changed since 'beginUpdate' was called).
-     * @example
-     * var navbar = Workwell.getNavBar();
-     * navbar.beginUpdate();
-     * navbar.setTitle("a title");
-     * navbar.setBackgroundColor("#CACACA");
-     * navbar.commitUpdate();
-     */
-    commitUpdate: function () {
-        var jsonObj = engine.createJSONFrom("ui", "navigationBar", this.dataToUpdate);
-        bridge.sendFromJS(JSON.stringify(jsonObj));
-        this.begin = false;
-        this.dataToUpdate.data = {};
-    },
-    getInstance: function () {
-        return this;
-    },
-    /**
-     * This function sets the background color of the native navigation bar.
-     * @param {string} color
-     */
-    setBackgroundColor: function (color) {
-        if (this.begin) {
-            this.backgroundColor = color;
-            this.dataToUpdate.data.backgroundColor = color;
-        }
-    },
-    /**
-     * This function sets the text color of the native navigation bar.
-     * @param {string} color
-     */
-    setTextColor: function (color) {
-        if (this.begin) {
-            this.textColor = color;
-            this.dataToUpdate.data.textColor = color;
-        }
-    },
-    /**
-     * This function sets the title of the native navigation bar.
-     * @param {string} title
-     */
-    setTitle: function (title) {
-        if (this.begin) {
-            this.title = title;
-            this.dataToUpdate.data.title = title;
-        }
+export let title = "Title";
+export let backgroundColor = "#000000";
+export let textColor = "#FFFFFF";
+export let begin = false;
+export let dataToUpdate = {data: {}};
+
+export function beginUpdate() {
+    begin = true;
+}
+
+export function commitUpdate() {
+    const jsonObj = createJSONFrom("ui", "navigationBar", this.dataToUpdate);
+    sendFromJS(JSON.stringify(jsonObj));
+    begin = false;
+    dataToUpdate.data = {};
+}
+
+export function setBackgroundColor(color_) {
+    if (begin) {
+        backgroundColor = color_;
+        dataToUpdate.data.backgroundColor = color_;
     }
-};
+}
+
+export function setTextColor(color_) {
+    if (begin) {
+        textColor = color_;
+        dataToUpdate.data.textColor = color_;
+    }
+}
+
+export function setTitle(title_) {
+    if (begin) {
+        title = title_;
+        dataToUpdate.data.title = title_;
+    }
+}
+
+export function getInstance() {
+    return this;
+}

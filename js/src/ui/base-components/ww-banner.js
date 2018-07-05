@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class Banner extends BaseComponent {
+export default class Banner extends BaseComponent {
 
     constructor() {
         super("div");
@@ -26,5 +26,3 @@ class Banner extends BaseComponent {
     }
 
 }
-
-module.exports = Banner;
