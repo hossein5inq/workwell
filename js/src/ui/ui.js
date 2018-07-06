@@ -1,4 +1,4 @@
-import Slider from "./base-components/ww-slider";
+/*import Slider from "./base-components/ww-slider";
 import ListItem from "./base-components/ww-list-item";
 import ListItemLabel from "./base-components/ww-list-item__label";
 import ListItemTitle from "./base-components/ww-list-item__title";
@@ -20,11 +20,34 @@ import BannerTitle from "./base-components/ww-banner-title";
 import BannerSubtitle from "./base-components/ww-banner-subtitle";
 import {getMobileOperatingSystem} from "../bridge/utils";
 import {hasClass, addClass, convertEvent} from "./ui-utils";
-import ww_ from "./ww_";
+import ww_ from "./ww_";*/
 
-export let os = getMobileOperatingSystem();
+import {getMobileOperatingSystem} from "../bridge/utils";
+import {hasClass, addClass, convertEvent} from "./ui-utils";
 
-export const elements = [
+//export let os = getMobileOperatingSystem();
+
+/*export const elements = [
+    "ww-button",
+    "ww-list",
+    "ww-input",
+    "ww-list-header",
+    "ww-list-item",
+    "ww-list-item__left",
+    "ww-list-item__center",
+    "ww-list-item__right",
+    "ww-list-item__title",
+    "ww-list-item__subtitle",
+    "ww-list-item__label",
+    "ww-list-item__icon",
+    "ww-banner",
+    "ww-banner__title",
+    "ww-banner__subtitle",
+    "ww-fab",
+    "ww-icon"
+];*/
+
+const elements = [
     "ww-button",
     "ww-list",
     "ww-input",
@@ -326,6 +349,26 @@ export function format() {
 
         if (el.hasAttribute("data-type")) {
             ww_(el).setType(el.getAttribute("data-type"));
+        }
+    }
+}
+
+export function styleListItems() {
+    addClass(document.body, "ww-body");
+
+    for (let i = 0; i < elements.length; i++) {
+        let els = document.getElementsByClassName(elements[i]);
+        for (let j = 0; j < els.length; j++) {
+            addClass(els[j], elements[i]);
+        }
+    }
+
+    let listItems = document.getElementsByClassName("ww-list-item");
+    for (let i = 0; i < listItems.length; i++) {
+        let el = listItems[i];
+
+        if (hasClass(el, "ww-list-item--tappable")) {
+            //ww_(el).setTappable(true);
         }
     }
 }

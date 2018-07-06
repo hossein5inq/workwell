@@ -1,21 +1,21 @@
-import {sendFromJS} from "./bridge/bridge";
-import {createJSONFrom} from "./bridge/engine";
-import * as navbar from "./bridge/navbar";
-import * as token from "./bridge/token";
-import {getMobileOperatingSystem} from "./bridge/utils";
-import * as config_ from "./bridge/config";
-import * as constants_ from "./bridge/constants";
-import * as ui_ from "./ui/ui";
-import ww_ from "./ui/ww_";
-import "../../dist/css/workwell.css";
+//import {sendFromJS} from "./bridge/bridge";
+//import {createJSONFrom} from "./bridge/engine";
+//import * as navbar from "./bridge/navbar";
+//import * as token from "./bridge/token";
+//import {getMobileOperatingSystem} from "./bridge/utils";
+//import * as config_ from "./bridge/config";
+//import * as constants_ from "./bridge/constants";
+//import * as ui_ from "./ui/ui";
+//import ww_ from "./ui/ww_";
+//import "../../dist/css/workwell.css";
 
-window["Workwell_onShow"] = function () {
+/*window["Workwell_onShow"] = function () {
     // nothing
-};
+};*/
 
-window.ww_ = ww_;
+//window.ww_ = ww_;
 
-function ready_(fn) {
+export function ready_(fn) {
     if (typeof document !== "undefined" && document.readyState !== "loading") {
         fn();
     } else {
@@ -24,7 +24,7 @@ function ready_(fn) {
     }
 }
 
-ready_(function () {
+/*ready_(function () {
     document.body.addEventListener("touchstart", function () {
 
     });
@@ -47,10 +47,10 @@ ready_(function () {
     });
 
     ui.format();
-});
+});*/
 
 export const name = "Workwell";
-export let os = getMobileOperatingSystem();
+//export let os = getMobileOperatingSystem();
 export const ui = ui_;
 export let config = config_;
 export const constants = {

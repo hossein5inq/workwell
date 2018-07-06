@@ -1,24 +1,24 @@
 import * as config from "./config";
 
 export function getMobileOperatingSystem() {
-    if (config.os)
-        return config.os;
+    /*if (config.os)
+        return config.os;*/
 
     if (typeof navigator !== "undefined") {
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
         if (/windows phone/i.test(userAgent)) {
-            config.setOS("Windows Phone");
+            //config.setOS("Windows Phone");
             return "Windows Phone";
         }
 
         if (/android/i.test(userAgent)) {
-            config.setOS("android");
+            //config.setOS("android");
             return "android";
         }
 
         if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            config.setOS("ios");
+            //config.setOS("ios");
             return "ios";
         }
     }

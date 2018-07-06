@@ -1,4 +1,5 @@
 import BaseComponent from "./ww-base-component";
+import "../../dist/css/workwell.css";
 
 export default class List extends BaseComponent {
 
