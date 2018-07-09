@@ -15,16 +15,7 @@ window["Workwell_onShow"] = function () {
 
 window.ww_ = ww_;
 
-function ready_(fn) {
-    if (typeof document !== "undefined" && document.readyState !== "loading") {
-        fn();
-    } else {
-        if (typeof document !== "undefined")
-            document.addEventListener("DOMContentLoaded", fn);
-    }
-}
-
-ready_(function () {
+ready(function () {
     document.body.addEventListener("touchstart", function () {
 
     });
