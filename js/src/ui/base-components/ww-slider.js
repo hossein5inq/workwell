@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class Slider extends BaseComponent {
+export default class Slider extends BaseComponent {
 
     constructor(currentValue = 0, min = 0, max = 100, step = 1) {
         super("div");
@@ -168,5 +168,3 @@ class Slider extends BaseComponent {
     }
 
 }
-
-module.exports = Slider;

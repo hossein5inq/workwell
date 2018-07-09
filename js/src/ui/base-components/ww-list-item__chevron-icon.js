@@ -1,6 +1,6 @@
-const ListItemIcon = require("./ww-list-item__icon");
+import ListItemIcon from "./ww-list-item__icon";
 
-class ListItemChevronIcon extends ListItemIcon {
+export default class ListItemChevronIcon extends ListItemIcon {
 
     constructor() {
         super("i");
@@ -9,5 +9,3 @@ class ListItemChevronIcon extends ListItemIcon {
     }
 
 }
-
-module.exports = ListItemChevronIcon;

@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class ListItemIcon extends BaseComponent {
+export default class ListItemIcon extends BaseComponent {
 
     constructor() {
         super("i");
@@ -9,5 +9,3 @@ class ListItemIcon extends BaseComponent {
     }
 
 }
-
-module.exports = ListItemIcon;

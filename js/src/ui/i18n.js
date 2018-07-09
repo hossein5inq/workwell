@@ -1,11 +1,11 @@
-module.exports = {
-    en: {
-        "cancel-search-input": "Cancel"
-    },
-    fr: {
-        "cancel-search-input": "Annuler"
-    },
-    get: function (locale, key) {
-        return module.exports[locale][key];
-    }
+export const en = {
+    "cancel-search-input": "Cancel"
 };
+
+export const fr = {
+    "cancel-search-input": "Annuler"
+};
+
+export function get(locale, key) {
+    return [locale][key];
+}

@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class ListItemLabel extends BaseComponent {
+export default class ListItemLabel extends BaseComponent {
 
     constructor() {
         super("div");
@@ -19,5 +19,3 @@ class ListItemLabel extends BaseComponent {
     }
 
 }
-
-module.exports = ListItemLabel;

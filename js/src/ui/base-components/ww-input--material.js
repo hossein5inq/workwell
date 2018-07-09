@@ -1,7 +1,7 @@
-const BaseComponent = require("./ww-base-component");
-const anime = require("animejs");
+import BaseComponent from "./ww-base-component";
+import anime from "animejs";
 
-class InputMaterial extends BaseComponent {
+export default class InputMaterial extends BaseComponent {
 
     constructor(type = "text") {
         super("div");
@@ -154,5 +154,3 @@ class InputMaterial extends BaseComponent {
         return this.el.input.value;
     }
 }
-
-module.exports = InputMaterial;

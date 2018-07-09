@@ -1,6 +1,6 @@
-const Utils = require("../../bridge/utils");
+import {getMobileOperatingSystem} from "../../bridge/utils";
 
-module.exports = class BaseComponent {
+export default class BaseComponent {
     constructor(htmlElement) {
         this.el = document.createElement(htmlElement);
         this.el.onAttachedToDom = () => {
@@ -13,7 +13,7 @@ module.exports = class BaseComponent {
     }
 
     static addClass(el, className) {
-        if (Utils.getMobileOperatingSystem() === "android") {
+        if (getMobileOperatingSystem() === "android") {
             if (className.startsWith("ww-")) {
                 if (el.classList)
                     el.classList.add(className + "--material");
@@ -31,12 +31,12 @@ module.exports = class BaseComponent {
     static removeClass(el, className) {
         if (el.classList) {
             el.classList.remove(className);
-            if (Utils.getMobileOperatingSystem() === "android") {
+            if (getMobileOperatingSystem() === "android") {
                 el.classList.remove(className + "--material");
             }
         }
         else {
-            if (Utils.getMobileOperatingSystem() === "android") {
+            if (getMobileOperatingSystem() === "android") {
                 let replacement = className + "--material";
                 el.className = el.className.replace(new RegExp("(^|\\b)" + replacement.split(" ").join("|") + "(\\b|$)", "gi"), " ");
             }
@@ -87,4 +87,4 @@ module.exports = class BaseComponent {
     toHTMLElement() {
         return this.el;
     }
-};
+}

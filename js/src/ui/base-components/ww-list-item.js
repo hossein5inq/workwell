@@ -1,8 +1,8 @@
-const BaseComponent = require("./ww-base-component");
-const anime = require("animejs");
-const Utils = require("../../bridge/utils");
+import BaseComponent from "./ww-base-component";
+import anime from "animejs";
+import {getMobileOperatingSystem} from "../../bridge/utils";
 
-class ListItem extends BaseComponent {
+export default class ListItem extends BaseComponent {
 
     constructor() {
         super("li");
@@ -60,7 +60,7 @@ class ListItem extends BaseComponent {
 
                 // HACK FOR IOS
                 let previousSibling = this.el.previousElementSibling;
-                if (previousSibling && Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
                     this.isTouching = true;
                     let gradients = {
                         start: "#FFFFFF",
@@ -92,7 +92,7 @@ class ListItem extends BaseComponent {
 
                 // HACK FOR IOS
                 let previousSibling = this.el.previousElementSibling;
-                if (previousSibling && Utils.getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
                     this.isTouching = false;
                     let gradients = {
                         start: "#FFFFFF",
@@ -200,5 +200,3 @@ class ListItem extends BaseComponent {
         return this.rightDiv;
     }
 }
-
-module.exports = ListItem;
