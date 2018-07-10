@@ -1,18 +1,18 @@
-const uiUtils = require("./ui-utils");
-const Slider = require("./base-components/ww-slider");
-const ListItem = require("./base-components/ww-list-item");
-const ListItemLabel = require("./base-components/ww-list-item__label");
-const ListItemTitle = require("./base-components/ww-list-item__title");
-const Button = require("./base-components/ww-button");
-const List = require("./base-components/ww-list");
-const Switch = require("./base-components/ww-switch");
-const Banner = require("./base-components/ww-banner");
-const FAB = require("./base-components/ww-fab");
-const Icon = require("./base-components/ww-icon");
-const Input = require("./base-components/ww-input");
-const InputMaterial = require("./base-components/ww-input--material");
+import {hasClass} from "./ui-utils";
+import Slider from "./base-components/ww-slider";
+import ListItem from "./base-components/ww-list-item";
+import ListItemLabel from "./base-components/ww-list-item__label";
+import ListItemTitle from "./base-components/ww-list-item__title";
+import Button from "./base-components/ww-button";
+import List from "./base-components/ww-list";
+import Switch from "./base-components/ww-switch";
+import Banner from "./base-components/ww-banner";
+import FAB from "./base-components/ww-fab";
+import Icon from "./base-components/ww-icon";
+import Input from "./base-components/ww-input";
+import InputMaterial from "./base-components/ww-input--material";
 
-module.exports = function (el) {
+export default function ww_(el) {
     let obj = {};
 
     if (typeof el === "string" && el.startsWith("#")) {
@@ -25,29 +25,29 @@ module.exports = function (el) {
 
     }
 
-    if (uiUtils.hasClass(el, "ww-slider")) {
+    if (hasClass(el, "ww-slider")) {
         obj = new Slider();
-    } else if (uiUtils.hasClass(el, "ww-list-item__label")) {
+    } else if (hasClass(el, "ww-list-item__label")) {
         obj = new ListItemLabel();
-    } else if (uiUtils.hasClass(el, "ww-list-item__title")) {
+    } else if (hasClass(el, "ww-list-item__title")) {
         obj = new ListItemTitle();
-    } else if (uiUtils.hasClass(el, "ww-list-item")) {
+    } else if (hasClass(el, "ww-list-item")) {
         obj = new ListItem();
-    } else if (uiUtils.hasClass(el, "ww-button")) {
+    } else if (hasClass(el, "ww-button")) {
         obj = new Button();
-    } else if (uiUtils.hasClass(el, "ww-list")) {
+    } else if (hasClass(el, "ww-list")) {
         obj = new List();
-    } else if (uiUtils.hasClass(el, "ww-switch")) {
+    } else if (hasClass(el, "ww-switch")) {
         obj = new Switch();
-    } else if (uiUtils.hasClass(el, "ww-banner")) {
+    } else if (hasClass(el, "ww-banner")) {
         obj = new Banner();
-    } else if (uiUtils.hasClass(el, "ww-fab")) {
+    } else if (hasClass(el, "ww-fab")) {
         obj = new FAB();
-    } else if (uiUtils.hasClass(el, "ww-icon")) {
+    } else if (hasClass(el, "ww-icon")) {
         obj = new Icon();
-    } else if (uiUtils.hasClass(el, "ww-input")) {
+    } else if (hasClass(el, "ww-input")) {
         obj = new Input();
-    } else if (uiUtils.hasClass(el, "ww-input__container")) {
+    } else if (hasClass(el, "ww-input__container")) {
         obj = new InputMaterial();
     }
 
@@ -55,4 +55,4 @@ module.exports = function (el) {
     obj.el = el;
 
     return obj;
-};
+}

@@ -1,6 +1,6 @@
-const BaseComponent = require("./ww-base-component");
+import BaseComponent from "./ww-base-component";
 
-class BannerSubtitle extends BaseComponent {
+export default class BannerSubtitle extends BaseComponent {
 
     constructor() {
         super("div");
@@ -19,5 +19,3 @@ class BannerSubtitle extends BaseComponent {
     }
 
 }
-
-module.exports = BannerSubtitle;
