@@ -1,4 +1,4 @@
-## Documentation
+# Documentation
 
 * Getting Started 
     * [Building Workwell services](getting-started/building-workwell-services.md)
