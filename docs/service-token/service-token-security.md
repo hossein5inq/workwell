@@ -1,4 +1,4 @@
-## Security ##
+# Service Token Security #
 
 For reasons of security, all Workwell JS-SDK Bridge calls need to include a service token that identifies the service through the Workwell App. 
 
