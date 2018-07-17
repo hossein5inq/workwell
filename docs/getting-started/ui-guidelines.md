@@ -1,3 +1,5 @@
+# UI Guidelines #
+
 To maximize impact and reach, keep the following principles in mind as you imagine your service’s identity.
 
 ## Color Palette ##
