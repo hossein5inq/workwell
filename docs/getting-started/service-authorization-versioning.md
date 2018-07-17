@@ -1,3 +1,5 @@
+# Service Authorization / Versioning #
+
 **Process**
 
 The service server needs to expose an endpoint called `/authorize` so that Workwell can call that route to verify if the service is down/live, its authenticity and a version number corresponding to the latest deployed version of the service. 
