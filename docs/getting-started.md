@@ -2,18 +2,18 @@
 
 Put your service between the hands of thousands of employees by doing a Workwell integration. Wether you already have a web service or you’re building one from scratch, Workwell provides the necessary tools to make the integration easy and fast.
 
-<img src="./docs/images/Phone@2x.png" alt="drawing" width="300px"/>
+<img src="./images/Phone@2x.png" alt="drawing" width="300px"/>
 
 ## Technical concept
 
 Before your start diving into the technical details, we wanted to let you know about our general technical concept. Workwell is a native mobile application. Services are web apps, presented to the user on a dedicated screen. Opening a service is done by loading its URL in a in-app custom webview. Using the Workwell JS-SDK, your service can communicate with the Workwell native application.
 
 
-<img src="./docs/images/architecture.png" alt="drawing" width="600px"/>
+<img src="./images/architecture.png" alt="drawing" width="600px"/>
 
 Here are the different components inside a service:
 
-<img src="./docs/images/service-components.svg" alt="drawing" width="600px"/>
+<img src="./images/service-components.svg" alt="drawing" width="600px"/>
 
 ## Workwell SDK
 
