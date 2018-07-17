@@ -1,3 +1,5 @@
+# JS-SDK #
+
 Workwell provides a JS-SDK with two main components:
 
 - Bridge with main app : <i>Workwell</i> (e.g. getting user info with #docTextSection:dEkJ6eCGgFcPgTE6W, access to native features etc.)
