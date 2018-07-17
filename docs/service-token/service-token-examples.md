@@ -1,4 +1,4 @@
-How to get service tokens in different languages
+# How to get service tokens in different languages
 ---
 
 Here are examples on how to retrieve your service token.
