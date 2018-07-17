@@ -12,6 +12,10 @@ We recommend that you try using colors from this color palette (or in the same t
 
 Here is an example of one of our own services UI (Using Workwell. CSS / UI / openWebPage) :
 
+| Home Page     | Browse Categories | My Posted Ads |
+| ------------- |:-----------------:| -------------:|
+| <img src="./images/screenshot-classified-ads-home.png" height="420px"/>  | <img src="./images/screenshot-classified-ads-browse-categories.png" height="420px"/>     | <img src="./images/screenshot-classified-ads-my-posted-ads.png" height="420px"/>        |
+
 <div style="display:flex">
 <div>
 <div>Home Page :</div>
