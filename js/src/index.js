@@ -13,8 +13,6 @@ window["Workwell_onShow"] = function () {
     // nothing
 };
 
-window.ww_ = ww_;
-
 ready(function () {
     document.body.addEventListener("touchstart", function () {
 
@@ -296,4 +294,8 @@ export function unsubscribe(obj_) {
         let jsonObj = createJSONFrom(obj_.type, "unsubscribe", obj);
         sendFromJS(JSON.stringify(jsonObj));
     }
+}
+
+export function $(el) {
+    return ww_(el);
 }
