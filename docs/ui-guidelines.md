@@ -56,19 +56,19 @@ Here is an example of one of our own services UI (Using Workwell. CSS / UI / ope
 <div>
 <div>Home Page :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-home.png" height=420>
+<img src="./images/screenshot-classified-ads-home.png" height=420>
 </div>
 <div style="width:15px"></div>
 <div>
 <div>Browse Categories :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-browse-categories.png" height=420>
+<img src="./images/screenshot-classified-ads-browse-categories.png" height=420>
 </div>
 <div style="width:15px"></div>
 <div>
 <div>My Posted Ads :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-my-posted-ads.png" height=420>
+<img src="./images/screenshot-classified-ads-my-posted-ads.png" height=420>
 </div>
 </div>
 
@@ -78,19 +78,19 @@ Here is an example of one of our own services UI (Using Workwell. CSS / UI / ope
 <div>
 <div>Item Details :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-item-details.png" height=420>
+<img src="./images/screenshot-classified-ads-item-details.png" height=420>
 </div>
 <div style="width:15px"></div>
 <div>
 <div>Post An Ad :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-new-ad.png" height=420>
+<img src="./images/screenshot-classified-ads-new-ad.png" height=420>
 </div>
 <div style="width:15px"></div>
 <div>
 <div>My Item Details :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-my-item-details.png" height=420>
+<img src="./images/screenshot-classified-ads-my-item-details.png" height=420>
 </div>
 </div>
 
@@ -100,6 +100,6 @@ Here is an example of one of our own services UI (Using Workwell. CSS / UI / ope
 <div>
 <div>Delete My Item :</div>
 <div style="height:15px"></div>
-<img src="./docs/images/screenshot-classified-ads-delete-my-ad.png" height=420>
+<img src="./images/screenshot-classified-ads-delete-my-ad.png" height=420>
 </div>
 </div>
