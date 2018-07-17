@@ -14,15 +14,20 @@ Workwell is a front-end framework to communicate between a web-application and t
 
 ## Quick start
 
-Several quick start options are available:
-
 * Install with [npm](https://www.npmjs.com): `npm install workwell`.
 
 
 ## Documentation
 
-* [Getting Started](./docs/getting-started.md)
-* [UI-Guidelines](./docs/ui-guidelines.md)
+* Getting Started 
+    * [Building Workwell services](docs/getting-started/building-workwell-services.md)
+    * [Service Secret / Service ID](docs/getting-started/service-secret-service-id.md)
+    * [Service Authorization / Versioning](docs/getting-started/service-authorization-versioning.md)
+    * [JS-SDK](docs/getting-started/js-sdk.md)
+    * [UI-Guidelines](docs/getting-started/ui-guidelines.md)
+* Service Token
+    * [Security](docs/service-token/service-token-security.md)
+    * [Examples](docs/service-token/service-token-examples.md) 
 
 
 ## Creators
