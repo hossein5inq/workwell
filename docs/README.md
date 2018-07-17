@@ -9,3 +9,6 @@
 * Service Token
     * [Security](service-token/service-token-security.md)
     * [Examples](service-token/service-token-examples.md) 
+* JS-SDK
+    * [Bridge with the app](bridge/README.md)
+    * [UI](UI/README.md)

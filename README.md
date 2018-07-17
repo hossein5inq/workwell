@@ -28,6 +28,9 @@ Workwell is a front-end framework to communicate between a web-application and t
 * Service Token
     * [Security](docs/service-token/service-token-security.md)
     * [Examples](docs/service-token/service-token-examples.md) 
+* JS-SDK
+    * [Bridge with the app](docs/bridge/README.md)
+    * [UI](docs/UI/README.md)
 
 
 ## Creators
