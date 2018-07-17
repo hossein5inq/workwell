@@ -1,4 +1,4 @@
-## Service Secret / Service ID
+# Service Secret / Service ID #
 
 Please get in touch with Workwell tech support team to get a `service_id` and a `service_secret` once you register as a Workwell Service.
 
