@@ -20,16 +20,19 @@ Put your service between the hands of thousands of employees by doing a Workwell
 <p align="center"><img src="docs/images/Phone@2x.png" alt="drawing" width="300px"/></p>
 <br/>
 
-### Technical concept
+### Technical Concept
 
 Before your start diving into the technical details, we wanted to let you know about our general technical concept. Workwell is a native mobile application. Services are web apps, presented to the user on a dedicated screen. Opening a service is done by loading its URL in a in-app custom webview. Using the Workwell JS-SDK, your service can communicate with the Workwell native application.
 
+<p></p>
+<p align="center"><img src="docs/images/architecture.png" alt="drawing" width="600px"/></p>
+<p></p>
 
-<img src="docs/images/architecture.png" alt="drawing" width="600px"/>
+---
 
 Here are the different components inside a service:
 
-<img src="docs/images/service-components.svg" alt="drawing" width="600px"/>
+<p align="center"><img src="docs/images/service-components.svg" alt="drawing" width="600px"/></p>
 
 ### Workwell SDK
 
@@ -40,7 +43,7 @@ Workwell SDK allows you:
 * To use native like UI components that handle the differences between OS and Android for you.
 * To use native UI components to give the user experience a more native flavour (e.g. date/time pickers, toast messages etc.).
 
-### Integration requirements
+### Integration Requirements
 
 We have put in place a number of requirements for a Workwell integration to ensure the best user experience with a strong attention to the security aspects of our technical model:
 
