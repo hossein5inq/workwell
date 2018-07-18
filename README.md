@@ -24,12 +24,6 @@ Put your service between the hands of thousands of employees by doing a Workwell
 
 Before your start diving into the technical details, we wanted to let you know about our general technical concept. Workwell is a native mobile application. Services are web apps, presented to the user on a dedicated screen. Opening a service is done by loading its URL in a in-app custom webview. Using the Workwell JS-SDK, your service can communicate with the Workwell native application.
 
-<p></p>
-<p align="center"><img src="docs/images/architecture.png" alt="drawing" width="600px"/></p>
-<p></p>
-
----
-
 Here are the different components inside a service:
 
 <p align="center"><img src="docs/images/service-components.svg" alt="drawing" width="600px"/></p>
