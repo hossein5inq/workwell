@@ -2,7 +2,7 @@
 
 ## 1. Get the Workwell mobile test app
 
-  The Workwell mobile test application is available on HockeyApp.
+  The Workwell mobile test application is available on HockeyApp. You should download it from the mobile you'll be using for development.
   
   - For iOS:
   
