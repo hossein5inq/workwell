@@ -1,6 +1,6 @@
 # Getting Started
 
-## 1. Get the Workwell mobile test app
+## <a name="workwell-mobile-test"></a>1. Get the Workwell mobile test app
 
   The Workwell mobile test application is available on HockeyApp. You should download it from the mobile you'll be using for development.
   
@@ -17,12 +17,12 @@
   - id: developers@workwell.io
   - password: Workwell-123
   
-## 2. Access your local (or online) web app
+## <a name="access-web-app"></a>2. Access your local (or online) web app
 
   To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open prompting you to type the URL that you want to open from inside Workwell.
 
-## 3. Get a service-secret and a service-id
+## <a name="service-secret-id"></a>3. Get a service-secret and a service-id
 
-## 4. Implement a service-token generation method
+## <a name="service-token"></a>4. Implement a service-token generation method
 
-## 5. Build your first Workwell web app
+## <a name="build-first"></a>5. Build your first Workwell web app
