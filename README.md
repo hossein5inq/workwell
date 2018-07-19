@@ -52,15 +52,15 @@ We have put in place a number of requirements for a Workwell integration to ensu
 
 ## Documentation
 
-* Getting Started 
-    * [Building Workwell services](docs/getting-started/building-workwell-services.md)
-    * [Service Secret / Service ID](docs/getting-started/service-secret-service-id.md)
-    * [Service Authorization / Versioning](docs/getting-started/service-authorization-versioning.md)
-    * [JS-SDK](docs/getting-started/js-sdk.md)
-    * [UI-Guidelines](docs/getting-started/ui-guidelines.md)
-* Service Token
-    * [Security](docs/service-token/service-token-security.md)
-    * [Examples](docs/service-token/service-token-examples.md) 
+* [Getting Started](docs/getting-started.md) 
+    1. [Get the Workwell mobile test app](docs/getting-started.md#get-the-workwell-mobile-test-app)
+    2. [Get a service-secret and a service-id](docs/getting-started.md#get-a-service-secret-and-a-service-id)
+    3. [Implement a service-token generation method](docs/getting-started.md#implement-a-service-token-generation-method)
+    4. [Build your first Workwell web app](docs/getting-started.md#build-your-first-workwell-web-app)
+* [Debugging](docs/debugging.md)
+   * [iOS](docs/debugging.md#ios)
+   * [Android](docs/debugging.md#android)
+* [Service Authorization](docs/service-authorization.md)
 * JS-SDK
     * [Bridge with the app](docs/bridge/README.md)
     * [UI](docs/UI/README.md)
