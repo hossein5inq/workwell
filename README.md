@@ -54,9 +54,10 @@ We have put in place a number of requirements for a Workwell integration to ensu
 
 * [Getting Started](docs/getting-started.md) 
     1. [Get the Workwell mobile test app](docs/getting-started.md#get-the-workwell-mobile-test-app)
-    2. [Get a service-secret and a service-id](docs/getting-started.md#get-a-service-secret-and-a-service-id)
-    3. [Implement a service-token generation method](docs/getting-started.md#implement-a-service-token-generation-method)
-    4. [Build your first Workwell web app](docs/getting-started.md#build-your-first-workwell-web-app)
+    2. [Access your local (or online) web app](docs/getting-started.md#access-your-local-(or-online)-web-app)
+    3. [Get a service-secret and a service-id](docs/getting-started.md#get-a-service-secret-and-a-service-id)
+    4. [Implement a service-token generation method](docs/getting-started.md#implement-a-service-token-generation-method)
+    5. [Build your first Workwell web app](docs/getting-started.md#build-your-first-workwell-web-app)
 * [Debugging](docs/debugging.md)
    * [iOS](docs/debugging.md#ios)
    * [Android](docs/debugging.md#android)
