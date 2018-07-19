@@ -1,14 +1,12 @@
-# Documentation
-
-* Getting Started 
-    * [Building Workwell services](getting-started/building-workwell-services.md)
-    * [Service Secret / Service ID](getting-started/service-secret-service-id.md)
-    * [Service Authorization / Versioning](getting-started/service-authorization-versioning.md)
-    * [JS-SDK](getting-started/js-sdk.md)
-    * [UI-Guidelines](getting-started/ui-guidelines.md)
-* Service Token
-    * [Security](service-token/service-token-security.md)
-    * [Examples](service-token/service-token-examples.md) 
-* JS-SDK
-    * [Bridge with the app](bridge/README.md)
-    * [UI](UI/README.md)
+* [Getting Started](getting-started.md) 
+    1. [Get the Workwell mobile test app](getting-started.md#get-the-workwell-mobile-test-app)
+    2. [Get a service-secret and a service-id](getting-started.md#get-a-service-secret-and-a-service-id)
+    3. [Implement a service-token generation method](getting-started.md#implement-a-service-token-generation-method)
+    4. [Build your first Workwell web app](getting-started.md#build-your-first-workwell-web-app)
+* [Debugging](debugging.md)
+   * [iOS](debugging.md#ios)
+   * [Android](debugging.md#android)
+* [Service Authorization](service-authorization.md)
+* [JS-SDK](js-sdk.md)
+    * [Bridge with the app](js-sdk.md#bridge-with-the-app)
+    * [UI](js-sdk.md#ui))
