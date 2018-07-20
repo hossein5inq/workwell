@@ -45,7 +45,7 @@ We have put in place a number of requirements for a Workwell integration to ensu
 
 * Mobile friendly: We require your service to be mobile friendly and to respect Workwell UI guidelines. We strongly recommend you to use the JS-SDK UI features!
 
-* Expose a health check endpoint: Your server needs to expose an endpoint Workwell servers can call to verify your service health and its authenticity, c.f. [Service Authorization/Versioning](./service-authorization-versioning.md)
+* Expose a health check endpoint: Your server needs to expose an endpoint Workwell servers can call to verify your service health and its authenticity, c.f. [Service Authorization](docs/service-authorization.md)
 
 *We also recommend using classic navigation with `<a href="...">` and not SPA (single page application) router. A native app opens a new view/page when navigating from one content to another, cf [Open Web Page](../open-web-page.md) for more information*
 
