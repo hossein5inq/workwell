@@ -10,4 +10,4 @@
 * [Service Authorization](service-authorization.md)
 * [JS-SDK](js-sdk.md)
     * [Bridge with the app](js-sdk.md#bridge-with-the-app)
-    * [UI](js-sdk.md#ui))
+    * [UI](js-sdk.md#ui)
