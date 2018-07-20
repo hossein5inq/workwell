@@ -12,7 +12,6 @@ import Input from "./base-components/ww-input";
 import InputMaterial from "./base-components/ww-input--material";
 import ListItemSubtitle from "./base-components/ww-list-item__subtitle";
 import ListItemChevronIcon from "./base-components/ww-list-item__chevron-icon";
-import SearchInput from "./ww-search-input";
 import PagingIndicator from "./base-components/ww-paging-indicator";
 import TextArea from "./base-components/ww-textarea";
 import TextAreaMaterial from "./base-components/ww-textarea--material";
@@ -52,8 +51,8 @@ export function createList() {
     return new List();
 }
 
-export function createListItem(title, subtitle) {
-    return new ListItem(title, subtitle);
+export function createListItem() {
+    return new ListItem();
 }
 
 export function createInput(type) {
@@ -65,10 +64,6 @@ export function createInput(type) {
 
 export function createPagingIndicator(pageCount, selectedPage) {
     return new PagingIndicator(pageCount, selectedPage);
-}
-
-export function createSearchInput() {
-    return new SearchInput();
 }
 
 export function createSlider() {
@@ -258,40 +253,6 @@ export function format() {
         if (el.hasAttribute("data-selected-page")) {
             newEl.setSelectedPage(el.getAttribute("data-selected-page"));
         }
-
-        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-    }
-
-    let searchInputElements = document.getElementsByClassName("ww-search-input");
-    for (let i = 0; i < searchInputElements.length; i++) {
-        let el = searchInputElements[i];
-        let newEl = createSearchInput();
-
-        if (el.hasAttribute("id")) {
-            newEl.setId(el.getAttribute("id"));
-        }
-
-        let method = "get";
-        let action = "";
-        let fnName = undefined;
-
-        if (el.hasAttribute("placeholder")) {
-            newEl.setValue(el.getAttribute("placeholder"), false);
-        }
-
-        if (el.hasAttribute("onInputAction")) {
-            action = el.getAttribute("onInputAction");
-        }
-
-        if (el.hasAttribute("onInputMethod")) {
-            method = el.getAttribute("onInputMethod");
-        }
-
-        newEl.setOnInputAction(action);
-        newEl.setOnInputMethod(method);
-
-        if (window[fnName])
-            newEl.setResultConverterFunction(window[fnName]);
 
         el.parentNode.replaceChild(newEl.toHTMLElement(), el);
     }
