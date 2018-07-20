@@ -26,7 +26,7 @@
   
 ## <a name="access-web-app"></a>2. Access your local (or online) web app
 
-  To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open, prompting you to type the URL that you want to open from inside Workwell.
+  To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open, prompting you to type the URL that you want to open from inside Workwell. In the example below, I am trying to open my local web app that is running on the 3040 port.
   
   <br/>
   <p align="center">
@@ -36,6 +36,12 @@
   <br/>
 
 ## <a name="service-secret-id"></a>3. Get a service-secret and a service-id
+
+Please get in touch with Workwell tech support team to get a `service_id` and a `service_secret` once you register as a Workwell Service.
+
+They will be used to obtain the *service token* (cf [Service-Token](#service-token)) that is necessary to use the SDK.
+
+We recommend to store the `service_id` and `service_secret` in your back-end for security reason.
 
 ## <a name="service-token"></a>4. Implement a service-token generation method
 
