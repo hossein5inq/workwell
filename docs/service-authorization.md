@@ -10,7 +10,7 @@ Workwell will call the service server every X minutes to do the health/authentic
 
 <br/>
 
-<p align="center"><img src="docs/images/service-authorization.svg"/></p>
+<p align="center"><img src="images/service-authorization.svg"/></p>
 
 <br/>
 
