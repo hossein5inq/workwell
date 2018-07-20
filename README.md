@@ -47,7 +47,7 @@ We have put in place a number of requirements for a Workwell integration to ensu
 
 * Expose a health check endpoint: Your server needs to expose an endpoint Workwell servers can call to verify your service health and its authenticity, c.f. [Service Authorization](docs/service-authorization.md)
 
-*We also recommend using classic navigation with `<a href="...">` and not SPA (single page application) router. A native app opens a new view/page when navigating from one content to another, cf [Open Web Page](../open-web-page.md) for more information*
+*We also recommend using classic navigation with `<a href="...">` and not SPA (single page application) router. A native app opens a new view/page when navigating from one content to another, cf [Open Web Page](docs/js-sdk.md#openwebpage) for more information*
 
 
 ## Documentation
