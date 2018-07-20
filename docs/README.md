@@ -8,6 +8,7 @@
    * [iOS](debugging.md#ios)
    * [Android](debugging.md#android)
 * [Service Authorization](service-authorization.md)
+* [UI Guidelines](ui-guidelines.md)
 * [JS-SDK](js-sdk.md)
     * [Bridge with the app](js-sdk.md#bridge-with-the-app)
     * [UI](js-sdk.md#ui)
