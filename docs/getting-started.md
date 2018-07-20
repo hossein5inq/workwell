@@ -1,9 +1,53 @@
-How to get service tokens in different languages
----
+# Getting Started
 
-Here are examples on how to retrieve your service token.
+## <a name="workwell-mobile-test"></a>1. Get the Workwell mobile test app
 
-## Javascript (Node JS)
+  The Workwell mobile test application is available on HockeyApp. You should download it from the mobile you'll be using for development.
+  
+  - For iOS:
+  
+    https://rink.hockeyapp.net/apps/3d57f8dcc1e849e583f2abb9c5a774da
+  
+  - For Android:
+  
+    https://rink.hockeyapp.net/apps/c1ff82f45af04051902b36cb4e3d8989
+  
+  The developer account to login into the app is the following:
+  
+  - id: developers@workwell.io
+  - password: Workwell-123
+  
+  <br/>
+  <p align="center">
+  <kbd><img src="images/ios-id-login-screen.png" alt="drawing" width="300px"/></kbd>
+  <kbd><img src="images/ios-password-login-screen.png" alt="drawing" width="300px"/></kbd>
+  </p>
+  <br/>
+  
+## <a name="access-web-app"></a>2. Access your local (or online) web app
+
+  To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open, prompting you to type the URL that you want to open from inside Workwell. In the example below, I am trying to open my local web app that is running on the 3040 port.
+  
+  <br/>
+  <p align="center">
+  <kbd><img src="images/ios-home-screen.png" alt="drawing" width="300px"/></kbd>
+  <kbd><img src="images/ios-home-screen-prompt.png" alt="drawing" width="300px"/></kbd>
+  </p>
+  <br/>
+
+## <a name="service-secret-id"></a>3. Get a service-secret and a service-id
+
+Please get in touch with Workwell tech support team to get a `service_id` and a `service_secret` once you register as a Workwell Service.
+
+They will be used to obtain the *service token* (cf [Service-Token](#service-token)) that is necessary to use the SDK.
+
+We recommend to store the `service_id` and `service_secret` in your back-end for security reason.
+
+## <a name="service-token"></a>4. Implement a service-token generation method
+
+You will need to implement a method on your back-end side that generates a valid *service token*. This token will then be inserted in the Workwell JS object (front-end) so that you are allowed to use any of its bridging methods. Here are some examples on how to retrieve your service token (in different languages).
+
+### Javascript (Node JS)
 
 ```javascript
 const express = require('express');
@@ -36,7 +80,7 @@ app.listen(5000, function () {
 });
 ```
 
-## Python (Flask)
+### Python (Flask)
 
 ```python
 import base64
@@ -73,7 +117,7 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
 ```
 
-## Go
+### Go
 
 ```go
 package main
@@ -178,7 +222,7 @@ func main() {
 }
 ```
 
-## Java
+### Java
 
 ```java
 import javax.crypto.Mac;
@@ -239,7 +283,7 @@ public class WorkwellIntegration {
 }
 ```
 
-## PHP
+### PHP
 
 ```php
 $SERVICE_ID = YOUR_SERVICE_ID;
@@ -268,4 +312,4 @@ curl_close($curl);
 ```
 
 
-
+## <a name="build-first"></a>5. Build your first Workwell web app
