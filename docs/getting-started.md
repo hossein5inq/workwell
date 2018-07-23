@@ -313,3 +313,266 @@ curl_close($curl);
 
 
 ## <a name="build-first"></a>5. Build your first Workwell web app
+
+This tutorial walks you through creating your first Workwell web App. The guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.
+
+For the purpose of this tutorial, we will consider that you already have a basic web app structure (full JS, back-end and front-end, but can easily be translated to other languages like Python or PHP).
+
+Let's also assume you have a project structure that looks like this:
+
+ * dist
+   * index.bundle.js
+   * page1.bundle.js
+ * js
+   * index.js
+   * page1.js
+ * layouts
+   * index.html
+   * page1.html
+ * package.json
+ * server.js
+ * webpack.config.js
+
+
+### Step 1: 
+
+Install Workwell JS:
+
+`npm install workwell --save-dev`
+
+### Step 2:
+
+Import it in your index.js and page1.js files:
+
+```javascript
+const Workwell = require("workwell");
+
+// Do a bunch of stuff
+```
+
+### Step 3:
+
+Implement the service token generation method in your `server.js` file:
+
+```javascript
+// Do whatever you need to have your server working, here we are using the 'express' package
+const express = require('express');
+const app = express();
+
+// ...
+// server code
+// ...
+
+const serviceId = YOUR_SERVICE_ID;
+const serviceSecret = YOUR_SERVICE_SECRET;
+const ERROR_SERVICE_SECRET_NOT_VALID = 8;
+const ERROR_SERVICE_ID_NOT_VALID = 9;
+
+app.get('/service_token', function (req, response) {
+    // the time needs to be in seconds
+    var now = parseInt(new Date().getTime() / 1000);
+    const signature = crypto.createHmac('sha256', serviceSecret).update(serviceId + String(now)).digest('base64');
+
+    request({
+        uri: 'https://api.workwell.io/1.0/developer/service/token',
+        method: 'GET',
+        headers: {
+            'ww-service-signature': signature,
+            'ww-timestamp': '' + now,
+            'ww-service-id': serviceId
+        }
+    }, function (error, res, body) {
+        var result = JSON.parse(body);
+        if (result.error_code === ERROR_SERVICE_SECRET_NOT_VALID) {
+            console.log("error : your service_secret '" + serviceSecret + "' is not valid");
+        } else if (result.error_code === ERROR_SERVICE_ID_NOT_VALID) {
+            console.log("error : your service_id '" + serviceId + "' is not valid");
+        }
+        response.send(result);
+    });
+});
+
+// ...
+// server code
+// ...
+```
+
+### Step 4:
+
+Get a service token as the first thing you do in the front-end and insert it in the Workwell object:
+
+```javascript
+// index.js
+const Workwell = require("workwell");
+
+function getServiceToken() {
+    return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest();
+        request.open('GET', './service_token', true);
+
+        request.onload = () => {
+            if (request.status >= 200 && request.status < 400) {
+                let res = JSON.parse(request.responseText);
+                window.localStorage.serviceToken = res.service_token; // so that we can use it again in other pages
+                
+		// Here we are inserting it
+		Workwell.setServiceToken(res.service_token);
+		
+                resolve(res);
+            } else {
+                reject(request);
+            }
+        };
+
+        request.onerror = function () {
+            reject(request);
+        };
+
+        request.send();
+    });
+}
+
+getServiceToken()
+    .then(function(res){
+	 // do whatever after that
+    })
+    .catch(function(error){
+	 console.log(error);
+    });
+```
+
+### Step 5:
+
+You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md)) method for instance. Retrieving the user's info gives you the possibility to <b>automatically log him</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent :
+
+```javascript
+// index.js 
+
+// ...
+// ...
+
+function getUserInfo() {
+    return new Promise((resolve, reject) => {
+    	// Here we can now use this method (since we inserted the valid service-token just before
+        Workwell.getUserInfo({
+            success: (res) => {
+                console.log("success get user info");
+		console.log(res); // This will print all the info of the current user in the console
+                resolve(res);
+            },
+            error: (data) => {
+                console.log("error get user info");
+                reject(data);
+            }
+        });
+    });
+}
+
+getServiceToken()
+    .then(getUserInfo)
+    .catch(function(error){
+	 console.log(error);
+    });
+```
+
+### Step 6:
+
+Let's add some UI to it! We'll just be adding a <b>banner component</b> and a <b>list component</b> containing two items (one with the user's first name, the other one to open page1). Here is the complete code:
+
+```javascript
+// index.js
+const Workwell = require("workwell");
+
+function getServiceToken() {
+    return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest();
+        request.open('GET', './service_token', true);
+
+        request.onload = () => {
+            if (request.status >= 200 && request.status < 400) {
+                window.localStorage.serviceToken = request.responseText; // so that we can use it again in other page
+                Workwell.setServiceToken(request.responseText);
+                resolve(request.responseText);
+            } else {
+                reject(request);
+            }
+        };
+
+        request.onerror = function () {
+            reject(request);
+        };
+
+        request.send();
+    });
+}
+
+function getUserInfo() {
+    return new Promise((resolve, reject) => {
+        Workwell.getUserInfo({
+            success: (res) => {
+                console.log("success get user info");
+                resolve(res);
+            },
+            error: (data) => {
+                console.log("error get user info");
+                reject(data);
+            }
+        });
+    });
+}
+
+function renderUI(data){
+    document.body.appendChild(
+        Workwell.ui.createBanner()
+            .setBackgroundImage("http://paperlief.com/images/spring-forest-desktop-wallpaper-wallpaper-4.jpg")
+            .add(
+                Workwell.ui.createBannerTitle()
+                    .setValue("Hello World!")
+            )
+            .toHTMLElement()
+    );
+
+    document.body.appendChild(
+        Workwell.ui.createList()
+            .add(
+                Workwell.ui.createListItem()
+                    .setTappable(true)
+                    .addToCenter(
+                        Workwell.ui.createListItemTitle()
+                            .setValue("Go to page 1")
+                    )
+                    .addToRight(
+                        Workwell.ui.createListItemChevronIcon()
+                    )
+                    .onClick(function(){
+                        Workwell.openWebPage(window.location.href + "/page1");
+                    })
+            )
+            .add(
+                Workwell.ui.createListItem()
+                    .setTappable(true)
+                    .addToCenter(
+                        Workwell.ui.createListItemTitle()
+                            .setValue("Hello " + data.user.first_name + "!")
+                    )
+            )
+            .toHTMLElement()
+    )
+}
+
+getServiceToken()
+    .then(getUserInfo)
+    .then(renderUI)
+    .catch(function(error){
+        console.log(error);
+    });
+```
+
+Here is what it looks like in Android and iOS:
+
+<br>
+<p align="center">
+  <kbd><img src="images/hello-world-zachary-android.png" width="300"/></kbd>
+  <kbd><img src="images/hello-world-zachary-ios.png" width="300px"/></kbd>
+</p>
+<br>
