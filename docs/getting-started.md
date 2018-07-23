@@ -443,7 +443,7 @@ getServiceToken()
 
 ### Step 5:
 
-You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md)) method for instance. Retrieving the user's info gives you the possibility to <b>automatically log him</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent :
+You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md#getuserinfo)) method for instance. Retrieving the user's info gives you the possibility to <b>automatically log him</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent :
 
 ```javascript
 // index.js 
