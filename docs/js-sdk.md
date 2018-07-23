@@ -152,7 +152,7 @@
     
   * ### openChat
   
-    This function opens the Workwell's native chat with the user corresponding to the userServiceToken given as an argument. The userServiceToken is retrieved from the [getUserInfo](js-sdk.md#getUserInfo) method. You can then store all the userServiceToken from every user in your own database somewhere.
+    This function opens the Workwell's native chat with the user corresponding to the userServiceToken given as an argument. The userServiceToken is retrieved from the [getUserInfo](js-sdk.md#getuserinfo) method. You can then store all the userServiceToken from every user in your own database somewhere.
 
     **Parameters**
 
