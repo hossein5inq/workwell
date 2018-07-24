@@ -59,3 +59,11 @@ textarea {
     padding: 26px 11px 9px;
   }
 }
+
+.ww-list .ww-textarea:nth-child(2) {
+  border-top: none;
+}
+
+.ww-list .ww-textarea:last-child {
+  border-bottom: none;
+}

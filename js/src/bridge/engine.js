@@ -44,7 +44,6 @@ export function createJSONFrom(action, target, obj) {
                 json.errorCallback = errorCallback;
                 if (typeof window !== "undefined") {
                     if (obj.success) {
-                        //json.successCallback = successCallback;
                         window[successCallback] = obj.success;
                     } else {
                         window[successCallback] = function () {
@@ -53,7 +52,6 @@ export function createJSONFrom(action, target, obj) {
                     }
 
                     if (obj.error) {
-                        //json.errorCallback = errorCallback;
                         window[errorCallback] = obj.error;
                     } else {
                         window[errorCallback] = function () {
@@ -67,7 +65,6 @@ export function createJSONFrom(action, target, obj) {
                 json.transition = obj.transition;
             } else {
                 // DEFAULT
-                //json.transition = Workwell.constants.transitions.SLIDE_RIGHT_TO_LEFT;
                 json.transition = 1;
             }
 

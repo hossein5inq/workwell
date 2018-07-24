@@ -87,6 +87,10 @@ $input-label-color-material: #a5a5a5;
   &--material {
     color: $input-label-color-material;
     position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 94%;
   }
 }
 

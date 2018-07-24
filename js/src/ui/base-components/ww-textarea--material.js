@@ -13,7 +13,7 @@ export default class TextAreaMaterial extends InputMaterial {
         this.textarea = document.createElement("textarea");
         BaseComponent.addClass(this.textarea, "ww-textarea");
 
-        this.inputSubContainerCenterPart.replaceChild(this.textarea, this.input);
+        this.inputSubContainerCenterPart.replaceChild(this.textarea, this.el.input);
 
         this.textarea.addEventListener("focus", () => {
             if (this.textarea.value.trim() === "") {
@@ -30,7 +30,7 @@ export default class TextAreaMaterial extends InputMaterial {
             }
 
             anime({
-                targets: this.label,
+                targets: this.el.label,
                 translateY: "-35",
                 fontSize: "12px",
                 color: this.labelActiveColor,
@@ -39,7 +39,7 @@ export default class TextAreaMaterial extends InputMaterial {
             });
 
             anime({
-                targets: this.inputSubContainer,
+                targets: this.el.inputSubContainer,
                 borderColor: this.labelActiveColor,
                 duration: 100,
                 easing: "easeOutExpo"
@@ -55,7 +55,7 @@ export default class TextAreaMaterial extends InputMaterial {
                 this.textarea.style.paddingTop = "26px";
 
                 anime({
-                    targets: this.label,
+                    targets: this.el.label,
                     translateY: "1",
                     fontSize: "16px",
                     color: this.labelColor,
@@ -64,7 +64,7 @@ export default class TextAreaMaterial extends InputMaterial {
                 });
 
                 anime({
-                    targets: this.inputSubContainer,
+                    targets: this.el.inputSubContainer,
                     borderColor: this.borderColor,
                     duration: 100,
                     easing: "easeOutExpo"

@@ -2,10 +2,12 @@ import BaseComponent from "./ww-base-component";
 
 export default class ListItemTitle extends BaseComponent {
 
-    constructor() {
+    constructor(value) {
         super("div");
 
         this.addClass("ww-list-item__title");
+        if (value)
+            this.setValue(value);
     }
 
     getValue() {

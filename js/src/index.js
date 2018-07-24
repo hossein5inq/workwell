@@ -1,19 +1,17 @@
 import {sendFromJS} from "./bridge/bridge";
 import {createJSONFrom} from "./bridge/engine";
-import * as navbar from "./bridge/navbar";
 import * as token from "./bridge/token";
 import {getMobileOperatingSystem} from "./bridge/utils";
 import * as config_ from "./bridge/config";
 import * as constants_ from "./bridge/constants";
 import * as ui_ from "./ui/ui";
-import ww_ from "./ui/ww_";
 import "../../dist/css/workwell.css";
 
 window["Workwell_onShow"] = function () {
     // nothing
 };
 
-ready(function () {
+ui_.ready(function () {
     document.body.addEventListener("touchstart", function () {
 
     });
@@ -42,18 +40,6 @@ export const name = "Workwell";
 export let os = getMobileOperatingSystem();
 export const ui = ui_;
 export let config = config_;
-export const constants = {
-    transitions: {
-        SLIDE_LEFT_TO_RIGHT: 0,
-        SLIDE_RIGHT_TO_LEFT: 1,
-        SLIDE_TOP_TO_BOTTOM: 2,
-        SLIDE_BOTTOM_TO_TOP: 3
-    }
-};
-
-export function getNavBar() {
-    return navbar;
-}
 
 export function getUserInfo(obj) {
     if (obj.success) {
@@ -81,35 +67,9 @@ export function onShow(fn) {
     window["Workwell_onShow"] = fn;
 }
 
-export function ready(fn) {
-    if (typeof document !== "undefined" && document.readyState !== "loading") {
-        fn();
-    } else {
-        if (typeof document !== "undefined")
-            document.addEventListener("DOMContentLoaded", fn);
-    }
-}
-
-export function init() {
-
-}
-
 export function chooseImage(obj) {
     const jsonObj = createJSONFrom("ui", "chooseImage", obj);
     sendFromJS(JSON.stringify(jsonObj));
-}
-
-export function getLocation(obj) {
-    if (obj && obj.success && typeof(obj.success) === "function") {
-        window["getLocationSuccess"] = obj.success;
-        let json = {};
-        json.action = "get";
-        json.target = "location";
-        json.async = false;
-        json.data = {};
-        json.successCallback = "getLocationSuccess";
-        sendFromJS(JSON.stringify(json));
-    }
 }
 
 export function openWebPage(url) {
@@ -134,21 +94,6 @@ export function openWebPage(url) {
     sendFromJS(JSON.stringify(jsonObj));
 }
 
-export function openPaymentModule(obj) {
-    const jsonObj = createJSONFrom("open", "payment", obj);
-    sendFromJS(JSON.stringify(jsonObj));
-}
-
-export function refreshView() {
-    const jsonObj = createJSONFrom("ui", "refresh", {});
-    sendFromJS(JSON.stringify(jsonObj));
-}
-
-export function getNetworkType(obj) {
-    const jsonObj = createJSONFrom("get", "networkType", obj);
-    sendFromJS(JSON.stringify(jsonObj));
-}
-
 export function openChat(obj) {
     if (!obj || (obj && !obj.userServiceToken)) {
         throw new Error("You need to set the userServiceToken to call this method !");
@@ -161,6 +106,12 @@ export function openChat(obj) {
 }
 
 export function changeNavBar(obj) {
+    obj.data = {};
+    if (obj) {
+        if (obj.title) {
+            obj.data.title = obj.title;
+        }
+    }
     const jsonObj = createJSONFrom("ui", "navigationBar", obj);
     sendFromJS(JSON.stringify(jsonObj));
 }
@@ -204,19 +155,6 @@ export function showDateTimePicker(obj) {
         obj.data.minuteInterval = 15;
     const jsonObj = createJSONFrom("ui", "datePicker", obj);
     sendFromJS(JSON.stringify(jsonObj));
-}
-
-export function preprocessLinks() {
-    if (typeof document !== "undefined") {
-        const anchors = document.getElementsByTagName("a");
-        for (let z = 0; z < anchors.length; z++) {
-            let elem = anchors[z];
-            elem.onclick = function () {
-                module.exports.openWebPage(this.href);
-                return false;
-            };
-        }
-    }
 }
 
 export function showMessage(message, type) {
@@ -294,8 +232,4 @@ export function unsubscribe(obj_) {
         let jsonObj = createJSONFrom(obj_.type, "unsubscribe", obj);
         sendFromJS(JSON.stringify(jsonObj));
     }
-}
-
-export function $(el) {
-    return ww_(el);
 }

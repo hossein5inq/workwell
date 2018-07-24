@@ -81,16 +81,16 @@ export function createTextArea() {
     return new TextArea();
 }
 
-export function createListItemTitle() {
-    return new ListItemTitle();
+export function createListItemTitle(title) {
+    return new ListItemTitle(title);
 }
 
-export function createListItemSubtitle() {
-    return new ListItemSubtitle();
+export function createListItemSubtitle(subtitle) {
+    return new ListItemSubtitle(subtitle);
 }
 
-export function createListItemLabel() {
-    return new ListItemLabel();
+export function createListItemLabel(label) {
+    return new ListItemLabel(label);
 }
 
 export function createListItemChevronIcon() {
@@ -115,6 +115,19 @@ export function createFAB() {
 
 export function createIcon() {
     return new Icon();
+}
+
+export function $(el){
+    return ww_(el);
+}
+
+export function ready(fn) {
+    if (typeof document !== "undefined" && document.readyState !== "loading") {
+        fn();
+    } else {
+        if (typeof document !== "undefined")
+            document.addEventListener("DOMContentLoaded", fn);
+    }
 }
 
 export function format() {
