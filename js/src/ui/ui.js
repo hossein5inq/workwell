@@ -101,12 +101,12 @@ export function createBanner() {
     return new Banner();
 }
 
-export function createBannerTitle() {
-    return new BannerTitle();
+export function createBannerTitle(title) {
+    return new BannerTitle(title);
 }
 
-export function createBannerSubtitle() {
-    return new BannerSubtitle();
+export function createBannerSubtitle(subtitle) {
+    return new BannerSubtitle(subtitle);
 }
 
 export function createFAB() {

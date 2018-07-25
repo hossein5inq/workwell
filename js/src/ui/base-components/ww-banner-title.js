@@ -2,10 +2,12 @@ import BaseComponent from "./ww-base-component";
 
 export default class BannerTitle extends BaseComponent {
 
-    constructor() {
+    constructor(value) {
         super("div");
 
         this.addClass("ww-banner__title");
+        if(value)
+            this.setValue(value);
     }
 
     getValue() {
