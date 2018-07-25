@@ -358,6 +358,8 @@
   - [createSlider](js-sdk.md#createslider)
   - [createSwitch](js-sdk.md#createswitch)
   - [createTextArea](js-sdk.md#createtextarea)
+  
+  <br>
 
   * ### $
   
