@@ -9,6 +9,7 @@
    * [Android](debugging.md#android)
 * [Service Authorization](service-authorization.md)
 * [UI Guidelines](ui-guidelines.md)
+* [UI Components](ui-components.md)
 * [JS-SDK](js-sdk.md)
     * [Bridge with the app](js-sdk.md#bridge-with-the-app)
     * [UI](js-sdk.md#ui)
