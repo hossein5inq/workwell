@@ -4,6 +4,7 @@
 
   All the following methods allow you to call native components (dateTimePicker, actionSheet, chooseImage, opening a new webView, ...) or to retrieve information about the current Workwell user (getUserInfo).
   
+  - [changeNavBar](js-sdk.md#changenavbar)
   - [chooseImage](js-sdk.md#chooseimage)
   - [getUserInfo](js-sdk.md#getuserinfo)
   - [goBack](js-sdk.md#goback)
@@ -16,10 +17,29 @@
   - [showDateTimePicker](js-sdk.md#showDateTimePicker)
   - [showMessage](js-sdk.md#showMessage)
   - [showNativeLoader](js-sdk.md#showNativeLoader)
+  
+  <br>
+  
+  * ### changeNavBar
+  
+     This function allows you to customize the native navigation bar. At the moment, only modifying the title is available.
+     
+     **Parameters**
+     
+     -   `obj` **[json](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)** a json object
+     -   `obj.title` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the title of the navigation bar
+     
+     **Examples**
+
+     ```javascript
+     Workwell.changeNavBar({
+         title: "Best Title ever!"
+     });
+     ```
 
   * ### chooseImage
   
-     This function open the native's image picker (iOS or Android) and returns the image as a base64 string.
+     This function opens the native's image picker (iOS or Android) and returns the image as a base64 string.
 
      **Parameters**
 
@@ -322,10 +342,38 @@
   
   - [$](js-sdk.md#$)
   - [ready](js-sdk.md#ready)
+  - [createBanner](js-sdk.md#createbanner)
+  - [createBannerSubtitle](js-sdk.md#createbannersubtitle)
+  - [createBannerTitle](js-sdk.md#createbannertitle)
+  - [createButton](js-sdk.md#createbutton)
+  - [createIcon](js-sdk.md#createicon)
+  - [createInput](js-sdk.md#createinput)
+  - [createList](js-sdk.md#createlist)
+  - [createListItem](js-sdk.md#createlistitem)
+  - [createListItemChevronIcon](js-sdk.md#createlistitemchevronicon)
+  - [createListItemLabel](js-sdk.md#createlistitemlabel)
+  - [createListItemSubtitle](js-sdk.md#createlistitemsubtitle)
+  - [createListItemTitle](js-sdk.md#createlistitemtitle)
+  - [createPagingIndicator](js-sdk.md#createpagingindicator)
+  - [createSlider](js-sdk.md#createslider)
+  - [createSwitch](js-sdk.md#createswitch)
+  - [createTextArea](js-sdk.md#createtextarea)
+  
+  <br>
 
   * ### $
   
-    This function is a selector (wrapper) for DOM elements. It will convert those into the appropriate Workwell object.
+    This function is a selector (wrapper) for DOM elements. It will convert those into the appropriate Workwell object. The DOM element selected needs to have the appropriate class associated to it, example:
+    
+    ```html
+    <ul class="ww-list" id="my-list-id">
+        <li class="ww-list-item">
+            <div class="ww-list-item__center">
+                <div class="ww-list-item__title">Title</div>
+            </div>
+        </li>
+    </ul>
+    ```
     
     **Parameters**
 
@@ -334,14 +382,20 @@
     **Examples**
 
     ```javascript
-    // This element will have access to all the methods / attributes of the Workwell List Component
+    // This DOM element (with id 'my-list-id') will have access to all the methods / attributes of the Workwell List Component
     const list = Workwell.ui.$("#my-list-id");
+    // Example
+    list.add(Workwell.ui.createListItem());
     
-    // This element will have access to all the methods / attributes of the Workwell ListItem Component
+    // This DOM element (with id 'my-list-item-id') will have access to all the methods / attributes of the Workwell ListItem Component
     const listItem = Workwell.ui.$("#my-list-item-id");
+    // Example
+    listItem.addToCenter(Workwell.ui.createListItemTitle("title"));
     
-    // This element will have access to all the methods / attributes of the Workwell Button Component
+    // This DOM element (with id 'my-button-id') will have access to all the methods / attributes of the Workwell Button Component
     const button = Workwell.ui.$("#my-button-id");
+    // Example
+    button.disable();
     
     // etc
     // ...
@@ -363,3 +417,292 @@
          callSomeFunction();
     });
     ```
+    
+  * ### createBanner
+  
+    This function creates a Workwell Banner component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createBanner().toHTMLElement()
+    );
+    ```
+    
+    See [Banner](ui-components.md#banner) for more details on this component.
+    
+  * ### createBannerSubtitle
+  
+    This function creates a Workwell Banner Subtitle component, to be used within the Workwell Banner component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Parameters**
+     
+     -   `subtitle` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the subtitle contained in the Banner
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createBanner()
+            .add(
+                Workwell.ui.createBannerSubtitle("Custom Subtitle")
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [BannerSubtitle](ui-components.md#bannersubtitle) for more details on this component.
+  
+  * ### createBannerTitle
+  
+    This function creates a Workwell Banner Title component, to be used within the Workwell Banner component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Parameters**
+     
+     -   `title` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the title contained in the Banner
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createBanner()
+            .add(
+                Workwell.ui.createBannerTitle("Custom Title")
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [BannerTitle](ui-components.md#bannertitle) for more details on this component.
+    
+  * ### createButton
+  
+    This function creates a Workwell Button component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Parameters**
+     
+     -   `text` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the text of the button
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createButton("Button Text").toHTMLElement()
+    );
+    ```
+    
+    See [Button](ui-components.md#button) for more details on this component.
+  
+  * ### createIcon
+  
+    This function creates a Workwell Icon component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createIcon().setType("chevron").toHTMLElement()
+    );
+    ```
+    
+    See [Icon](ui-components.md#icon) for more details on this component.
+  
+  * ### createInput
+   
+    This function creates a Workwell Input component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createInput().toHTMLElement()
+    );
+    ```
+    
+    See [Input](ui-components.md#input) for more details on this component.
+  
+  * ### createList
+  
+    This function creates a Workwell List component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createList().toHTMLElement()
+    );
+    ```
+    
+    See [List](ui-components.md#list) for more details on this component.
+  
+  * ### createListItem
+  
+    This function creates a Workwell List Item component, to be used within a Workwell List component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createList()
+            .add(
+                Workwell.ui.createListItem()
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [ListItem](ui-components.md#listitem) for more details on this component.
+  
+  * ### createListItemChevronIcon
+  
+    This function creates a Workwell List Item Chevron Icon component, to be used within a Workwell List Item component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createList()
+            .add(
+                Workwell.ui.createListItem()
+                    .addToRight(
+                        Workwell.ui.createListItemChevronIcon()
+                    )
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [ListItemChevronIcon](ui-components.md#listitemchevronicon) for more details on this component.
+  
+  * ### createListItemLabel
+  
+    This function creates a Workwell List Item Label component, to be used within a Workwell List Item component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Parameters**
+     
+     -   `label` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the label contained in the list item
+  
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createList()
+            .add(
+                Workwell.ui.createListItem()
+                    .addToRight(
+                        Workwell.ui.createListItemLabel("Great Label!")
+                    )
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [ListItemLabel](ui-components.md#listitemlabel) for more details on this component.
+    
+  * ### createListItemSubtitle
+  
+    This function creates a Workwell List Item Subtitle component, to be used within a Workwell List Item component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Parameters**
+     
+     -   `subtitle` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the subtitle contained in the list item
+      
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createList()
+            .add(
+                Workwell.ui.createListItem()
+                    .addToCenter(
+                        Workwell.ui.createListItemSubtitle("Great Subtitle!")
+                    )
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [ListItemSubtitle](ui-components.md#listitemsubtitle) for more details on this component.
+    
+  * ### createListItemTitle
+  
+    This function creates a Workwell List Item Title component, to be used within a Workwell List Item component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Parameters**
+     
+     -   `title` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the title contained in the list item
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createList()
+            .add(
+                Workwell.ui.createListItem()
+                    .addToCenter(
+                        Workwell.ui.createListItemTitle("Great Title!")
+                    )
+            )
+            .toHTMLElement()
+    );
+    ```
+    
+    See [ListItemTitle](ui-components.md#listitemtitle) for more details on this component.
+    
+  * ### createPagingIndicator
+  
+    This function creates a Workwell Paging Indicator component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+  
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createPagingIndicator().toHTMLElement()
+    );
+    ```
+    
+    See [PagingIndicator](ui-components.md#pagingindicator) for more details on this component.
+    
+  * ### createSlider
+  
+    This function creates a Workwell Slider component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createSlider().toHTMLElement()
+    );
+    ```
+    
+    See [Slider](ui-components.md#slider) for more details on this component.
+  
+  * ### createSwitch
+  
+    This function creates a Workwell Switch component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createSwitch().toHTMLElement()
+    );
+    ```
+    
+    See [Switch](ui-components.md#switch) for more details on this component.
+  
+  * ### createTextArea
+  
+    This function creates a Workwell Text Area component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createTextArea().toHTMLElement()
+    );
+    ```
+    
+    See [TextArea](ui-components.md#textarea) for more details on this component.
+  
