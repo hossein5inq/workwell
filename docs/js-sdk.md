@@ -430,6 +430,8 @@
     );
     ```
     
+    See [Banner](ui-components.md#banner) for more details on this component.
+    
   * ### createBannerSubtitle
   
     This function creates a Workwell Banner Subtitle component, to be used within the Workwell Banner component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
@@ -449,6 +451,8 @@
             .toHTMLElement()
     );
     ```
+    
+    See [BannerSubtitle](ui-components.md#bannersubtitle) for more details on this component.
   
   * ### createBannerTitle
   
@@ -470,6 +474,8 @@
     );
     ```
     
+    See [BannerTitle](ui-components.md#bannertitle) for more details on this component.
+    
   * ### createButton
   
     This function creates a Workwell Button component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
@@ -485,6 +491,8 @@
         Workwell.ui.createButton("Button Text").toHTMLElement()
     );
     ```
+    
+    See [Button](ui-components.md#button) for more details on this component.
   
   * ### createIcon
   
@@ -497,6 +505,8 @@
         Workwell.ui.createIcon().setType("chevron").toHTMLElement()
     );
     ```
+    
+    See [Icon](ui-components.md#icon) for more details on this component.
   
   * ### createInput
    
@@ -509,6 +519,8 @@
         Workwell.ui.createInput().toHTMLElement()
     );
     ```
+    
+    See [Input](ui-components.md#input) for more details on this component.
   
   * ### createList
   
@@ -521,6 +533,8 @@
         Workwell.ui.createList().toHTMLElement()
     );
     ```
+    
+    See [List](ui-components.md#list) for more details on this component.
   
   * ### createListItem
   
@@ -537,6 +551,8 @@
             .toHTMLElement()
     );
     ```
+    
+    See [ListItem](ui-components.md#listitem) for more details on this component.
   
   * ### createListItemChevronIcon
   
@@ -556,6 +572,8 @@
             .toHTMLElement()
     );
     ```
+    
+    See [ListItemChevronIcon](ui-components.md#listitemchevronicon) for more details on this component.
   
   * ### createListItemLabel
   
@@ -580,6 +598,8 @@
     );
     ```
     
+    See [ListItemLabel](ui-components.md#listitemlabel) for more details on this component.
+    
   * ### createListItemSubtitle
   
     This function creates a Workwell List Item Subtitle component, to be used within a Workwell List Item component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
@@ -602,6 +622,8 @@
             .toHTMLElement()
     );
     ```
+    
+    See [ListItemSubtitle](ui-components.md#listitemsubtitle) for more details on this component.
     
   * ### createListItemTitle
   
@@ -626,6 +648,8 @@
     );
     ```
     
+    See [ListItemTitle](ui-components.md#listitemtitle) for more details on this component.
+    
   * ### createPagingIndicator
   
     This function creates a Workwell Paging Indicator component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
@@ -638,6 +662,8 @@
     );
     ```
     
+    See [PagingIndicator](ui-components.md#pagingindicator) for more details on this component.
+    
   * ### createSlider
   
     This function creates a Workwell Slider component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
@@ -649,6 +675,8 @@
         Workwell.ui.createSlider().toHTMLElement()
     );
     ```
+    
+    See [Slider](ui-components.md#slider) for more details on this component.
   
   * ### createSwitch
   
@@ -661,6 +689,8 @@
         Workwell.ui.createSwitch().toHTMLElement()
     );
     ```
+    
+    See [Switch](ui-components.md#switch) for more details on this component.
   
   * ### createTextArea
   
@@ -673,4 +703,6 @@
         Workwell.ui.createTextArea().toHTMLElement()
     );
     ```
+    
+    See [TextArea](ui-components.md#textarea) for more details on this component.
   
