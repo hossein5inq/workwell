@@ -63,6 +63,7 @@ We have put in place a number of requirements for a Workwell integration to ensu
    * [Android](docs/debugging.md#android)
 * [Service Authorization](docs/service-authorization.md)
 * [UI Guidelines](docs/ui-guidelines.md)
+* [UI Components](docs/ui-components.md)
 * [JS-SDK](docs/js-sdk.md)
     * [Bridge with the app](docs/js-sdk.md#bridge-with-the-app)
     * [UI](docs/js-sdk.md#ui)
