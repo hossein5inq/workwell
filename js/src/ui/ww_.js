@@ -11,6 +11,8 @@ import FAB from "./base-components/ww-fab";
 import Icon from "./base-components/ww-icon";
 import Input from "./base-components/ww-input";
 import InputMaterial from "./base-components/ww-input--material";
+import TextArea from "./base-components/ww-textarea";
+import TextAreaMaterial from "./base-components/ww-textarea--material";
 
 export default function ww_(el) {
     let obj = {};
@@ -48,7 +50,12 @@ export default function ww_(el) {
     } else if (hasClass(el, "ww-input")) {
         obj = new Input();
     } else if (hasClass(el, "ww-input__container")) {
-        obj = new InputMaterial();
+        if (el.querySelector("textarea") === null)
+            obj = new InputMaterial();
+        else
+            obj = new TextAreaMaterial();
+    } else if (hasClass(el, "ww-textarea")) {
+        obj = new TextArea();
     }
 
     Object.assign(obj, el);
