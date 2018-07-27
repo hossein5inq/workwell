@@ -42,4 +42,18 @@ export default class TextArea extends BaseComponent {
         this.el.placeholder = placeholder;
         return this;
     }
+
+    setValue(value) {
+        this.el.value = value;
+        if (value === "") {
+            // To fix safari-mobile issue
+            this.el.focus();
+            this.el.blur();
+        }
+        return this;
+    }
+
+    getValue() {
+        return this.el.value;
+    }
 }

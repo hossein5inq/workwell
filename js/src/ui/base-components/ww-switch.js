@@ -82,6 +82,7 @@ export default class Switch extends BaseComponent {
         } else {
             this.toggleOn();
         }
+        return this;
     }
 
     toggleOff() {
@@ -112,5 +113,6 @@ export default class Switch extends BaseComponent {
         this.el.onToggleFunction = () => {
             fn(this.el.isOn);
         };
+        return this;
     }
 }
