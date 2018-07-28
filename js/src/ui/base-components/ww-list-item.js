@@ -42,6 +42,73 @@ export default class ListItem extends BaseComponent {
                 }
             }
         };
+
+        this.el.handleTouchStart = () => {
+            this.el.setAttribute("data-active", "");
+            this.getLeftDiv().setAttribute("data-active", "");
+            this.getCenterDiv().setAttribute("data-active", "");
+            this.getRightDiv().setAttribute("data-active", "");
+
+            // HACK FOR IOS
+            let previousSibling = this.el.previousElementSibling;
+            if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                this.isTouching = true;
+                let gradients = {
+                    start: "#FFFFFF",
+                    end: "#FFFFFF"
+                };
+
+                anime({
+                    targets: gradients,
+                    start: "#FFFFFF",
+                    end: "#D3D3D3",
+                    duration: 200,
+                    easing: "easeOutExpo",
+                    update: (a) => {
+                        if (this.isTouching) {
+                            let value = a.animations[1].currentValue;
+                            previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                        }
+                    }
+                });
+            }
+            // END OF HACK
+        };
+
+        this.el.handleTouchEnd = () => {
+            this.el.removeAttribute("data-active");
+            this.getLeftDiv().removeAttribute("data-active");
+            this.getCenterDiv().removeAttribute("data-active");
+            this.getRightDiv().removeAttribute("data-active");
+
+            // HACK FOR IOS
+            let previousSibling = this.el.previousElementSibling;
+            if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                this.isTouching = false;
+                let gradients = {
+                    start: "#FFFFFF",
+                    end: "#FFFFFF"
+                };
+
+                anime({
+                    targets: gradients,
+                    start: "#FFFFFF",
+                    end: "#FFFFFF",
+                    duration: 200,
+                    easing: "easeOutExpo",
+                    complete: () => {
+                        previousSibling.style.backgroundImage = "none";
+                    },
+                    update: (a) => {
+                        if (!this.isTouching) {
+                            let value = a.animations[1].currentValue;
+                            previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                        }
+                    }
+                });
+            }
+            // END OF HACK
+        };
     }
 
     onClick(fn) {
@@ -52,74 +119,12 @@ export default class ListItem extends BaseComponent {
     setTappable(tappable) {
         if (tappable) {
             this.addClass("ww-list-item--tappable");
-            this.el.addEventListener("touchstart", () => {
-                this.el.setAttribute("data-active", "");
-                this.getLeftDiv().setAttribute("data-active", "");
-                this.getCenterDiv().setAttribute("data-active", "");
-                this.getRightDiv().setAttribute("data-active", "");
-
-                // HACK FOR IOS
-                let previousSibling = this.el.previousElementSibling;
-                if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
-                    this.isTouching = true;
-                    let gradients = {
-                        start: "#FFFFFF",
-                        end: "#FFFFFF"
-                    };
-
-                    anime({
-                        targets: gradients,
-                        start: "#FFFFFF",
-                        end: "#D3D3D3",
-                        duration: 200,
-                        easing: "easeOutExpo",
-                        update: (a) => {
-                            if (this.isTouching) {
-                                let value = a.animations[1].currentValue;
-                                previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
-                            }
-                        }
-                    });
-                }
-                // END OF HACK
-            }, true);
-
-            this.el.addEventListener("touchend", () => {
-                this.el.removeAttribute("data-active");
-                this.getLeftDiv().removeAttribute("data-active");
-                this.getCenterDiv().removeAttribute("data-active");
-                this.getRightDiv().removeAttribute("data-active");
-
-                // HACK FOR IOS
-                let previousSibling = this.el.previousElementSibling;
-                if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
-                    this.isTouching = false;
-                    let gradients = {
-                        start: "#FFFFFF",
-                        end: "#FFFFFF"
-                    };
-
-                    anime({
-                        targets: gradients,
-                        start: "#FFFFFF",
-                        end: "#FFFFFF",
-                        duration: 200,
-                        easing: "easeOutExpo",
-                        complete: () => {
-                            previousSibling.style.backgroundImage = "none";
-                        },
-                        update: (a) => {
-                            if (!this.isTouching) {
-                                let value = a.animations[1].currentValue;
-                                previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
-                            }
-                        }
-                    });
-                }
-                // END OF HACK
-            }, true);
+            this.el.addEventListener("touchstart", this.el.handleTouchStart, true);
+            this.el.addEventListener("touchend", this.el.handleTouchEnd, true);
         } else {
             this.removeClass("ww-list-item--tappable");
+            this.el.removeEventListener("touchstart", this.el.handleTouchStart, true);
+            this.el.removeEventListener("touchend", this.el.handleTouchEnd, true);
         }
         return this;
     }
@@ -198,5 +203,13 @@ export default class ListItem extends BaseComponent {
                 this.rightDiv = rightDivElements[0];
         }
         return this.rightDiv;
+    }
+
+    hide() {
+        this.css("display", "none");
+    }
+
+    show() {
+        this.css("display", "flex");
     }
 }

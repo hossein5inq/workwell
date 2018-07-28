@@ -99,4 +99,13 @@ export default class TextAreaMaterial extends InputMaterial {
     getValue() {
         return this.el.textarea.value;
     }
+
+    setMaxLength(maxLength) {
+        this.el.textarea.maxLength = maxLength;
+        return this;
+    }
+
+    getMaxLength() {
+        return this.el.textarea.maxLength;
+    }
 }

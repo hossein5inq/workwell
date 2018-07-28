@@ -66,4 +66,13 @@ export default class Input extends BaseComponent {
     getValue() {
         return this.el.value;
     }
+
+    setMaxLength(maxLength) {
+        this.el.maxLength = maxLength;
+        return this;
+    }
+
+    getMaxLength() {
+        return this.el.maxLength;
+    }
 }
