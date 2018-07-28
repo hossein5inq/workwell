@@ -13,3 +13,4 @@
 * [JS-SDK](js-sdk.md)
     * [Bridge with the app](js-sdk.md#bridge-with-the-app)
     * [UI](js-sdk.md#ui)
+* [Developer API](api.md)
