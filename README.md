@@ -67,6 +67,7 @@ We have put in place a number of requirements for a Workwell integration to ensu
 * [JS-SDK](docs/js-sdk.md)
     * [Bridge with the app](docs/js-sdk.md#bridge-with-the-app)
     * [UI](docs/js-sdk.md#ui)
+* [Developer API](docs/api.md)
 
 
 ## Creators
