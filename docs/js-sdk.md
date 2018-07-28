@@ -120,7 +120,7 @@
     }
     ```
 
-    The `user-service-token` is unique per service and user and you can consider it as a `workwell user id`. This token will be useful if you need to verify it later via #endpoint:Xg6SyDa4dHQSgPPk8 or to be used in chat SDK (available soon).
+    The `user-service-token` is unique per service and user and you can consider it as a `workwell user id`. This token will be useful if you need to verify it later via [verify-user-service-token](api.md#verify-user-service-token) or to be used in chat SDK (available soon).
 
     The `locale` can be used for localization purpose.
 
