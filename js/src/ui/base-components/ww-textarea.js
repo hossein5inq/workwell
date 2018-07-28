@@ -27,6 +27,11 @@ export default class TextArea extends BaseComponent {
         return this;
     }
 
+    onInput(fn) {
+        this.el.addEventListener("input", fn);
+        return this;
+    }
+
     setType(type) {
         this.type = type;
         return this;
@@ -55,5 +60,14 @@ export default class TextArea extends BaseComponent {
 
     getValue() {
         return this.el.value;
+    }
+
+    setMaxLength(maxLength) {
+        this.el.maxLength = maxLength;
+        return this;
+    }
+
+    getMaxLength() {
+        return this.el.maxLength;
     }
 }

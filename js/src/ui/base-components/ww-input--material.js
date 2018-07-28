@@ -153,4 +153,13 @@ export default class InputMaterial extends BaseComponent {
     getValue() {
         return this.el.input.value;
     }
+
+    setMaxLength(maxLength) {
+        this.el.input.maxLength = maxLength;
+        return this;
+    }
+
+    getMaxLength() {
+        return this.el.input.maxLength;
+    }
 }
