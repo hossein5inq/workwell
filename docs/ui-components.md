@@ -42,6 +42,8 @@ Here is the list of all the UI components (and their methods) available in the S
 
 ### enable
 
+### getMaxLength
+
 ### getPlaceholder
 
 ### getValue
@@ -51,6 +53,8 @@ Here is the list of all the UI components (and their methods) available in the S
 ### onInput
 
 ### setAssistiveText
+
+### setMaxLength
 
 ### setPlaceholder
 
@@ -74,9 +78,13 @@ Here is the list of all the UI components (and their methods) available in the S
 
 ### addToRight
 
+### hide
+
 ### onClick
 
 ### setTappable
+
+### show
 
 ## ListItemChevronIcon
 
@@ -140,12 +148,20 @@ Here is the list of all the UI components (and their methods) available in the S
 
 ### enable
 
+### getMaxLength
+
+### getValue
+
 ### onClick
 
 ### onInput
 
 ### setAssistiveText
 
+### setMaxLength
+
 ### setPlaceholder
 
 ### setType
+
+### setValue
