@@ -207,9 +207,11 @@ export default class ListItem extends BaseComponent {
 
     hide() {
         this.css("display", "none");
+        return this;
     }
 
     show() {
         this.css("display", "flex");
+        return this;
     }
 }
