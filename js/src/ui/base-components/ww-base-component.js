@@ -53,10 +53,12 @@ export default class BaseComponent {
 
     addClass(className) {
         BaseComponent.addClass(this.el, className);
+        return this;
     }
 
     removeClass(className) {
         BaseComponent.removeClass(this.el, className);
+        return this;
     }
 
     hasClass(className) {
