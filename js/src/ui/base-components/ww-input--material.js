@@ -109,6 +109,10 @@ export default class InputMaterial extends BaseComponent {
 
     setType(type) {
         this.el.input.type = type;
+        if (type === "number") {
+            this.el.input.pattern = "[0-9]*";
+            this.el.input.inputmode = "numeric";
+        }
         return this;
     }
 

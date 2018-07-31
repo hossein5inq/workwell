@@ -30,6 +30,10 @@ export default class Input extends BaseComponent {
 
     setType(type) {
         this.el.type = type;
+        if (type === "number") {
+            this.el.pattern = "[0-9]*";
+            this.el.inputmode = "numeric";
+        }
         return this;
     }
 
