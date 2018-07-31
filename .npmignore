@@ -17,3 +17,5 @@ sass
 .eslintignore
 .eslintrc.json
 rollup.config.js
+assets
+docs
