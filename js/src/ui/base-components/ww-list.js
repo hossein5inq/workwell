@@ -26,7 +26,12 @@ export default class List extends BaseComponent {
             this.el.items = [];
         }
         this.el.items.push(el);
-        this.el.appendChild(el.toHTMLElement());
+        if (typeof el.toHTMLElement === "function") {
+            // the method is defined
+            this.el.appendChild(el.toHTMLElement());
+        } else {
+            this.el.appendChild(el);
+        }
         return this;
     }
 
