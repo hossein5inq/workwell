@@ -4,15 +4,17 @@ import {log} from "./error-handler";
 import {getCompatibilityVersion} from "./config";
 
 export function createJSONFrom(action, target, obj) {
-    if (getServiceToken().tokenId.trim() === "") {
-        // empty service token
+
+    const serviceToken = getServiceToken();
+
+    if (!serviceToken || getServiceToken().tokenId.trim() === "") {
         throw new Error("You need to set the service token before using any methods from the SDK !");
     }
 
     let json = {};
     json.action = action;
     json.target = target;
-    json.token = getServiceToken();
+    json.token = serviceToken;
     json.compatibilityVersion = getCompatibilityVersion();
 
     try {
