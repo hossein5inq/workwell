@@ -99,6 +99,10 @@ This function disables the button.
 
 This function enables the button.
 
+### getText
+
+This function returns the text value of the button.
+
 ### onClick
 
 This function sets the function that will be called once a click is performed on the button.
