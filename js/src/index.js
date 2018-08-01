@@ -233,3 +233,19 @@ export function unsubscribe(obj_) {
         sendFromJS(JSON.stringify(jsonObj));
     }
 }
+
+export function openEvent(obj) {
+    if (!obj || (obj && !obj.eventHashedId)) {
+        throw new Error("You need to set the event hashed id to call this method !");
+    }
+    obj.data = {
+        eventHashedId: obj.eventHashedId
+    };
+    const jsonObj = createJSONFrom("events", "openEvent", obj);
+    sendFromJS(JSON.stringify(jsonObj));
+}
+
+export function openEventsList() {
+    const jsonObj = createJSONFrom("events", "openEventsList", {});
+    sendFromJS(JSON.stringify(jsonObj));
+}
