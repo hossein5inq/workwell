@@ -9,7 +9,11 @@ export default class Button extends BaseComponent {
         this.setText(text);
     }
 
-    setText(text){
+    getText() {
+        return this.el.innerHTML;
+    }
+
+    setText(text) {
         this.text = text;
         this.el.innerHTML = text;
         return this;
