@@ -53,8 +53,13 @@ export default class Picker extends BaseComponent {
 
         this.el.onAttachedToDom = () => {
             this.el.pickerLeftLabelPart.style.top = this.el.pickerLeftLabelPart.offsetTop - 14 + "px";
-            if (getMobileOperatingSystem() === "ios")
+            if (getMobileOperatingSystem() === "ios") {
+                let parent = this.el.parentNode;
+                if (BaseComponent.hasClass(parent, "ww-list-item__center")) {
+                    BaseComponent.addClass(parent, "ww-list-item__center--with-picker");
+                }
                 this.el.style.height = this.el.parentNode.offsetHeight + "px";
+            }
             this.el.hasBeenAttached = true;
         };
 

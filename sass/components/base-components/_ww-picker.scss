@@ -12,6 +12,14 @@ $picker-border-color-material: #1f5295;
   &--material {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 10px;
+  }
+}
+
+.ww-list-item .ww-picker__container {
+  &--material {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
