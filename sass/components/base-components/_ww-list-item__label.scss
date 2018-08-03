@@ -13,6 +13,7 @@ $list-item-label-font-size-material: 14px;
   font-size: $list-item-label-font-size-ios;
   color: $list-item-label-color-ios;
   text-align: right;
+  min-width: 23px;
 
   &--material {
     font-family: $material-font;
