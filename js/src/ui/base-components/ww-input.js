@@ -5,11 +5,18 @@ export default class Input extends BaseComponent {
     constructor(type = "text") {
         super("input");
 
+        this.el.headerAdded = false;
+        this.el.headerDiv = document.createElement("div");
+
+        BaseComponent.addClass(this.el.headerDiv, "ww-input-header");
         this.addClass("ww-input");
         this.setType(type);
+        this.el.required = false;
 
         this.el.onAttachedToDom = () => {
-
+            if (this.el.headerAdded) {
+                this.el.insertAdjacentElement("beforebegin", this.el.headerDiv);
+            }
         };
     }
 
@@ -47,8 +54,8 @@ export default class Input extends BaseComponent {
     }
 
     setPlaceholder(placeholder) {
-        this.placeholder = placeholder;
-        this.el.placeholder = placeholder;
+        this.placeholder = this.el.required ? placeholder + "*" : placeholder;
+        this.el.placeholder = this.placeholder;
         return this;
     }
 
@@ -78,5 +85,19 @@ export default class Input extends BaseComponent {
 
     getMaxLength() {
         return this.el.maxLength;
+    }
+
+    setRequired(required) {
+        if (required) {
+            this.setPlaceholder(this.getPlaceholder() + "*");
+        }
+        this.el.required = required;
+        return this;
+    }
+
+    setHeader(text) {
+        this.el.headerAdded = true;
+        this.el.headerDiv.innerHTML = text;
+        return this;
     }
 }

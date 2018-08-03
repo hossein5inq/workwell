@@ -99,3 +99,16 @@ $list-header-bg-color-material: #fff;
 .ww-list--material .ww-list-item--material:last-child {
   background: none;
 }
+
+.ww-list__assistive-text {
+  color: $list-header-color-ios;
+  margin-left: 11px;
+  margin-top: 5px;
+  margin-bottom: 7px;
+  font-family: $ios-font;
+  font-size: 12px;
+  height: 16px;
+  &--material {
+    display: none;
+  }
+}

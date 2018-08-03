@@ -1,5 +1,6 @@
 import BaseComponent from "./ww-base-component";
 import anime from "animejs";
+import {get, getLocale} from "../i18n";
 
 export default class InputMaterial extends BaseComponent {
 
@@ -10,6 +11,7 @@ export default class InputMaterial extends BaseComponent {
         this.labelActiveColor = "#1f5295";
         this.labelColor = "#a5a5a5";
         this.borderColor = "#c6c6c6";
+        this.el.required = false;
 
         this.el.inputSubContainer = document.createElement("div");
         this.inputSubContainerCenterPart = document.createElement("div");
@@ -122,8 +124,8 @@ export default class InputMaterial extends BaseComponent {
 
     setPlaceholder(placeholder) {
         let obj = this.el.inputSubContainer;
-        this.el.placeholder = placeholder;
-        this.el.label.innerHTML = placeholder;
+        this.el.placeholder = this.el.required ? placeholder + "*" : placeholder;
+        this.el.label.innerHTML = this.el.placeholder;
         this.el.label.style.top = obj.offsetHeight / 2 - this.el.label.offsetHeight / 2 + "px";
         return this;
     }
@@ -165,5 +167,20 @@ export default class InputMaterial extends BaseComponent {
 
     getMaxLength() {
         return this.el.input.maxLength;
+    }
+
+    setRequired(required) {
+        this.el.required = required;
+        if (required) {
+            this.el.placeholder += "*";
+            this.el.label.innerHTML = this.el.placeholder;
+            this.setAssistiveText("*" + get(getLocale(), "required"));
+        }
+        return this;
+    }
+
+    setHeader(text) {
+        this.setPlaceholder(text);
+        return this;
     }
 }
