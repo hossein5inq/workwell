@@ -1,4 +1,5 @@
 import BaseComponent from "./ww-base-component";
+import {getMobileOperatingSystem} from "../../bridge/utils";
 
 export default class TextArea extends BaseComponent {
 
@@ -15,6 +16,13 @@ export default class TextArea extends BaseComponent {
         this.el.onAttachedToDom = () => {
             if (this.el.headerAdded) {
                 this.el.insertAdjacentElement("beforebegin", this.el.headerDiv);
+            }
+
+            if (getMobileOperatingSystem() === "ios") {
+                let parent = this.el.parentNode;
+                if (BaseComponent.hasClass(parent, "ww-list-item__center")) {
+                    BaseComponent.addClass(parent, "ww-list-item__center--with-textarea");
+                }
             }
         };
     }
