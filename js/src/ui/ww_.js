@@ -13,6 +13,7 @@ import Input from "./base-components/ww-input";
 import InputMaterial from "./base-components/ww-input--material";
 import TextArea from "./base-components/ww-textarea";
 import TextAreaMaterial from "./base-components/ww-textarea--material";
+import Picker from "./base-components/ww-picker";
 
 export default function ww_(el) {
     let obj = {};
@@ -56,6 +57,8 @@ export default function ww_(el) {
             obj = new TextAreaMaterial();
     } else if (hasClass(el, "ww-textarea")) {
         obj = new TextArea();
+    } else if (hasClass(el, "ww-picker__container")) {
+        obj = new Picker();
     }
 
     Object.assign(obj, el);

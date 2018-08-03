@@ -17,9 +17,11 @@ import TextArea from "./base-components/ww-textarea";
 import TextAreaMaterial from "./base-components/ww-textarea--material";
 import BannerTitle from "./base-components/ww-banner-title";
 import BannerSubtitle from "./base-components/ww-banner-subtitle";
+import Picker from "./base-components/ww-picker";
 import {getMobileOperatingSystem} from "../bridge/utils";
 import {hasClass, addClass, convertEvent} from "./ui-utils";
 import ww_ from "./ww_";
+import * as i18n from "./i18n";
 
 export let os = getMobileOperatingSystem();
 
@@ -27,6 +29,7 @@ export const elements = [
     "ww-button",
     "ww-list",
     "ww-input",
+    "ww-picker",
     "ww-list-header",
     "ww-list-item",
     "ww-list-item__left",
@@ -117,7 +120,11 @@ export function createIcon() {
     return new Icon();
 }
 
-export function $(el){
+export function createPicker() {
+    return new Picker();
+}
+
+export function $(el) {
     return ww_(el);
 }
 
@@ -188,6 +195,27 @@ export function format() {
 
         if (el.hasAttribute("data-max")) {
             newEl.setMax(el.getAttribute("data-max"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let pickerElement = document.getElementsByClassName("ww-picker");
+    for (let i = 0; i < pickerElement.length; i++) {
+        let el = pickerElement[i];
+        let newEl = createPicker();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+        if (el.hasAttribute("placeholder")) {
+            newEl.setPlaceholder(el.getAttribute("placeholder"));
+        }
+        if (el.hasAttribute("data-value")) {
+            newEl.setSelectedValue(el.getAttribute("data-value"));
+        }
+        if (el.hasAttribute("data-assistive-text")) {
+            newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
         }
 
         el.parentNode.replaceChild(newEl.toHTMLElement(), el);
@@ -302,4 +330,12 @@ export function format() {
             ww_(el).setType(el.getAttribute("data-type"));
         }
     }
+}
+
+export function getLocale() {
+    return i18n.getLocale();
+}
+
+export function setLocale(locale) {
+    i18n.setLocale(locale);
 }

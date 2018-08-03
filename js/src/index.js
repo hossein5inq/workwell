@@ -2,7 +2,6 @@ import {sendFromJS} from "./bridge/bridge";
 import {createJSONFrom} from "./bridge/engine";
 import * as token from "./bridge/token";
 import {getMobileOperatingSystem} from "./bridge/utils";
-import * as config_ from "./bridge/config";
 import * as constants_ from "./bridge/constants";
 import * as ui_ from "./ui/ui";
 import "../../dist/css/workwell.css";
@@ -39,18 +38,17 @@ ui_.ready(function () {
 export const name = "Workwell";
 export let os = getMobileOperatingSystem();
 export const ui = ui_;
-export let config = config_;
 
 export function getUserInfo(obj) {
     if (obj.success) {
         let fn = obj.success;
         obj.success = function (res) {
-            config.setLocale(res.locale);
+            ui.setLocale(res.locale);
             fn(res);
         };
     } else {
         obj.success = function (res) {
-            config.setLocale(res.locale);
+            ui.setLocale(res.locale);
         };
     }
 
@@ -235,11 +233,11 @@ export function unsubscribe(obj_) {
 }
 
 export function openEvent(obj) {
-    if (!obj || (obj && !obj.eventHashedId)) {
-        throw new Error("You need to set the event hashed id to call this method !");
+    if (!obj || (obj && !obj.eventServiceToken)) {
+        throw new Error("You need to set the eventServiceToken to call this method !");
     }
     obj.data = {
-        eventHashedId: obj.eventHashedId
+        eventServiceToken: obj.eventServiceToken
     };
     const jsonObj = createJSONFrom("events", "openEvent", obj);
     sendFromJS(JSON.stringify(jsonObj));

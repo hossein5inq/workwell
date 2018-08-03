@@ -7,9 +7,24 @@ export default class List extends BaseComponent {
         this.el.items = [];
         this.headerAdded = false;
         this.headerDiv = document.createElement("li");
+        this.el.assistiveTextAdded = false;
+        this.el.assistiveText = document.createElement("div");
 
         BaseComponent.addClass(this.headerDiv, "ww-list-header");
+        BaseComponent.addClass(this.el.assistiveText, "ww-list__assistive-text");
         this.addClass("ww-list");
+
+        this.el.onAttachedToDom = () => {
+            for (let i = 0; i < this.el.childNodes.length; i++) {
+                if (this.el.childNodes[i].hasOwnProperty("onAttachedToDom")) {
+                    this.el.childNodes[i].onAttachedToDom();
+                }
+            }
+
+            if (this.el.assistiveTextAdded) {
+                this.el.insertAdjacentElement("afterend", this.el.assistiveText);
+            }
+        };
     }
 
     setHeader(headerText) {
@@ -55,5 +70,12 @@ export default class List extends BaseComponent {
         if (this.el.items.length === 0) {
             this.remove();
         }
+        return this;
+    }
+
+    setAssistiveText(text) {
+        this.el.assistiveTextAdded = true;
+        this.el.assistiveText.innerHTML = text;
+        return this;
     }
 }

@@ -15,9 +15,14 @@ $input-label-color-material: #a5a5a5;
     box-sizing: border-box;
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 13px;
     margin-bottom: 13px;
     width: 100%;
   }
+}
+
+.ww-list--material .ww-input__container--material {
+  margin-top: 0;
 }
 
 .ww-input__center {
@@ -32,6 +37,7 @@ $input-label-color-material: #a5a5a5;
   &--material {
     width: 100%;
     border-bottom: solid $input-border-bottom-color-material 2px;
+    display: flex;
   }
 }
 
@@ -95,7 +101,7 @@ $input-label-color-material: #a5a5a5;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 94%;
+    max-width: 80%;
     -webkit-font-smoothing: antialiased;
     font-weight: 400;
   }
@@ -128,4 +134,39 @@ $input-label-color-material: #a5a5a5;
 
 .ww-list-item .ww-input__assistive-text--material {
   margin-bottom: 0;
+}
+
+input[type="text"], input[type="number"] {
+  line-height: 20px;
+}
+
+.ww-input-header {
+  font-family: $ios-font;
+  margin: 0;
+  margin-top: 12px;
+  list-style: none;
+  text-align: left;
+  display: block;
+  box-sizing: border-box;
+  padding: 0 0 0 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $list-header-color-ios;
+  -webkit-font-smoothing: antialiased;
+  min-height: 24px;
+  line-height: 25px;
+  text-transform: uppercase;
+  position: relative;
+
+  &--material {
+    display: none;
+  }
+}
+
+.ww-list .ww-input:nth-child(2) {
+  border-top: none;
+}
+
+.ww-list .ww-input:last-child {
+  border-bottom: none;
 }

@@ -9,7 +9,6 @@ $input-label-container-bg-color-material: #f4f5f5;
 $textarea-border-bottom-color-material: #c6c6c6;
 $input-label-color-material: #a5a5a5;
 
-
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -55,7 +54,11 @@ textarea {
 .ww-list-item .ww-textarea {
   padding: 0;
   border: none;
+  margin-top: 11px;
+  margin-bottom: 11px;
   &--material {
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 26px 11px 9px;
   }
 }

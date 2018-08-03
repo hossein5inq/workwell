@@ -1,11 +1,41 @@
-export const en = {
-    "cancel-search-input": "Cancel"
-};
+const defaultLocale = "en";
+let locale = defaultLocale;
 
-export const fr = {
-    "cancel-search-input": "Annuler"
+const i18n = {
+    en: {
+        "cancel-search-input": "Cancel",
+        "required": "Required"
+    },
+    fr: {
+        "cancel-search-input": "Annuler",
+        "required": "Requis"
+    }
 };
 
 export function get(locale, key) {
-    return [locale][key];
+    return i18n[locale][key];
+}
+
+export function getLocale() {
+    if (window.localStorage.workwellUserLocale)
+        return window.localStorage.workwellUserLocale;
+    else
+        return defaultLocale;
+}
+
+export function setLocale(locale_) {
+    locale_ = locale_.split("-")[0];
+    for (let key in i18n) {
+        if (key === locale_) {
+            locale = locale_;
+            break;
+        }
+    }
+    window.localStorage.workwellUserLocale = locale;
+    refreshLocalizedElements(locale);
+}
+
+function refreshLocalizedElements(locale) {
+    // When the locale is changed but there was already elements in the DOM
+
 }
