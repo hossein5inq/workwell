@@ -596,10 +596,10 @@ document.body.appendChild(
 
 <br/>
   <p align="center">
-  <kbd><img src="images/slider-ios.png" alt="drawing" width="200px"/></kbd>
-  <kbd><img src="images/slider-android.png" alt="drawing" width="200px"/></kbd>
-  <kbd><img src="images/slider-ios.png" alt="drawing" width="200px"/></kbd>
-  <kbd><img src="images/slider-android.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/picker-ios.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/picker-ios-opened.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/picker-android.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/picker-android-opened.png" alt="drawing" width="200px"/></kbd>
   </p>
 <br/>
 
