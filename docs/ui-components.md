@@ -209,11 +209,23 @@ This function sets the value of the input's assistive text (Android-only, will d
 
 - `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the assistive text
 
+### setHeader
+
+This function adds a header to the input, the same header-like as the list can have (iOS-only). For Android, it will also work as the setPlaceholder method.
+
+- `text` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the header
+
 ### setMaxLength
 
 This function sets the input's maximum length.
 
 - `maxLength` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the maximum length of the input
+
+### setRequired
+
+This function makes the input required or not (this will add an assistive-text on Android Inputs and only an asterisk on iOS Inputs).
+
+- `required` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** the boolean to set the requirement of the input
 
 ### setPlaceholder
 
@@ -268,6 +280,12 @@ This function adds an element to the list, preferably a <b>ListItem</b>.
 This function removes the <b>ListItem</b> from the list, with a particular id.
 
 - `id` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the id of the element to remove
+
+### setAssistiveText
+
+This function is iOS-only. It will add an assistive-text at the end of the list (especially used for forms with required fields, you can add an assistive-text saying "*Required" below the List Component).
+
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the assistive text
 
 ### setHeader
 
@@ -486,6 +504,104 @@ document.body.appendChild(
   <kbd><img src="images/paging-android.png" alt="drawing" width="300px"/></kbd>
   </p>
   <br/>
+  
+## Picker
+
+### disable
+
+This function disables the textarea.
+
+### enable
+
+This function enables the textarea.
+
+### getLabel
+
+This function returns the label associated to the picker.
+
+### getSelectedIndex
+
+This function returns the index associated to the selected value in the picker.
+
+### getSelectedValue
+
+This function returns the value associated to the picker.
+
+### onClick
+
+This function sets the function that will be called once a click is performed on the picker.
+
+**Parameters**
+     
+- `fn` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)** the function to call
+
+### setAssistiveText
+
+This function sets the value of the picker's assistive text (Android-only, will do nothing on iOS).
+
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the assistive text
+
+### setLabel
+
+This function sets the value of the picker's label (Android-only).
+
+- `label` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the label
+
+### setOptions
+
+This function sets the options within the picker.
+
+- `options` **[array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)** the value of the options, as an array
+
+### setRequired
+
+This function makes the picker required or not (this will add an assistive-text on Android picker).
+
+- `required` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** the boolean to set the requirement of the picker
+
+### setSelectedIndex
+
+This function sets the index of the selected index within the picker.
+
+- `index` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the value of the index
+
+### setSelectedValue
+
+This function sets the value selected within the picker.
+
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the picker
+
+**Example**
+
+```javascript
+document.body.appendChild(
+    Workwell.ui.createList()
+       .add(
+           Workwell.ui.createListItem()
+               .addToCenter(
+                   Workwell.ui.createInput()
+                       .setRequired(true)
+                       .setPlaceholder("Input")
+               )
+               .addToRight(
+                   Workwell.ui.createPicker()
+                       .setRequired(true)
+                       .setLabel("Picker")
+                       .setOptions(["iOS", "Android", "Windows"])
+               )
+       )
+       .toHTMLElement()
+);
+```
+
+<br/>
+  <p align="center">
+  <kbd><img src="images/slider-ios.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/slider-android.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/slider-ios.png" alt="drawing" width="200px"/></kbd>
+  <kbd><img src="images/slider-android.png" alt="drawing" width="200px"/></kbd>
+  </p>
+<br/>
 
 ## Slider
 
@@ -643,11 +759,23 @@ This function sets the value of the textarea's assistive text (Android-only, wil
 
 - `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the assistive text
 
+### setHeader
+
+This function adds a header to the textarea, the same header-like as the list can have (iOS-only). For Android, it will also work as the setPlaceholder method.
+
+- `text` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the header
+
 ### setMaxLength
 
 This function sets the textarea's maximum length.
 
 - `maxLength` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the maximum length of the textarea
+
+### setRequired
+
+This function makes the textarea required or not (this will add an assistive-text on Android Textareas and only an asterisk on iOS Textareas).
+
+- `required` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** the boolean to set the requirement of the textarea
 
 ### setPlaceholder
 
