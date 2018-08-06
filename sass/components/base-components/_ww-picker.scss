@@ -112,3 +112,10 @@ $picker-border-color-material: #1f5295;
   position: absolute;
   left: -500px;
 }
+
+.ww-list .ww-list-item:last-child .ww-picker {
+  border-bottom: none;
+  &--material {
+    border-bottom: solid 2px $picker-border-color-material;
+  }
+}
