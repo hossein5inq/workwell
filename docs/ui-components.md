@@ -41,6 +41,12 @@ document.body.appendChild(
 
 ## BannerSubtitle
 
+### constructor
+
+**Parameters**
+     
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the subtitle
+
 ### getValue
 
 This function returns the value of the subtitle.
@@ -66,6 +72,12 @@ document.body.appendChild(
 
 ## BannerTitle
 
+### constructor
+
+**Parameters**
+     
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the title
+
 ### getValue
 
 This function returns the value of the title.
@@ -90,6 +102,12 @@ document.body.appendChild(
 ```
 
 ## Button
+
+### constructor
+
+**Parameters**
+     
+- `text` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the text inside the Button
 
 ### disable
 
@@ -425,6 +443,12 @@ document.body.appendChild(
 
 ## ListItemLabel
 
+### constructor
+
+**Parameters**
+     
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the label
+
 ### getValue
 
 This function returns the value of the label.
@@ -439,6 +463,12 @@ This function sets the value of the label.
 
 ## ListItemSubtitle
 
+### constructor
+
+**Parameters**
+     
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the subtitle
+
 ### getValue
 
 This function returns the value of the subtitle.
@@ -452,6 +482,12 @@ This function sets the value of the subtitle.
 - `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the subtitle
 
 ## ListItemTitle
+
+### constructor
+
+**Parameters**
+     
+- `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the title
 
 ### getValue
 
