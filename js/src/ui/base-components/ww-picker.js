@@ -52,6 +52,7 @@ export default class Picker extends BaseComponent {
         BaseComponent.addClass(this.el.assistiveText, "ww-input__assistive-text");
 
         this.el.onAttachedToDom = () => {
+            this.el.pickerSelect.style.top = this.el.getBoundingClientRect().top + "px";
             this.el.pickerLeftLabelPart.style.top = this.el.pickerLeftLabelPart.offsetTop - 14 + "px";
             if (getMobileOperatingSystem() === "ios") {
                 let parent = this.el.parentNode;
