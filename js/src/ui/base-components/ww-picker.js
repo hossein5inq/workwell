@@ -64,8 +64,11 @@ export default class Picker extends BaseComponent {
         };
 
         this.onClick(() => {
-            let e = document.createEvent("MouseEvents");
-            e.initMouseEvent("mousedown", true, true, window);
+            let e = new MouseEvent("mousedown", {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
             this.el.pickerSelect.dispatchEvent(e);
         });
 

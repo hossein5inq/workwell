@@ -110,7 +110,8 @@ $picker-border-color-material: #1f5295;
 
 .ww-picker__select {
   position: absolute;
-  left: -500px;
+  left: 0;
+  opacity: 0;
 }
 
 .ww-list .ww-list-item:last-child .ww-picker {
