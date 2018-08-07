@@ -24,6 +24,18 @@
   </p>
   <br/>
   
+  ### Troubleshooting (iOS-only)
+
+When you first open an enterprise app that you've manually installed, you see a notification that the developer of the app isn't trusted on your device. You can dismiss this message, but then you can't open the app.
+
+After you dismiss this message, you can establish trust for the app developer. Tap <b>Settings</b> > <b>General</b> > <b>Profiles</b> or <b>Profiles & Device Management</b>. Under the "Enterprise App" heading, you see a profile for the developer.
+
+Tap the name of the developer profile under the Enterprise App heading to establish trust for this developer.
+
+Then you see a prompt to confirm your choice. After you trust this profile, you can manually install other apps from the same developer and open them immediately. This developer remains trusted until you use the Delete App button to remove all apps from the developer.
+
+You must be connected to the Internet to verify the app developer's certificate when establishing trust. If you're behind a firewall, make sure that it's configured to allow connections to https://ppq.apple.com. If you aren't connected to the Internet when you trust an app, the device displays "Not Verified" instead. To use the app, connect to the Internet and tap the Verify App button.
+  
 ## <a name="access-web-app"></a>2. Access your local (or online) web app
 
   To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open, prompting you to type the URL that you want to open from inside Workwell. In the example below, I am trying to open my local web app that is running on the 3040 port.

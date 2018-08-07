@@ -342,6 +342,8 @@
   
   - [$](js-sdk.md#$)
   - [ready](js-sdk.md#ready)
+  - [getLocale](js-sdk.md#getlocale)
+  - [setLocale](js-sdk.md#setlocale)
   - [createBanner](js-sdk.md#createbanner)
   - [createBannerSubtitle](js-sdk.md#createbannersubtitle)
   - [createBannerTitle](js-sdk.md#createbannertitle)
@@ -355,6 +357,7 @@
   - [createListItemSubtitle](js-sdk.md#createlistitemsubtitle)
   - [createListItemTitle](js-sdk.md#createlistitemtitle)
   - [createPagingIndicator](js-sdk.md#createpagingindicator)
+  - [createPicker](js-sdk.md#createpicker)
   - [createSlider](js-sdk.md#createslider)
   - [createSwitch](js-sdk.md#createswitch)
   - [createTextArea](js-sdk.md#createtextarea)
@@ -416,6 +419,30 @@
          init();
          callSomeFunction();
     });
+    ```
+    
+  * ### getLocale
+  
+    This function returns the actual locale used in the Workwell context.
+
+    **Examples**
+
+    ```javascript
+    let locale = Workwell.ui.getLocale();
+    ```
+    
+  * ### setLocale
+  
+    This function the locale used in the Workwell context. It is important for some UI Components like the Input or the TextArea (especially on Android, when you set those as "required").
+    
+    **Parameters**
+     
+     -   `locale` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the value of the locale
+
+    **Examples**
+
+    ```javascript
+    Workwell.ui.setLocale("fr-FR");
     ```
     
   * ### createBanner
@@ -663,6 +690,20 @@
     ```
     
     See [PagingIndicator](ui-components.md#pagingindicator) for more details on this component.
+    
+  * ### createPicker
+  
+    This function creates a Workwell Picker component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createPicker().toHTMLElement()
+    );
+    ```
+    
+    See [Picker](ui-components.md#picker) for more details on this component.
     
   * ### createSlider
   
