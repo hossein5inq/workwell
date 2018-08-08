@@ -155,7 +155,7 @@
     
   * ### onShow
   
-    This function is called when the webView is shown to the user, after it was already created. Mostly used for UI-refreshing purpose.
+    This function is called when the webView is shown to the user, and when coming back from another webView, so you can refresh your content if it's now obsolete. Mostly used for UI-refreshing purpose.
 
     **Parameters**
 
