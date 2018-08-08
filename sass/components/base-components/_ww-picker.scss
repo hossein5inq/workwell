@@ -9,6 +9,8 @@ $picker-bg-color-material: #f4f5f5;
 $picker-border-color-material: #1f5295;
 
 .ww-picker__container {
+  height: auto;
+  margin-top: 10px;
   &--material {
     padding-left: 15px;
     padding-right: 15px;
@@ -17,10 +19,12 @@ $picker-border-color-material: #1f5295;
 }
 
 .ww-list-item .ww-picker__container {
+  margin-top: 0;
   &--material {
     padding-left: 0;
     padding-right: 0;
-    margin-top: 0;
+    padding-top: 11px;
+    padding-bottom: 11px;
   }
 }
 
@@ -28,17 +32,23 @@ $picker-border-color-material: #1f5295;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   background-color: $picker-bg-color-ios;
+  border-top: solid 1px $input-border-color-ios;
   border-bottom: solid 1px $input-border-color-ios;
+  padding: 15px;
+  padding-right: 12px;
   &--material {
+    padding: 0;
+    height: 100%;
     position: relative;
     box-sizing: border-box;
     background-color: $picker-bg-color-material;
     border-bottom: solid 2px $picker-border-color-material;
+    border-top: none;
+    min-width:55px;
   }
 }
 
@@ -119,4 +129,10 @@ $picker-border-color-material: #1f5295;
   &--material {
     border-bottom: solid 2px $picker-border-color-material;
   }
+}
+
+.ww-list-item .ww-picker {
+  height: 100%;
+  padding: 0;
+  border-top: none;
 }

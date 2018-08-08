@@ -58,8 +58,12 @@ export default class Picker extends BaseComponent {
                 let parent = this.el.parentNode;
                 if (BaseComponent.hasClass(parent, "ww-list-item__center")) {
                     BaseComponent.addClass(parent, "ww-list-item__center--with-picker");
+                    this.el.style.height = this.el.parentNode.offsetHeight + "px";
                 }
-                this.el.style.height = this.el.parentNode.offsetHeight + "px";
+
+                if (BaseComponent.hasClass(parent, "ww-list-item__right")) {
+                    this.el.style.height = this.el.parentNode.offsetHeight + "px";
+                }
             }
             this.el.hasBeenAttached = true;
         };
