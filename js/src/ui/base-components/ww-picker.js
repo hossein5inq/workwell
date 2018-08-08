@@ -128,6 +128,7 @@ export default class Picker extends BaseComponent {
         this.el.selectedIndex = index;
         this.el.selectedValue = this.el.options[index];
         this.el.pickerLeftValuePart.innerHTML = this.el.selectedValue;
+        this.el.pickerSelect.options[index].selected = true;
         return this;
     }
 
@@ -141,6 +142,7 @@ export default class Picker extends BaseComponent {
                 this.el.selectedIndex = option;
                 this.el.selectedValue = value;
                 this.el.pickerLeftValuePart.innerHTML = value;
+                this.el.pickerSelect.options[option].selected = true;
             }
         }
         return this;
