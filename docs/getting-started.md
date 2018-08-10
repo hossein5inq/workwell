@@ -4,15 +4,11 @@
 
 The Workwell mobile test application is available on HockeyApp. You should download it from the mobile you'll be using for development.
 
-- For iOS:
+- [IOS](https://rink.hockeyapp.net/apps/3d57f8dcc1e849e583f2abb9c5a774da)
 
-https://rink.hockeyapp.net/apps/3d57f8dcc1e849e583f2abb9c5a774da
+- [Android](https://rink.hockeyapp.net/apps/c1ff82f45af04051902b36cb4e3d8989)
 
-- For Android:
-
-https://rink.hockeyapp.net/apps/c1ff82f45af04051902b36cb4e3d8989
-
-The developer account to login into the app is the following:
+The developer account to login into the app is the following (we are working to change that...)
 
 - id: developers@workwell.io
 - password: Workwell-123
@@ -38,7 +34,7 @@ You must be connected to the Internet to verify the app developer's certificate 
   
 ## <a name="access-web-app"></a>2. Access your local (or online) web app
 
-  To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open, prompting you to type the URL that you want to open from inside Workwell. In the example below, I am trying to open my local web app that is running on the 3040 port.
+To access your local (or online) web app inside the Workwell application, simply click on the "Test" (Test Service for developers) item and a popup will then open, prompting you to type the URL that you want to open from inside Workwell. In the example below, I am trying to open my local web app that is running on the 3040 port.
   
   <br/>
   <p align="center">
@@ -57,15 +53,15 @@ We recommend to store the `service_id` and `service_secret` in your back-end for
 
 ## <a name="service-token"></a>4. Implement a service-token generation method
 
-You will need to implement a method on your back-end side that generates a valid *service token*. This token will then be used when to initialize Workwell SDK.
+You will need to obtain a valid *service token* from Workwell API. This token will then be used when to initialize Workwell SDK.
 
-To get the service token, you would need to generate the `service signature` which is a [HMAC_SHA256](https://en.wikipedia.org/wiki/HMAC) with key being your `service secret` and message being `{your service id}{current timestamp}`. The timestamp is the UNIX timestamp (in seconds and not milliseconds).
+To get the service token, a `service signature` needs to be generated which is a [HMAC_SHA256](https://en.wikipedia.org/wiki/HMAC) with key being your `service secret` and message being `{your service id}{current timestamp}`. The timestamp is the UNIX timestamp (in seconds and not milliseconds).
 
 ```
 service_signature=HMAC_SHA256(service_secret, service_id + timestamp)
 ```
 
-The service id, timestamp and signature will then be included in the headers `ww-service-id`, `ww-service-signature` and `ww-timestamp` in the request sent to workwell API to obtain the service token:
+The service id, timestamp and signature will then be included in the headers `ww-service-id`, `ww-service-signature` and `ww-timestamp` in the request sent to Workwell API to obtain the service token:
 
 ```bash
 curl -X GET "https://test-api.workwell.io/1.0/developer/service/token" \
@@ -75,7 +71,7 @@ curl -X GET "https://test-api.workwell.io/1.0/developer/service/token" \
     -H "ww-timestamp: 1234"
 ```
 
-Please find in [Service token code examples](./service-token-examples.md) some examples on how to retrieve your service token (in different languages).
+Please find in [Service token code examples](./service-token-examples.md) some examples on how to retrieve your service token in different programming languages.
 
 If all the fields are generated correctly, you will get the following data as return:
 
@@ -89,7 +85,7 @@ If all the fields are generated correctly, you will get the following data as re
 }
 ```
 
-Otherwise if any happens, the API will return 400 with the following format
+Otherwise if any error happens, the API will return 400 with the following format
 
 ```json
 {
@@ -98,6 +94,8 @@ Otherwise if any happens, the API will return 400 with the following format
   "message": "string"
 }
 ```
+
+Here are the possible values for `error_code`:
 
 * if `error_code = 5`: Missing header. The ww-service-id, ww-service-signature and ww-timestamp headers are mandatory
 
