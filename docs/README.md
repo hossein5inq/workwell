@@ -7,6 +7,7 @@
 * [Debugging](debugging.md)
    * [iOS](debugging.md#ios)
    * [Android](debugging.md#android)
+* [Service Token Generation Examples](service-token-examples.md)
 * [Service Authorization](service-authorization.md)
 * [UI Guidelines](ui-guidelines.md)
 * [UI Components](ui-components.md)
