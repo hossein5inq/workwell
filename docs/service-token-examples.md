@@ -1,4 +1,6 @@
-Below you can find how to get the service token in different languages
+# Service Token Generation Examples
+
+Below you can find how to get the service token in different languages.
 
 ### Javascript (Node JS)
 
