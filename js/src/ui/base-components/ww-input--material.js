@@ -114,6 +114,14 @@ export default class InputMaterial extends BaseComponent {
         if (type === "number") {
             this.el.input.pattern = "[0-9]*";
             this.el.input.inputmode = "numeric";
+            this.onInput(() => {
+                // maxLength doesn't work with 'number' type so this is a little hack
+                if (this.getMaxLength() > -1) {
+                    // -1 is the default value of the maxLength (if nothing was set)
+                    if (this.getValue().length > this.getMaxLength())
+                        this.setValue(this.getValue().slice(0, this.getMaxLength()));
+                }
+            });
         }
         return this;
     }
