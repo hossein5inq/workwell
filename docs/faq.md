@@ -12,7 +12,7 @@ The formula for service signature is based on HMAC in order to satisfy the follo
 
 Using the formula `service_signature=HMAC_SHA256(service_secret, service_id + timestamp)`, with service_secret corresponds to service id sent in `ww-service-id` header, timestamp in `ww-timestamp`, Workwell API will be able to recompute the service signature and compare it to the signature included in `ww-service-signature` header.
 
-### Why do I have to use `access token` to get user information? Why not giving user information directly in [getUserInfo](./js-sdk.md#getuserinfo) ?
+### Why do I have to use `access_token` to get user information? Why not giving the user's information directly in [getUserInfo](./js-sdk.md#getuserinfo) ?
 
 The user's information used to be returned in `getUserInfo`. But this is not secure as it is quite easy to steal user's data, for example in the following scenario:
 
