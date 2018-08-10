@@ -44,8 +44,8 @@
      **Parameters**
 
       -   `obj` **[json](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)** a json object
-         -   `obj.success` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** success callback function. It returns the image object
-         -   `obj.error` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** failure callback function. It returns the error
+      -   `obj.success` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** success callback function. It returns the image object
+      -   `obj.error` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** failure callback function. It returns the error
 
      **Examples**
 
