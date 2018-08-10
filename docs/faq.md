@@ -18,9 +18,9 @@ Using the formula `service_signature=HMAC_SHA256(service_secret, service_id + ti
 
 The user's information used to be returned in `getUserInfo`. But this is not secure as it is quite easy to steal user's data, for example in the following scenario:
 
-- you have a service that allows user to post some content (a forum, a social network, etc)
+- You have a service that allows user to post some content (a forum, a social network, etc)
 
-- a malicious user posts a code snippet like this in a comment:
+- A malicious user posts a code snippet like this in a comment:
 
 ```
 Workwell.getUserInfo({
@@ -30,8 +30,9 @@ Workwell.getUserInfo({
 })
 ```
 
-- you forget to sanitize html content in your service
-- any user seeing this comment gets their data stolen!
+- You forget to sanitize html content in your service
+
+- Any user seeing this comment gets their data stolen!
 
 A more secure way (and also more standard) is to return the user's information only in backend-to-backend calls. This is done via a temporary `access_token` that allows your backend to request user's information from the Workwell API. This flow can be considered as a simplified version of OAuth2.
 
