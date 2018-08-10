@@ -1,6 +1,6 @@
 Please find below answers to some common questions and the reasons why the Workwell SDK might seem to be a bit complex.
 
-### Why service signature formula is so complex ?
+### Why the service_signature formula is so complex ?
 
 The formula for service signature is based on HMAC in order to satisfy the following requirements:
 
