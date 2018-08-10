@@ -2,29 +2,29 @@
 
 ## <a name="workwell-mobile-test"></a>1. Get the Workwell mobile test app
 
-  The Workwell mobile test application is available on HockeyApp. You should download it from the mobile you'll be using for development.
-  
-  - For iOS:
-  
-    https://rink.hockeyapp.net/apps/3d57f8dcc1e849e583f2abb9c5a774da
-  
-  - For Android:
-  
-    https://rink.hockeyapp.net/apps/c1ff82f45af04051902b36cb4e3d8989
-  
-  The developer account to login into the app is the following:
-  
-  - id: developers@workwell.io
-  - password: Workwell-123
-  
-  <br/>
-  <p align="center">
-  <kbd><img src="images/ios-id-login-screen.png" alt="drawing" width="300px"/></kbd>
-  <kbd><img src="images/ios-password-login-screen.png" alt="drawing" width="300px"/></kbd>
-  </p>
-  <br/>
-  
-  ### Troubleshooting (iOS-only)
+The Workwell mobile test application is available on HockeyApp. You should download it from the mobile you'll be using for development.
+
+- For iOS:
+
+https://rink.hockeyapp.net/apps/3d57f8dcc1e849e583f2abb9c5a774da
+
+- For Android:
+
+https://rink.hockeyapp.net/apps/c1ff82f45af04051902b36cb4e3d8989
+
+The developer account to login into the app is the following:
+
+- id: developers@workwell.io
+- password: Workwell-123
+
+<br/>
+<p align="center">
+<kbd><img src="images/ios-id-login-screen.png" alt="drawing" width="300px"/></kbd>
+<kbd><img src="images/ios-password-login-screen.png" alt="drawing" width="300px"/></kbd>
+</p>
+<br/>
+
+### Troubleshooting (iOS-only)
 
 When you first open an enterprise app that you've manually installed, you see a notification that the developer of the app isn't trusted on your device. You can dismiss this message, but then you can't open the app.
 
@@ -427,8 +427,8 @@ function getServiceToken() {
                 let res = JSON.parse(request.responseText);
                 window.localStorage.serviceToken = res.service_token; // so that we can use it again in other pages
                 
-		// Here we are inserting it
-		Workwell.setServiceToken(res.service_token);
+        		// Here we are inserting it
+        		Workwell.setServiceToken(res.service_token);
 		
                 resolve(res);
             } else {
@@ -446,16 +446,18 @@ function getServiceToken() {
 
 getServiceToken()
     .then(function(res){
-	 // do whatever after that
+	   // do whatever after that
     })
     .catch(function(error){
-	 console.log(error);
+	   console.log(error);
     });
 ```
 
 ### Step 5:
 
-You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md#getuserinfo)) method for instance. Retrieving the user's info gives you the possibility to <b>automatically log him</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent :
+You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md#getuserinfo)) method for instance. 
+
+This methods returns an `access token` that allows you to fetch user information from Workwell API and then you will have the possibility to <b>automatically log user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent :
 
 ```javascript
 // index.js 
@@ -468,8 +470,7 @@ function getUserInfo() {
     	// Here we can now use this method (since we inserted the valid service-token just before
         Workwell.getUserInfo({
             success: (res) => {
-                console.log("success get user info");
-		console.log(res); // This will print all the info of the current user in the console
+                console.log("success get user info", res);		        
                 resolve(res);
             },
             error: (data) => {
@@ -483,7 +484,7 @@ function getUserInfo() {
 getServiceToken()
     .then(getUserInfo)
     .catch(function(error){
-	 console.log(error);
+	   console.log(error);
     });
 ```
 
