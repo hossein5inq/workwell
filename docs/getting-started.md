@@ -152,6 +152,7 @@ const Workwell = require("workwell");
 Implement the service token generation method in your `server.js` file:
 
 ```javascript
+// server.js
 // Do whatever you need to have your server working, here we are using the 'express' package
 const express = require('express');
 const app = express();
@@ -229,20 +230,22 @@ function getServiceToken() {
     });
 }
 
-getServiceToken()
-    .then(function(res){
-	   // do whatever after that
-    })
-    .catch(function(error){
-	   console.log(error);
-    });
+Workwell.ui.ready(function(){
+	getServiceToken()
+		.then(function(res){
+		   // do whatever after that
+		})
+		.catch(function(error){
+		   console.log(error);
+		});
+});
 ```
 
 ### Step 5:
 
 You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md#getuserinfo)) method for instance. 
 
-This methods returns an `access token` that allows you to fetch user information from Workwell API and then you will have the possibility to <b>automatically log user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent:
+This methods returns an `access_token` that allows you to fetch the user's information from the Workwell API and then you will have the possibility to <b>automatically log the user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent:
 
 ```javascript
 // index.js 
@@ -250,12 +253,13 @@ This methods returns an `access token` that allows you to fetch user information
 // ...
 // ...
 
-function getUserInfo() {
+function getUserAccessToken() {
     return new Promise((resolve, reject) => {
     	// Here we can now use this method (since we inserted the valid service-token just before
         Workwell.getUserInfo({
             success: (res) => {
-                console.log("success get user info", res);		        
+                console.log("success get user info", res);	
+		// Here you have the access_token in 'res.access_token'
                 resolve(res);
             },
             error: (data) => {
@@ -266,14 +270,92 @@ function getUserInfo() {
     });
 }
 
-getServiceToken()
-    .then(getUserInfo)
-    .catch(function(error){
-	   console.log(error);
-    });
+Workwell.ui.ready(function(){
+	getServiceToken()
+		.then(getUserAccessToken)
+		.catch(function(error){
+		   console.log(error);
+		});
+});
 ```
 
 ### Step 6:
+
+Let's now retrieve the user's information by calling the Workwell API endpoint [user_info](api.md#user-info) from our back-end:
+
+```javascript
+// server.js
+// ...
+
+app.get('/user_info:access_token', function (req, response) {
+    var accessToken = req.params.access_token;
+    
+    // the time needs to be in seconds
+    var now = parseInt(new Date().getTime() / 1000);
+    const signature = crypto.createHmac('sha256', serviceSecret).update(serviceId + String(now)).digest('base64');
+
+    request({
+        uri: 'https://api.workwell.io/1.0/developer/service/token',
+        method: 'GET',
+        headers: {
+            'ww-service-signature': signature,
+            'ww-timestamp': '' + now,
+            'ww-service-id': serviceId,
+	    'ww-access-token': accessToken
+        }
+    }, function (error, res, body) {
+        var result = JSON.parse(body);
+        if (result.error_code === ERROR_SERVICE_SECRET_NOT_VALID) {
+            console.log("error : your service_secret '" + serviceSecret + "' is not valid");
+        } else if (result.error_code === ERROR_SERVICE_ID_NOT_VALID) {
+            console.log("error : your service_id '" + serviceId + "' is not valid");
+        }
+        response.send(result);
+    });
+});
+
+// ...
+```
+
+```javascript
+// index.js 
+
+// ...
+// ...
+
+function getUserInfo(data) {
+    return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest();
+        request.open('GET', './user_info/' + data.access_token, true);
+
+        request.onload = () => {
+            if (request.status >= 200 && request.status < 400) {
+                let res = JSON.parse(request.responseText);
+                resolve(res);
+            } else {
+                reject(request);
+            }
+        };
+
+        request.onerror = function () {
+            reject(request);
+        };
+
+        request.send();
+    });
+}
+
+Workwell.ui.ready(function(){
+	getServiceToken()
+		.then(getUserAccessToken)
+		.then(getUserInfo)
+		.catch(function(error){
+		   console.log(error);
+		});
+});
+```
+
+### Step 7:
 
 Let's add some UI to it! We'll just be adding a <b>banner component</b> and a <b>list component</b> containing two items (one with the user's first name, the other one to open page1). Here is the complete code:
 
@@ -304,7 +386,7 @@ function getServiceToken() {
     });
 }
 
-function getUserInfo() {
+function getUserAccessToken() {
     return new Promise((resolve, reject) => {
         Workwell.getUserInfo({
             success: (res) => {
@@ -319,7 +401,29 @@ function getUserInfo() {
     });
 }
 
-function renderUI(data){
+function getUserInfo(data) {
+    return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest();
+        request.open('GET', './user_info/' + data.access_token, true);
+
+        request.onload = () => {
+            if (request.status >= 200 && request.status < 400) {
+                let res = JSON.parse(request.responseText);
+                resolve(res);
+            } else {
+                reject(request);
+            }
+        };
+
+        request.onerror = function () {
+            reject(request);
+        };
+
+        request.send();
+    });
+}
+
+function renderUI(user) {
     document.body.appendChild(
         Workwell.ui.createBanner()
             .setBackgroundImage("http://paperlief.com/images/spring-forest-desktop-wallpaper-wallpaper-4.jpg")
@@ -342,7 +446,7 @@ function renderUI(data){
                     .addToRight(
                         Workwell.ui.createListItemChevronIcon()
                     )
-                    .onClick(function(){
+                    .onClick(function () {
                         Workwell.openWebPage(window.location.href + "/page1");
                     })
             )
@@ -351,19 +455,22 @@ function renderUI(data){
                     .setTappable(true)
                     .addToCenter(
                         Workwell.ui.createListItemTitle()
-                            .setValue("Hello !")
+                            .setValue("Hello " + user.first_name + "!")
                     )
             )
             .toHTMLElement()
     )
 }
 
-getServiceToken()
-    .then(getUserInfo)
-    .then(renderUI)
-    .catch(function(error){
-        console.log(error);
-    });
+Workwell.ui.ready(function () {
+	getServiceToken()
+		.then(getUserAccessToken)
+		.then(getUserInfo)
+		.then(renderUI)
+		.catch(function (error) {
+			console.log(error);
+		});
+});
 ```
 
 Here is what it looks like in Android and iOS:
