@@ -71,7 +71,7 @@
 
   * ### getUserInfo
   
-     This function retrieves the current user's info from the app.
+     This function retrieves the `access token` that you can use to call Workwell API to get user information via [User Info](./api.md#user-info).
 
      **Parameters**
 
@@ -96,42 +96,19 @@
 
     **Returns**
 
-    The `data` will contains some user informations and the `user-service-token` and the user `locale`. Here is an example of the `data` object:
+    The `data` contains the user locale that you can use for localization purpose and the `access token` that you can use to call Workwell API to get user information.
+    The `access token` can be considered as OAuth2 authorization code and access token combined.
+    Here is an example of the `data` object:
 
 
     ```json
     {  
-       "user_service_token":"a JWE string, so very long ...",
-       "locale":"en-US",
-       "user":{  
-          "name":"firstname lastname",
-          "site_name":"PARIS",
-          "site_key": "PARIS",
-          "client":{
-            "key":"workwell",
-            "name":"workwell"
-          },
-          "first_name":"firstname",
-          "last_name":"lastname",
-          "email":"abc@workwell.io",
-          "address":"19 rue Eugène Flachat, 75017 Paris, France"
-       },
-       "token_type":"bearer"
+       "access_token":"a long string",
+       "locale":"en-US"       
     }
     ```
 
-    The `user-service-token` is unique per service and user and you can consider it as a `workwell user id`. This token will be useful if you need to verify it later via [verify-user-service-token](api.md#verify-user-service-token) or to be used in chat SDK (available soon).
-
-    The `locale` can be used for localization purpose.
-
-    In the `user` object, the following fields are always returned:
-
-    - *name*: the full name
-    - *first_name*: user first name
-    - *last_name*: user last name
-    - *email*: user email
-    - *address*: user office (not home) address
-    - *site_name*: user's company site.
+    
     
   * ### goBack
   
