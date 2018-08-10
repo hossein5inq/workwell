@@ -242,7 +242,7 @@ getServiceToken()
 
 You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md#getuserinfo)) method for instance. 
 
-This methods returns an `access token` that allows you to fetch user information from Workwell API and then you will have the possibility to <b>automatically log user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent :
+This methods returns an `access token` that allows you to fetch user information from Workwell API and then you will have the possibility to <b>automatically log user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent:
 
 ```javascript
 // index.js 
