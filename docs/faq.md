@@ -1,6 +1,6 @@
 Please find below answers to some common questions and the reasons why the Workwell SDK might seem to be a bit complex.
 
-### Why service signature formula is so complex?
+### Why service signature formula is so complex ?
 
 The formula for service signature is based on HMAC in order to satisfy the following requirements:
 
@@ -12,7 +12,7 @@ The formula for service signature is based on HMAC in order to satisfy the follo
 
 Using the formula `service_signature=HMAC_SHA256(service_secret, service_id + timestamp)`, with service secret corresponds to service id sent in `ww-service-id` header, timestamp in `ww-timestamp`, Workwell API will be able to recompute the service signature and compares it to the signature included in `ww-service-signature` header.
 
-### Why do I have to use `access token` to get user information? Why not giving user information directly in [getUserInfo](./js-sdk.md#getuserinfo)?
+### Why do I have to use `access token` to get user information? Why not giving user information directly in [getUserInfo](./js-sdk.md#getuserinfo) ?
 
 The user information used to be returned in `getUserInfo` actually. But this is not secure as it is quite easy to steal user data, for example in the following scenario:
 
