@@ -26,6 +26,7 @@ Workwell.getUserInfo({
 		sendDataToMyPersonalServer(res)
 	}
 })
+```
 
 - you forget to sanitize html content in your service
 - any user seeing this comment gets their data stolen!
