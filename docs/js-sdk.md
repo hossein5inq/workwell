@@ -6,7 +6,7 @@
   
   - [changeNavBar](js-sdk.md#changenavbar)
   - [chooseImage](js-sdk.md#chooseimage)
-  - [getUserInfo](js-sdk.md#getuserinfo)
+  - [getUserAccessToken](js-sdk.md#getuseraccesstoken)
   - [goBack](js-sdk.md#goback)
   - [hideNativeLoader](js-sdk.md#hidenativeloader)
   - [onShow](js-sdk.md#onshow)
@@ -69,9 +69,9 @@
      }
      ```
 
-  * ### getUserInfo
+  * ### getUserAccessToken
   
-     This function retrieves the `access token` that you can use to call Workwell API to get user information via [User Info](./api.md#user-info).
+     This function retrieves the `user access token` that you can use to call the Workwell API to get the user's information via [User Info](./api.md#user-info).
 
      **Parameters**
 
@@ -82,11 +82,10 @@
     **Examples**
 
     ```javascript
-    Workwell.getUserInfo({
+    Workwell.getUserAccessToken({
          success: function (data) {
              console.log(data);
-             // You can then create a new user with the data you received,
-             // or fetch an existing one in your db
+             // You now have the user_access_token in data.user_access_token
          },
          error: function (error) {
              console.log(error);
@@ -96,15 +95,14 @@
 
     **Returns**
 
-    The `data` contains the user locale that you can use for localization purpose and the `access token` that you can use to call Workwell API to get user information.
-    The `access token` can be considered as OAuth2 authorization code and access token combined.
+    The `data` contains the `user access token` that you can use to call Workwell API to get user information.
+    The `user access token` can be considered as OAuth2 authorization code and access token combined.
     Here is an example of the `data` object:
 
 
     ```json
     {  
-       "access_token":"a long string",
-       "locale":"en-US"       
+       "user_access_token":"a long string"
     }
     ```
 
