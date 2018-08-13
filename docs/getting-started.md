@@ -71,7 +71,7 @@ curl -X GET "https://api.workwell.io/1.0/developer/service/token" \
     -H "ww-timestamp: {current_timestamp}"
 ```
 
-You can find in [Service token code examples](./service-token-examples.md) some code snippets on to retrieve the `service token` in different programming languages.
+You can find in [Service token code examples](./service-token-examples.md) some code snippets on how to retrieve the `service token` in different programming languages.
 
 If all the headers are generated correctly, you will get the following data as return:
 
