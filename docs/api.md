@@ -4,7 +4,7 @@ Please find below the endpoints that you can use to interact with Workwell API.
 
 ## <a name="user-info"></a>Get user info
 
-Using the `access token` obtained from [getUserInfo](js-sdk.md#getuserinfo), you can call workwell API to get user information:
+Using the `user access token` obtained from [getUserAccessToken](js-sdk.md#getuseraccesstoken), you can call workwell API to get the user's information:
 
 ```bash
 curl -X GET "http://api.workwell.io/1.0/developer/service/user_info" \
@@ -12,7 +12,7 @@ curl -X GET "http://api.workwell.io/1.0/developer/service/user_info" \
 	-H "ww-service-id: {service_id}" \
 	-H "ww-service-signature: {service_signature}" \
 	-H "ww-timestamp: {timestamp}" \
-	-H "ww-access-token: {access_token}"
+	-H "ww-user-access-token: {user_access_token}"
 ```
 
 The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
