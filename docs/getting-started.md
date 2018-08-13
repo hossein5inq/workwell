@@ -47,11 +47,11 @@ To access your local (or online) web app inside the Workwell application, simply
 
 Please get in touch with Workwell tech support team to get a `service_id` and a `service_secret` once you register as a Workwell Service.
 
-They will be used to obtain the *service token* (cf [Service-Token](#service-token)) that is necessary to use the SDK.
+They will be used to obtain the `service token` that is necessary to initialize the SDK.
 
 We recommend to store the `service_id` and `service_secret` in your back-end for security reason.
 
-## <a name="service-token"></a>4. Implement a service-token generation method
+## <a name="service-token"></a>4. Get the `service token`
 
 You will need to obtain a valid *service token* from Workwell API. This token will then be used when to initialize Workwell SDK.
 
@@ -64,24 +64,21 @@ service_signature=HMAC_SHA256(service_secret, service_id + timestamp)
 The service id, timestamp and signature will then be included in the headers `ww-service-id`, `ww-service-signature` and `ww-timestamp` in the request sent to Workwell API to obtain the service token:
 
 ```bash
-curl -X GET "https://test-api.workwell.io/1.0/developer/service/token" \
+curl -X GET "https://api.workwell.io/1.0/developer/service/token" \
     -H "accept: application/json" \
-    -H "ww-service-id: service_id" \
-    -H "ww-service-signature: service_signature" \
-    -H "ww-timestamp: 1234"
+    -H "ww-service-id: {your_service_id}" \
+    -H "ww-service-signature: {your_service_signature}" \
+    -H "ww-timestamp: {current_timestamp}"
 ```
 
-Please find in [Service token code examples](./service-token-examples.md) some examples on how to retrieve your service token in different programming languages.
+You can find in [Service token code examples](./service-token-examples.md) some code snippets on to retrieve the `service token` in different programming languages.
 
-If all the fields are generated correctly, you will get the following data as return:
+If all the headers are generated correctly, you will get the following data as return:
 
 ```json
 {
-  "expires_at": "string",
-  "expires_in": 0,
   "service_name": "string",
   "service_token": "string",
-  "token_type": "string"
 }
 ```
 
@@ -211,10 +208,12 @@ function getServiceToken() {
         request.onload = () => {
             if (request.status >= 200 && request.status < 400) {
                 let res = JSON.parse(request.responseText);
-                window.localStorage.serviceToken = res.service_token; // so that we can use it again in other pages
+		// store the serviceToken in localStorage so we can use it again in other pages
+		// the serviceToken expiration is 1h so you don't need to get a new one everytime.
+                window.localStorage.serviceToken = res.service_token; 
                 
-        		// Here we are inserting it
-        		Workwell.setServiceToken(res.service_token);
+        	// Init the Workwell SDK
+        	Workwell.setServiceToken(res.service_token);
 		
                 resolve(res);
             } else {
@@ -233,7 +232,7 @@ function getServiceToken() {
 Workwell.ui.ready(function(){
 	getServiceToken()
 		.then(function(res){
-		   // do whatever after that
+		   // getUserAccessToken, see next step
 		})
 		.catch(function(error){
 		   console.log(error);
