@@ -2,7 +2,7 @@
 
 ## Bridge with the app
 
-  All the following methods allow you to call native components (dateTimePicker, actionSheet, chooseImage, opening a new webView, ...) or to retrieve information about the current Workwell user (getUserInfo).
+  All the following methods allow you to call native components (dateTimePicker, actionSheet, chooseImage, opening a new webView, ...) or to retrieve information about the current Workwell user (getUserAccessToken).
   
   - [changeNavBar](js-sdk.md#changenavbar)
   - [chooseImage](js-sdk.md#chooseimage)
@@ -147,7 +147,7 @@
     
   * ### openChat
   
-    This function opens the Workwell's native chat with the user corresponding to the userServiceToken given as an argument. The userServiceToken is retrieved from the [getUserInfo](js-sdk.md#getuserinfo) method. You can then store all the userServiceToken from every user in your own database somewhere.
+    This function opens the Workwell's native chat with the user corresponding to the userServiceToken given as an argument. The userServiceToken is retrieved via [User Info](./api.md#user-info). You can then store all the userServiceToken from every user in your own database somewhere.
 
     **Parameters**
 
