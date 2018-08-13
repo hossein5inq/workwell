@@ -242,9 +242,9 @@ Workwell.ui.ready(function(){
 
 ### Step 5:
 
-You are now allowed to use any bridging methods of the SDK (and in a securey way). Let's use the `getUserInfo` (cf. [getUserInfo](js-sdk.md#getuserinfo)) method for instance. 
+You are now allowed to use any bridging methods of the SDK (and in a secure way). Let's use the `getUserAccessToken` (cf. [getUserAccessToken](js-sdk.md#getuseraccesstoken)) method for instance. 
 
-This methods returns an `access_token` that allows you to fetch the user's information from the Workwell API and then you will have the possibility to <b>automatically log the user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent:
+This methods returns a `user_access_token` that allows you to fetch the user's information from the Workwell API and then you will have the possibility to <b>automatically log the user</b> to his personal account (for your service) or to <b>create a new one</b>, if non-existent:
 
 ```javascript
 // index.js 
@@ -254,15 +254,15 @@ This methods returns an `access_token` that allows you to fetch the user's infor
 
 function getUserAccessToken() {
     return new Promise((resolve, reject) => {
-    	// Here we can now use this method (since we inserted the valid service-token just before
-        Workwell.getUserInfo({
+    	// Here we can now use this method (since we inserted the valid service-token just before)
+        Workwell.getUserAccessToken({
             success: (res) => {
-                console.log("success get user info", res);	
-		// Here you have the access_token in 'res.access_token'
+                console.log("success get user access token", res);	
+		// Here you have the user_access_token in 'res.user_access_token'
                 resolve(res);
             },
             error: (data) => {
-                console.log("error get user info");
+                console.log("error get user access token");
                 reject(data);
             }
         });
@@ -286,8 +286,8 @@ Let's now retrieve the user's information by calling the Workwell API endpoint [
 // server.js
 // ...
 
-app.get('/user_info:access_token', function (req, response) {
-    var accessToken = req.params.access_token;
+app.get('/user_info:user_access_token', function (req, response) {
+    var userAccessToken = req.params.user_access_token;
     
     // the time needs to be in seconds
     var now = parseInt(new Date().getTime() / 1000);
@@ -300,7 +300,7 @@ app.get('/user_info:access_token', function (req, response) {
             'ww-service-signature': signature,
             'ww-timestamp': '' + now,
             'ww-service-id': serviceId,
-	    'ww-access-token': accessToken
+	    'ww-user-access-token': userAccessToken
         }
     }, function (error, res, body) {
         var result = JSON.parse(body);
@@ -325,7 +325,7 @@ app.get('/user_info:access_token', function (req, response) {
 function getUserInfo(data) {
     return new Promise((resolve, reject) => {
         let request = new XMLHttpRequest();
-        request.open('GET', './user_info/' + data.access_token, true);
+        request.open('GET', './user_info/' + data.user_access_token, true);
 
         request.onload = () => {
             if (request.status >= 200 && request.status < 400) {
@@ -387,13 +387,13 @@ function getServiceToken() {
 
 function getUserAccessToken() {
     return new Promise((resolve, reject) => {
-        Workwell.getUserInfo({
+        Workwell.getUserAccessToken({
             success: (res) => {
-                console.log("success get user info");
+                console.log("success get user access token");
                 resolve(res);
             },
             error: (data) => {
-                console.log("error get user info");
+                console.log("error get user access token");
                 reject(data);
             }
         });
@@ -403,7 +403,7 @@ function getUserAccessToken() {
 function getUserInfo(data) {
     return new Promise((resolve, reject) => {
         let request = new XMLHttpRequest();
-        request.open('GET', './user_info/' + data.access_token, true);
+        request.open('GET', './user_info/' + data.user_access_token, true);
 
         request.onload = () => {
             if (request.status >= 200 && request.status < 400) {
