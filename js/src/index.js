@@ -247,3 +247,19 @@ export function openEventsList() {
     const jsonObj = createJSONFrom("events", "openEventsList", {});
     sendFromJS(JSON.stringify(jsonObj));
 }
+
+export function getUserAccessToken(obj) {
+    if (obj.success) {
+        let fn = obj.success;
+        obj.success = function (res) {
+            let newRes = {};
+            if (res.hasOwnProperty("user") && res.user.hasOwnProperty("user_access_token")) {
+                newRes.user_access_token = res.user.user_access_token;
+            }
+            fn(newRes);
+        };
+    }
+
+    const jsonObj = createJSONFrom("get", "userInfo", obj);
+    sendFromJS(JSON.stringify(jsonObj));
+}
