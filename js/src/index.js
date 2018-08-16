@@ -233,11 +233,11 @@ export function unsubscribe(obj_) {
 }
 
 export function openEvent(obj) {
-    if (!obj || (obj && !obj.eventServiceToken)) {
-        throw new Error("You need to set the eventServiceToken to call this method !");
+    if (!obj || (obj && !obj.eventId)) {
+        throw new Error("You need to set the eventId to call this method !");
     }
     obj.data = {
-        eventServiceToken: obj.eventServiceToken
+        eventServiceToken: obj.eventId
     };
     const jsonObj = createJSONFrom("events", "openEvent", obj);
     sendFromJS(JSON.stringify(jsonObj));
