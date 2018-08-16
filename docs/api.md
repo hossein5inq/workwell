@@ -21,22 +21,21 @@ The data returned will have the following format in case of success (200):
 
 ```json
 {
-  "client": {
-    "client_service_token": "string",
+  "company": {
+    "company_id": "string",
     "name": "string"
   },
   "email": "string",
   "first_name": "string",
   "last_name": "string",
-  "user_service_token": "string"
+  "user_id": "string"
 }
 ```
 
-Most of the fields are self-explanatory except `user_service_token` and `client_service_token`.
 
-The `user_service_token` is unique per service and user and you can consider it as a `workwell user id`. This token can be used to interact with user such as sending push notification, posting on their timeline, etc. This token does not have expiration so you can safely save it into your database.
+The `user_id` can be used to interact with user such as sending push notification, posting on their timeline, etc.
 
-The `client_service_token` is unique per company. This token can be used to interact with all company’s users such as broadcasting a push notification, posting on the global timeline, etc. This token does not have expiration so you can safely save it into your database.
+The `company_id` can be used to interact with all company’s users such as broadcasting a push notification, posting on the global timeline, etc.
 
 <!--
 ## <a name="timeline-all-users"></a>Post on timeline of all users of a company
