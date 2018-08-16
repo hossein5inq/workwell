@@ -1,0 +1,12 @@
+@import "../../abstracts/variables";
+
+.ww-list-item__title {
+  font-family: $ios-font;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--material {
+    font-family: $material-font;
+  }
+}

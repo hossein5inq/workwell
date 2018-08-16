@@ -1,0 +1,11 @@
+@import "../../abstracts/variables";
+
+.ww-list-item__icon {
+  margin-left: 11px;
+  font-size: 22px;
+  /*padding: 0 6px;*/
+
+  &--material {
+    display: none;
+  }
+}

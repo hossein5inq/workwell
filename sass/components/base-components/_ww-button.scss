@@ -55,105 +55,92 @@ $button-bg-color-disabled-material: rgba(79, 79, 79, .26);
   display: block;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin-bottom: 10px;
+
+  &:hover {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    color: $button-text-color-active-ios;
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  &--material {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: $button-text-color-material;
+    background-color: $button-bg-color-material;
+    border: 0 solid currentColor;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+    0 1px 5px 0 rgba(0, 0, 0, .12),
+    0 3px 1px -2px rgba(0, 0, 0, .2);
+    font-family: $material-font;
+    min-height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-align: center;
+    font-size: 15px;
+    width: 94%;
+    margin: 0 0 0 3%;
+    margin-bottom: 10px;
+    border-radius: 2px;
+
+    &:active {
+      color: $button-text-color-active-material;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
+      0 1px 18px 0 rgba(0, 0, 0, .12),
+      0 3px 5px -1px rgba(0, 0, 0, .4);
+      opacity: 0.9;
+      -webkit-transition: all 0.25s linear;
+      transition: all 0.25s linear;
+    }
+  }
 }
 
 .ww-button-destructive {
   color: $button-text-color-destructive-ios;
-}
 
-.ww-button--material {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  background-clip: padding-box;
-  font: inherit;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  height: auto;
-  text-decoration: none;
-  letter-spacing: 0;
-  color: $button-text-color-material;
-  vertical-align: middle;
-  background-color: $button-bg-color-material;
-  border: 0 solid currentColor;
-  -webkit-transition: none;
-  transition: none;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
-  0 1px 5px 0 rgba(0, 0, 0, .12),
-  0 3px 1px -2px rgba(0, 0, 0, .2);
-  font-family: $material-font;
-  min-height: 36px;
-  line-height: 36px;
-  padding: 0 16px;
-  text-align: center;
-  font-size: 15px;
-  width: 94%;
-  margin: 0 0 0 3%;
-  border-radius: 2px;
-}
+  &:hover {
+    -webkit-transition: none;
+    transition: none;
+  }
 
-.ww-button-destructive--material {
-  background-color: $button-bg-color-destructive-material;
-  color: $button-text-color-destructive-material;
-}
+  &:focus {
+    outline: 0;
+  }
 
-.ww-button:hover {
-  -webkit-transition: none;
-  transition: none;
-}
+  &:active {
+    color: $button-text-color-destructive-active-ios;
+    -webkit-transition: none;
+    transition: none;
+  }
 
-.ww-button:focus {
-  outline: 0;
-}
+  &--material {
+    background-color: $button-bg-color-destructive-material;
+    color: $button-text-color-destructive-material;
 
-.ww-button:active {
-  color: $button-text-color-active-ios;
-  -webkit-transition: none;
-  transition: none;
-}
-
-.ww-button-destructive:hover {
-  -webkit-transition: none;
-  transition: none;
-}
-
-.ww-button-destructive:focus {
-  outline: 0;
-}
-
-.ww-button-destructive:active {
-  color: $button-text-color-destructive-active-ios;
-  -webkit-transition: none;
-  transition: none;
-}
-
-.ww-button--material:active {
-  color: $button-text-color-active-material;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
-  0 1px 18px 0 rgba(0, 0, 0, .12),
-  0 3px 5px -1px rgba(0, 0, 0, .4);
-  opacity: 0.9;
-  -webkit-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-
-.ww-button-destructive--material:active {
-  color: $button-text-color-destructive-active-material;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
-  0 1px 18px 0 rgba(0, 0, 0, .12),
-  0 3px 5px -1px rgba(0, 0, 0, .4);
-  opacity: 0.9;
-  -webkit-transition: all 0.25s linear;
-  transition: all 0.25s linear;
+    &:active {
+      color: $button-text-color-destructive-active-material;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
+      0 1px 18px 0 rgba(0, 0, 0, .12),
+      0 3px 5px -1px rgba(0, 0, 0, .4);
+      opacity: 0.9;
+      -webkit-transition: all 0.25s linear;
+      transition: all 0.25s linear;
+    }
+  }
 }
 
 .ww-button:disabled,

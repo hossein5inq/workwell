@@ -1,0 +1,70 @@
+@import "../../abstracts/variables";
+
+// FAB-specific variables (iOS)
+
+// FAB-specific variables (material)
+$FAB-size-material: 56;
+
+.ww-fab {
+  display: none;
+
+  &--material {
+    z-index: 100;
+    position: absolute;
+    font-family: $material-font;
+    width: $FAB-size-material + unquote("px");
+    height: $FAB-size-material + unquote("px");
+    border-radius: 50%;
+    background-color: #2b5290;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.91);
+    -moz-box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.91);
+    box-shadow: 0 7px 14px -5px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+
+    &[black] {
+      background-color: black;
+    }
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, #fff 10%, transparent 10.01%) no-repeat 50%;
+      -webkit-transform: scale(7, 7); /* Safari */
+      transform: scale(7, 7);
+      opacity: 0;
+      transition: transform .4s, opacity 0.9s;
+    }
+    &:active:after {
+      transform: scale(0, 0);
+      opacity: .3;
+      transition: 0s;
+    }
+  }
+}
+
+.ww-banner > .ww-fab[data-position="center"] {
+  left: calc(50% - #{$FAB-size-material/2}px);
+}
+
+.ww-banner > .ww-fab[data-position="left"] {
+  left: 13px;
+}
+
+.ww-banner > .ww-fab[data-position="right"] {
+  left: calc(100% - #{$FAB-size-material}px - 13px);
+}
+
+.ww-fab > .ww-icon:before {
+  color: white;
+  font-size: 25px;
+}

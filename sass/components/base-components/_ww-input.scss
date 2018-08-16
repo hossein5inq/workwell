@@ -1,0 +1,172 @@
+@import "../../abstracts/variables";
+
+// Input-specific variables (ios)
+$input-border-color-ios: #d3d3d3;
+
+// Input-specific variables (material)
+$input-bg-color-material: #c6c6c6;
+$input-label-container-bg-color-material: #f4f5f5;
+$input-border-bottom-color-material: #c6c6c6;
+$input-label-color-material: #a5a5a5;
+
+.ww-input__container {
+  &--material {
+    position: relative;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    width: 100%;
+  }
+}
+
+.ww-list--material .ww-input__container--material {
+  margin-top: 0;
+}
+
+.ww-input__center {
+  &--material {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.ww-input__sub-container {
+  &--material {
+    width: 100%;
+    border-bottom: solid $input-border-bottom-color-material 2px;
+    display: flex;
+  }
+}
+
+.ww-input__label-container {
+  &--material {
+    width: calc(100% - 30px);
+    padding-left: 11px;
+    font-family: $material-font;
+    font-size: 16px;
+    position: absolute;
+    z-index: 0;
+    background-color: $input-label-container-bg-color-material;
+    box-sizing: border-box;
+  }
+}
+
+.ww-list-item__center .ww-input__label-container--material {
+  width: 100%;
+  margin-right: -11px;
+}
+
+.ww-input {
+  width: 100%;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  border: none;
+  border-radius: 0;
+  font-family: $ios-font;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 15px;
+  border-top: solid 1px $input-border-color-ios;
+  border-bottom: solid 1px $input-border-color-ios;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin: 0 !important;
+  &--material {
+    z-index: 1;
+    position: relative;
+    background-color: transparent;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 26px 11px 9px;
+    font-family: $material-font;
+    font-size: 16px;
+  }
+  & + & {
+    border-top: none;
+  }
+  & + .ww-textarea {
+    border-top: none;
+  }
+}
+
+.ww-input__label {
+  &--material {
+    color: $input-label-color-material;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+  }
+}
+
+.ww-input__assistive-text {
+  &--material {
+    color: $input-label-color-material;
+    margin-left: 11px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-family: $material-font;
+    font-size: 12px;
+    height: 16px;
+  }
+}
+
+.ww-list-item .ww-input {
+  padding: 0;
+  border: none;
+  &--material {
+    padding: 26px 11px 9px;
+  }
+}
+
+.ww-list-item .ww-input__container--material {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.ww-list-item .ww-input__assistive-text--material {
+  margin-bottom: 0;
+}
+
+input[type="text"], input[type="number"] {
+  line-height: 20px;
+}
+
+.ww-input-header {
+  font-family: $ios-font;
+  margin: 0;
+  margin-top: 12px;
+  list-style: none;
+  text-align: left;
+  display: block;
+  box-sizing: border-box;
+  padding: 0 0 0 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $list-header-color-ios;
+  -webkit-font-smoothing: antialiased;
+  min-height: 24px;
+  line-height: 25px;
+  text-transform: uppercase;
+  position: relative;
+
+  &--material {
+    display: none;
+  }
+}
+
+.ww-list .ww-input:nth-child(2) {
+  border-top: none;
+}
+
+.ww-list .ww-input:last-child {
+  border-bottom: none;
+}

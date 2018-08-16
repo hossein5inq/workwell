@@ -1,41 +1,39 @@
-var utils = require("./utils");
+import {isJson} from "./utils";
 
-module.exports = {
-    request: function (obj) {
-        var req = new XMLHttpRequest();
-        req.open(obj.type, obj.url, true);
+export function request(obj) {
+    let req = new XMLHttpRequest();
+    req.open(obj.type, obj.url, true);
 
-        req.onload = function () {
-            if (req.status >= 200 && req.status < 400) {
-                // Success!
-                var responseText = req.responseText;
-                if (utils.isJson(responseText)) {
-                    // JSON
-                    var result = JSON.parse(responseText);
-                    if (obj.success) {
-                        obj.success(result);
-                    }
-                } else {
-                    // TEXT
-                    if (obj.success) {
-                        obj.success(responseText);
-                    }
+    req.onload = function () {
+        if (req.status >= 200 && req.status < 400) {
+            // Success!
+            const responseText = req.responseText;
+            if (isJson(responseText)) {
+                // JSON
+                const result = JSON.parse(responseText);
+                if (obj.success) {
+                    obj.success(result);
                 }
             } else {
-                // We reached our target server, but it returned an error
-                if (obj.error) {
-                    obj.error(req);
+                // TEXT
+                if (obj.success) {
+                    obj.success(responseText);
                 }
             }
-        };
-
-        req.onerror = function () {
-            // There was a connection error of some sort
+        } else {
+            // We reached our target server, but it returned an error
             if (obj.error) {
-                obj.error("Connection error !");
+                obj.error(req);
             }
-        };
+        }
+    };
 
-        req.send();
-    }
-};
+    req.onerror = function () {
+        // There was a connection error of some sort
+        if (obj.error) {
+            obj.error("Connection error !");
+        }
+    };
+
+    req.send();
+}

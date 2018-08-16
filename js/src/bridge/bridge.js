@@ -1,12 +1,11 @@
-var util = require("./utils.js");
+import {getMobileOperatingSystem} from "./utils";
 
-module.exports = {
-    os: util.getMobileOperatingSystem(),
-    sendFromJS: function (json) {
-        if (this.os === "android") {
-            window.jsbridge.sendFromJS(json);
-        } else if (this.os === "ios") {
-            window.webkit.messageHandlers.jsbridge.postMessage(json);
-        }
+export let os = getMobileOperatingSystem();
+
+export function sendFromJS(json) {
+    if (os === "android") {
+        window.jsbridge.sendFromJS(json);
+    } else if (os === "ios") {
+        window.webkit.messageHandlers.jsbridge.postMessage(json);
     }
 }

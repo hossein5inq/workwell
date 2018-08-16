@@ -1,295 +1,341 @@
-const Button = require("./ww-button.js");
-const ListItem = require("./ww-list-item.js");
-const List = require("./ww-list.js");
-const ListHeader = require("./ww-list-header.js");
-const Input = require("./ww-input.js");
-const SearchInput = require("./ww-search-input");
-const Slider = require("./base-components/ww-slider");
-const SwitchComponent = require("./ww-switch.js");
-const PagingIndicator = require("./ww-paging-indicator");
-const TextArea = require("./ww-textarea");
-const utils = require("../bridge/utils.js");
-const uiUtils = require("./ui-utils");
+import Slider from "./base-components/ww-slider";
+import ListItem from "./base-components/ww-list-item";
+import ListItemLabel from "./base-components/ww-list-item__label";
+import ListItemTitle from "./base-components/ww-list-item__title";
+import Button from "./base-components/ww-button";
+import List from "./base-components/ww-list";
+import Switch from "./base-components/ww-switch";
+import Banner from "./base-components/ww-banner";
+import FAB from "./base-components/ww-fab";
+import Icon from "./base-components/ww-icon";
+import Input from "./base-components/ww-input";
+import InputMaterial from "./base-components/ww-input--material";
+import ListItemSubtitle from "./base-components/ww-list-item__subtitle";
+import ListItemChevronIcon from "./base-components/ww-list-item__chevron-icon";
+import PagingIndicator from "./base-components/ww-paging-indicator";
+import TextArea from "./base-components/ww-textarea";
+import TextAreaMaterial from "./base-components/ww-textarea--material";
+import BannerTitle from "./base-components/ww-banner-title";
+import BannerSubtitle from "./base-components/ww-banner-subtitle";
+import Picker from "./base-components/ww-picker";
+import {getMobileOperatingSystem} from "../bridge/utils";
+import {hasClass, addClass, convertEvent} from "./ui-utils";
+import ww_ from "./ww_";
+import * as i18n from "./i18n";
 
-module.exports = {
-    os: utils.getMobileOperatingSystem(),
-    elements: [
-        "ww-button",
-        "ww-list",
-        "ww-list-header",
-        "ww-list-item",
-        "ww-list-item__left",
-        "ww-list-item__center",
-        "ww-list-item__right",
-        "ww-list-item__title",
-        "ww-list-item__subtitle",
-        "ww-list-item__label"
-    ],
-    addClass: function (el, className) {
-        if (el.classList)
-            el.classList.add(className);
-        else
-            el.className += " " + className;
-    },
-    removeClass: function (el, className) {
-        if (el.classList)
-            el.classList.remove(className);
-        else
-            el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-    },
-    createButton: function (text) {
-        return new Button(text);
-    },
-    createList: function () {
-        return new List();
-    },
-    createListHeader: function (text) {
-        return new ListHeader(text);
-    },
-    createListItem: function (title, subtitle) {
-        return new ListItem(title, subtitle);
-    },
-    createInput: function (type) {
-        return new Input(type);
-    },
-    format: function () {
-        var listElements = document.getElementsByClassName('ww-list');
-        for (var i = 0; i < listElements.length; i++) {
-            var el = listElements[i];
-            var newEl = module.exports.createList();
+export let os = getMobileOperatingSystem();
 
-            if (el.hasAttribute("id")) {
-                newEl.setId(el.getAttribute("id"));
-            }
+export const elements = [
+    "ww-button",
+    "ww-list",
+    "ww-input",
+    "ww-picker",
+    "ww-list-header",
+    "ww-list-item",
+    "ww-list-item__left",
+    "ww-list-item__center",
+    "ww-list-item__right",
+    "ww-list-item__title",
+    "ww-list-item__subtitle",
+    "ww-list-item__label",
+    "ww-list-item__icon",
+    "ww-banner",
+    "ww-banner__title",
+    "ww-banner__subtitle",
+    "ww-fab",
+    "ww-icon"
+];
 
-            if (el.hasAttribute("data-list-type")) {
-                newEl.setType(el.getAttribute("data-list-type"));
-            }
+export function createButton(text) {
+    return new Button(text);
+}
 
-            // Add all the other classes that were put in the html
-            for (var c = 0; c < el.classList.length; c++) {
-                if (el.classList[c] !== "ww-list") {
-                    newEl.addClass(el.classList[c]);
-                }
-            }
+export function createList() {
+    return new List();
+}
 
-            var listHeaderElements = el.getElementsByClassName('ww-list-header');
-            for (var h = 0; h < listHeaderElements.length; h++) {
-                var header = listHeaderElements[h];
-                var newHeader = module.exports.createListHeader(header.textContent.trim());
+export function createListItem() {
+    return new ListItem();
+}
 
-                // Add all the other classes that were put in the html
-                for (var c = 0; c < header.classList.length; c++) {
-                    if (header.classList[c] != "ww-list-header") {
-                        newHeader.addClass(header.classList[c]);
-                    }
-                }
+export function createInput(type) {
+    if (getMobileOperatingSystem() === "android") {
+        return new InputMaterial(type);
+    }
+    return new Input(type);
+}
 
-                newEl.setHeader(newHeader);
-            }
+export function createPagingIndicator(pageCount, selectedPage) {
+    return new PagingIndicator(pageCount, selectedPage);
+}
 
-            var listItemElements = el.getElementsByClassName('ww-list-item');
-            for (var li = 0; li < listItemElements.length; li++) {
-                var listItem = listItemElements[li];
-                var newListItem = module.exports.createListItem();
+export function createSlider() {
+    return new Slider();
+}
 
-                // Add all the other classes that were put in the html
-                for (var c = 0; c < listItem.classList.length; c++) {
-                    if (listItem.classList[c] != "ww-list-item") {
-                        if (listItem.classList[c] == "ww-list-item--tappable") {
-                            newListItem.setTappable(true);
-                        } else {
-                            newListItem.addClass(listItem.classList[c]);
-                        }
-                    }
-                }
+export function createSwitch() {
+    return new Switch();
+}
 
-                var listItemTitleElements = listItem.getElementsByClassName('ww-list-item__title');
-                for (var lit = 0; lit < listItemTitleElements.length; lit++) {
-                    newListItem.setTitle(listItemTitleElements[lit].textContent.trim());
-                }
+export function createTextArea() {
+    if (getMobileOperatingSystem() === "android") {
+        return new TextAreaMaterial();
+    }
+    return new TextArea();
+}
 
-                var listItemSubtitleElements = listItem.getElementsByClassName('ww-list-item__subtitle');
-                for (var lis = 0; lis < listItemSubtitleElements.length; lis++) {
-                    newListItem.setSubtitle(listItemSubtitleElements[lis].textContent.trim());
-                }
+export function createListItemTitle(title) {
+    return new ListItemTitle(title);
+}
 
-                var listItemIconElements = listItem.getElementsByClassName('ww-list-item__icon');
-                for (var lii = 0; lii < listItemIconElements.length; lii++) {
-                    var iconClass = "";
-                    for (var c = 0; c < listItemIconElements[lii].classList.length; c++) {
-                        if (listItemIconElements[lii].classList[c].startsWith("icon-")) {
-                            iconClass = listItemIconElements[lii].classList[c];
-                            break;
-                        }
-                    }
-                    newListItem.setIcon(iconClass);
-                }
+export function createListItemSubtitle(subtitle) {
+    return new ListItemSubtitle(subtitle);
+}
 
-                var listItemLabelElements = listItem.getElementsByClassName('ww-list-item__label');
-                for (var lil = 0; lil < listItemLabelElements.length; lil++) {
-                    newListItem.setLabel(listItemLabelElements[lil].textContent.trim());
-                }
+export function createListItemLabel(label) {
+    return new ListItemLabel(label);
+}
 
-                var listItemThumbnailElements = listItem.getElementsByClassName('ww-list-item__thumbnail');
-                for (var lit = 0; lit < listItemThumbnailElements.length; lit++) {
-                    var src = listItemThumbnailElements[lit].src;
-                    newListItem.setThumbnail(src);
-                }
+export function createListItemChevronIcon() {
+    return new ListItemChevronIcon();
+}
 
-                let switchElements = listItem.getElementsByClassName('ww-switch');
-                for (let se = 0; se < switchElements.length; se++) {
-                    newListItem.setSwitch(module.exports.createSwitch());
-                }
+export function createBanner() {
+    return new Banner();
+}
 
-                let sliderElements = listItem.getElementsByClassName('ww-slider');
-                for (let se = 0; se < sliderElements.length; se++) {
-                    let el = sliderElements[se];
-                    let newEl = module.exports.createSlider();
+export function createBannerTitle(title) {
+    return new BannerTitle(title);
+}
 
-                    if (el.style.width) {
-                        newEl.css("width", el.style.width);
-                    }
+export function createBannerSubtitle(subtitle) {
+    return new BannerSubtitle(subtitle);
+}
 
-                    if (el.hasAttribute("id")) {
-                        newEl.setId(el.getAttribute("id"));
-                    }
+export function createFAB() {
+    return new FAB();
+}
 
-                    if (el.hasAttribute("value")) {
-                        newEl.setCurrentValue(el.getAttribute("value"));
-                    }
+export function createIcon() {
+    return new Icon();
+}
 
-                    newListItem.addToCenter(newEl);
-                }
+export function createPicker() {
+    return new Picker();
+}
 
-                newEl.add(newListItem);
-            }
+export function $(el) {
+    return ww_(el);
+}
 
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-        }
-
-        let buttonElements = document.getElementsByClassName('ww-button');
-        for (let i = 0; i < buttonElements.length; i++) {
-            let el = buttonElements[i];
-            let newEl = module.exports.createButton(buttonElements[i].textContent.trim());
-
-            if (el.hasAttribute("id")) {
-                newEl.setId(el.getAttribute("id"));
-            }
-
-            if (el.hasAttribute("onclick")) {
-                uiUtils.convertEvent("click", el.getAttribute("onclick"), newEl);
-            }
-
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-        }
-
-        let sliderElements = document.getElementsByClassName("ww-slider");
-        for (let i = 0; i < sliderElements.length; i++) {
-            let el = sliderElements[i];
-            let newEl = module.exports.createSlider();
-
-            if (el.style.width) {
-                newEl.css("width", el.style.width);
-            }
-
-            if (el.hasAttribute("id")) {
-                newEl.setId(el.getAttribute("id"));
-            }
-
-            if (el.hasAttribute("value")) {
-                newEl.setCurrentValue(el.getAttribute("value"));
-            }
-
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-        }
-
-        let switchElements = document.getElementsByClassName("ww-switch");
-        for (let i = 0; i < switchElements.length; i++) {
-            let el = switchElements[i];
-            let newEl = module.exports.createSwitch();
-
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-        }
-
-        let pagingIndicatorElements = document.getElementsByClassName('ww-paging-indicator');
-        for (let i = 0; i < pagingIndicatorElements.length; i++) {
-            let el = pagingIndicatorElements[i];
-            let newEl = module.exports.createPagingIndicator();
-
-            if (el.hasAttribute("id")) {
-                newEl.setId(el.getAttribute("id"));
-            }
-
-            if (el.hasAttribute("data-page-count")) {
-                newEl.setPageCount(el.getAttribute("data-page-count"));
-            }
-
-            if (el.hasAttribute("data-selected-page")) {
-                newEl.setSelectedPage(el.getAttribute("data-selected-page"));
-            }
-
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-        }
-
-        let searchInputElements = document.getElementsByClassName('ww-search-input');
-        for (let i = 0; i < searchInputElements.length; i++) {
-            let el = searchInputElements[i];
-            let newEl = module.exports.createSearchInput();
-
-            if (el.hasAttribute("id")) {
-                newEl.setId(el.getAttribute("id"));
-            }
-
-            let method = "get";
-            let action = "";
-            let fnName = undefined;
-
-            if (el.hasAttribute("placeholder")) {
-                newEl.setValue(el.getAttribute("placeholder"), false);
-            }
-
-            if (el.hasAttribute("onInputAction")) {
-                action = el.getAttribute("onInputAction");
-            }
-
-            if (el.hasAttribute("onInputMethod")) {
-                method = el.getAttribute("onInputMethod");
-            }
-
-            if (el.hasAttribute("resultConverter")) {
-                let fn = el.getAttribute("resultConverter");
-                let str = fn.split("(");
-                let fnName = str[0];
-
-                if (window[fnName]) {
-
-                }
-            }
-
-            newEl.setOnInputAction(action);
-            newEl.setOnInputMethod(method);
-
-            if (window[fnName])
-                newEl.setResultConverterFunction(window[fnName]);
-
-            el.parentNode.replaceChild(newEl.toHTMLElement(), el);
-        }
-    },
-    createPagingIndicator: function (pageCount, selectedPage) {
-        return new PagingIndicator(pageCount, selectedPage);
-    },
-    createSearchInput: function () {
-        return new SearchInput();
-    },
-    createSlider: function () {
-        return new Slider();
-    },
-    createSwitch: function () {
-        return new SwitchComponent();
-    },
-    createTextArea: function () {
-        return new TextArea();
+export function ready(fn) {
+    if (typeof document !== "undefined" && document.readyState !== "loading") {
+        fn();
+    } else {
+        if (typeof document !== "undefined")
+            document.addEventListener("DOMContentLoaded", fn);
     }
 }
-;
+
+export function format() {
+    addClass(document.body, "ww-body");
+
+    for (let i = 0; i < elements.length; i++) {
+        let els = document.getElementsByClassName(elements[i]);
+        for (let j = 0; j < els.length; j++) {
+            addClass(els[j], elements[i]);
+        }
+    }
+
+    let listItems = document.getElementsByClassName("ww-list-item");
+    for (let i = 0; i < listItems.length; i++) {
+        let el = listItems[i];
+
+        if (hasClass(el, "ww-list-item--tappable")) {
+            ww_(el).setTappable(true);
+        }
+    }
+
+    let buttonElements = document.getElementsByClassName("ww-button");
+    for (let i = 0; i < buttonElements.length; i++) {
+        let el = buttonElements[i];
+        let newEl = createButton(buttonElements[i].textContent.trim());
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+
+        if (el.hasAttribute("onclick")) {
+            convertEvent("click", el.getAttribute("onclick"), newEl);
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let sliderElements = document.getElementsByClassName("ww-slider");
+    for (let i = 0; i < sliderElements.length; i++) {
+        let el = sliderElements[i];
+        let newEl = createSlider();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+
+        if (el.hasAttribute("data-value")) {
+            newEl.setCurrentValue(el.getAttribute("data-value"));
+        }
+
+        if (el.hasAttribute("data-step")) {
+            newEl.setStep(el.getAttribute("data-step"));
+        }
+
+        if (el.hasAttribute("data-min")) {
+            newEl.setMin(el.getAttribute("data-min"));
+        }
+
+        if (el.hasAttribute("data-max")) {
+            newEl.setMax(el.getAttribute("data-max"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let pickerElement = document.getElementsByClassName("ww-picker");
+    for (let i = 0; i < pickerElement.length; i++) {
+        let el = pickerElement[i];
+        let newEl = createPicker();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+        if (el.hasAttribute("placeholder")) {
+            newEl.setPlaceholder(el.getAttribute("placeholder"));
+        }
+        if (el.hasAttribute("data-value")) {
+            newEl.setSelectedValue(el.getAttribute("data-value"));
+        }
+        if (el.hasAttribute("data-assistive-text")) {
+            newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let inputElements = document.getElementsByClassName("ww-input");
+    for (let i = 0; i < inputElements.length; i++) {
+        let el = inputElements[i];
+        let newEl = createInput();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+        if (el.hasAttribute("type")) {
+            newEl.setType(el.getAttribute("type"));
+        }
+        if (el.hasAttribute("placeholder")) {
+            newEl.setPlaceholder(el.getAttribute("placeholder"));
+        }
+        if (el.hasAttribute("data-value")) {
+            newEl.setValue(el.getAttribute("data-value"));
+        }
+        if (el.hasAttribute("data-assistive-text")) {
+            newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let textAreaAlements = document.getElementsByClassName("ww-textarea");
+    for (let i = 0; i < textAreaAlements.length; i++) {
+        let el = textAreaAlements[i];
+        let newEl = createTextArea();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+        if (el.hasAttribute("type")) {
+            newEl.setType(el.getAttribute("type"));
+        }
+        if (el.hasAttribute("placeholder")) {
+            newEl.setPlaceholder(el.getAttribute("placeholder"));
+        }
+        if (el.hasAttribute("data-assistive-text")) {
+            newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let switchElements = document.getElementsByClassName("ww-switch");
+    for (let i = 0; i < switchElements.length; i++) {
+        let el = switchElements[i];
+        let newEl = createSwitch();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let pagingIndicatorElements = document.getElementsByClassName("ww-paging-indicator");
+    for (let i = 0; i < pagingIndicatorElements.length; i++) {
+        let el = pagingIndicatorElements[i];
+        let newEl = createPagingIndicator();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+
+        if (el.hasAttribute("data-page-count")) {
+            newEl.setPageCount(el.getAttribute("data-page-count"));
+        }
+
+        if (el.hasAttribute("data-selected-page")) {
+            newEl.setSelectedPage(el.getAttribute("data-selected-page"));
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
+    }
+
+    let bannerElements = document.getElementsByClassName("ww-banner");
+    for (let i = 0; i < bannerElements.length; i++) {
+        let el = bannerElements[i];
+
+        if (el.hasAttribute("data-image")) {
+            ww_(el).setBackgroundImage(el.getAttribute("data-image"));
+        }
+    }
+
+    let fabElements = document.getElementsByClassName("ww-fab");
+    for (let i = 0; i < fabElements.length; i++) {
+        let el = fabElements[i];
+
+        if (el.hasAttribute("data-theme")) {
+            ww_(el).setTheme(el.getAttribute("data-theme"));
+        }
+
+        if (el.hasAttribute("data-position")) {
+            ww_(el).setPosition(el.getAttribute("data-position"));
+        }
+
+        ww_(el).updateTopPosition();
+    }
+
+    let iconElements = document.getElementsByClassName("ww-icon");
+    for (let i = 0; i < iconElements.length; i++) {
+        let el = iconElements[i];
+
+        if (el.hasAttribute("data-type")) {
+            ww_(el).setType(el.getAttribute("data-type"));
+        }
+    }
+}
+
+export function getLocale() {
+    return i18n.getLocale();
+}
+
+export function setLocale(locale) {
+    i18n.setLocale(locale);
+}

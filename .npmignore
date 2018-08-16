@@ -10,5 +10,12 @@ v2
 .travis.yml
 deploy.sh
 package-lock.json
-css
 fonts
+css
+sass
+.babelrc
+.eslintignore
+.eslintrc.json
+rollup.config.js
+assets
+docs

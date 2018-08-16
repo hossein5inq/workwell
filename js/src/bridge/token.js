@@ -1,13 +1,12 @@
-module.exports = {
-    serviceToken: {
-        tokenId: "",
-        expiresIn: 0
-    },
-    setServiceToken: function (serviceToken_) {
-        this.serviceToken.tokenId = serviceToken_;
-        //this.appToken.expiresIn = body.expires_in;
-    },
-    getServiceToken: function () {
-        return this.serviceToken;
-    }
+export let serviceToken = {
+    tokenId: "",
+    expiresIn: 0
+};
+
+export function setServiceToken(serviceToken_) {
+    serviceToken.tokenId = serviceToken_;
+}
+
+export function getServiceToken() {
+    return serviceToken;
 }
