@@ -32,10 +32,5 @@ export function setLocale(locale_) {
         }
     }
     window.localStorage.workwellUserLocale = locale;
-    refreshLocalizedElements(locale);
-}
-
-function refreshLocalizedElements(locale) {
-    // When the locale is changed but there was already elements in the DOM
-
+    //refreshLocalizedElements(locale);
 }
