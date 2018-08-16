@@ -294,13 +294,13 @@ app.get('/user_info:user_access_token', function (req, response) {
     const signature = crypto.createHmac('sha256', serviceSecret).update(serviceId + String(now)).digest('base64');
 
     request({
-        uri: 'https://api.workwell.io/1.0/developer/service/token',
+        uri: 'https://api.workwell.io/1.0/developer/service/user_info',
         method: 'GET',
         headers: {
             'ww-service-signature': signature,
             'ww-timestamp': '' + now,
             'ww-service-id': serviceId,
-	    'ww-user-access-token': userAccessToken
+	        'ww-user-access-token': userAccessToken
         }
     }, function (error, res, body) {
         var result = JSON.parse(body);
