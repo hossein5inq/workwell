@@ -4,40 +4,7 @@ Debug WebViews in your native Android / iOS apps using Chrome / Safari Developer
 
 ## iOS
 
-Apple added the ability to remote debug iOS applications in iOS6. To use it there are a few prerequisites. First, go to the Settings app on your iOS device. There, navigate to <b>Safari –> Advanced</b>, and toggle on the <b>Web Inspector</b> switch.
-
-In desktop Safari, go to the <b>Safari –> Preferences…</b> menu, select the <b>Advanced</b> tab, and ensure the <b>Show Develop menu in menu bar</b> check box is checked.
-
-<br>
-<p align="center">
-  <kbd><img src="images/safari-show-develop.png" width="450px"/></kbd>
-</p>
-<br>
-
-When you open an iOS app that was built using a development provisioning profile, it is immediately available as an inspectable application in Safari’s <b>Develop</b> menu.
-
-<br>
-<p align="center">
-  <kbd><img src="images/safari-choice.png" width="640px"/></kbd>
-</p>
-<br>
-
-At this point, you have the same <b>Safari Web Inspector</b> you use to debug Web applications on the desktop. You can select elements, tinker with CSS, debug JavaScript, profile your app, and more:
-
-<br>
-<p align="center">
-  <kbd><img src="images/hello-world-ios-debugging.png" width="400px"/></kbd>
-  <kbd><img src="images/hello-world-ios-home.png" width="300px"/></kbd>
-</p>
-<br>
-
-
-### Troubleshooting
-
-Can't see your WebViews on the Safari’s <b>Develop</b> menu?
-
-  - Verify that WebView debugging is enabled for your app.
-  - Open the app with the WebView you want to debug, then restart Safari.
+To see the console's logs, simply click on the wheel button, on the top right corner.
 
 ## Android
 
