@@ -1,4 +1,6 @@
-if: publish_lib IS present
+branches:
+  only:
+  - master
 language: node_js
 node_js:
   - "7"
