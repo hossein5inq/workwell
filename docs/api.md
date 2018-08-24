@@ -45,6 +45,8 @@ The `company_id` can be used to interact with all company’s users such as broa
 
 The `site_id` can be used to interact with all site’s users such as broadcasting a push notification, posting on the site timeline, etc.
 
+In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
+
 ## <a name="push-notification"></a>Send a push notification to users
 
 Using the `user id` obtained from [user-info endpoint](#user-info), you can call Workwell API to send push notifications to multiple users:
@@ -61,7 +63,10 @@ curl -X POST "https://api.workwell.io/1.0/developer/service/notification" \
 
 The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
 
-The data returned will have the following format in case of success (200):
+The data returned will have the following format in case of success (200). Please note this is the number of notifications that are *scheduled*, and  the notifications are not guaranteed to arrive immediately (or even at all!), due to rate limit for example.
+
+In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
+
 
 ```json
 {
@@ -69,6 +74,42 @@ The data returned will have the following format in case of success (200):
 }
   
 ```
+
+## <a name="error-code"></a>Possible error codes
+
+In case of error, all endpoints returns 400 with the following payload format
+
+```json
+{
+  "context": "string",
+  "error_code": 0,
+  "message": "string"
+}
+```
+
+Following is the list of possible `error_code`:
+
+*Authentication errors*
+* if `error_code = 5`: Missing header. The ww-service-id, ww-service-signature, ww-timestamp, ww-company-id headers are mandatory
+
+* if `error_code = 2`: The ww-timestamp is too old. It should be at max in the last hour.
+
+* if `error_code = 9`: The service id is unknown. Please keep contact workwell developer team to have a valid service id.
+
+* if `error_code = 8`: The service signaure is invalid. Please consult the workwell docs on how to generate valid signature.
+
+* if `error_code = 10`: The data type is invalid. Often happens when the ww-timestamp is not an integer.
+
+*Specific errors, depending on each endpoint*
+
+* if `error_code = 1304`: Invalid data format.
+
+* if `error_code = 1301`: Your service does not have the permission to do the requested action (send notification, get more user info, etc). Please get in touch with Workwell support team.
+
+* if `error_code = 1302`: The `access token` provided is not valid. Please check in the error  message, cf [user-info endpoint](#user-info)
+
+* if `error_code = 1303`: The `access token` provided is expired, cf [user-info endpoint](#user-info)
+
 <!--
 ## <a name="timeline-all-users"></a>Post on timeline of all users of a company
 
