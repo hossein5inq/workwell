@@ -44,6 +44,31 @@ The `company_id` can be used to interact with all company’s users such as broa
 `site` is a organizational unit in a company, it can correspond to an office, a building or a entire country division. Some examples can be "Workwell Paris Office", "Workwell France", etc. A user must belong to a site. In case of work travel, the user's site can change though.
 
 The `site_id` can be used to interact with all site’s users such as broadcasting a push notification, posting on the site timeline, etc.
+
+## <a name="push-notification"></a>Send a push notification to users
+
+Using the `user id` obtained from [user-info endpoint](#user-info), you can call Workwell API to send push notifications to multiple users:
+
+```bash
+curl -X POST "https://api.workwell.io/1.0/developer/service/notification" \
+  -H "accept: application/json" \
+  -H "ww-service-id: {service_id}" \
+  -H "ww-service-signature: {service_signature}" \
+  -H "ww-timestamp: {timestamp}" \
+  -H "Content-Type: application/json" \
+  -d '{ "message": "{message}", "user_ids": [ "{user id 1}", "{user id 2}" ]}'
+```
+
+The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
+
+The data returned will have the following format in case of success (200):
+
+```json
+{
+  "number_notification":10
+}
+  
+```
 <!--
 ## <a name="timeline-all-users"></a>Post on timeline of all users of a company
 
