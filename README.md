@@ -69,6 +69,9 @@ We have put in place a number of requirements for a Workwell integration to ensu
     * [Bridge with the app](docs/js-sdk.md#bridge-with-the-app)
     * [UI](docs/js-sdk.md#ui)
 * [Workwell API](docs/api.md)
+	* [Get user info](docs/api.md#user-info)
+	* [Send push notification to users](docs/api.md#push-notification)
+	* [Workwell API Error Codes](docs/api.md#error-code)
 * [FAQ](docs/faq.md)
 
 
