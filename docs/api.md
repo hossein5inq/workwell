@@ -25,6 +25,10 @@ The data returned will have the following format in case of success (200):
     "company_id": "string",
     "name": "string"
   },
+  "site": {
+    "name": "string",
+    "site_id": "string"
+  },
   "email": "string",
   "first_name": "string",
   "last_name": "string",
@@ -37,6 +41,9 @@ The `user_id` can be used to interact with user such as sending push notificatio
 
 The `company_id` can be used to interact with all company’s users such as broadcasting a push notification, posting on the global timeline, etc.
 
+`site` is a organizational unit in a company, it can correspond to an office, a building or a entire country division. Some examples can be "Workwell Paris Office", "Workwell France", etc. A user must belong to a site. In case of work travel, the user's site can change though.
+
+The `site_id` can be used to interact with all site’s users such as broadcasting a push notification, posting on the site timeline, etc.
 <!--
 ## <a name="timeline-all-users"></a>Post on timeline of all users of a company
 
