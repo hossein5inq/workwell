@@ -78,6 +78,41 @@ In case of error, the endpoint returns 400, please see [Workwell API Error](#err
   
 ```
 
+## <a name="post-timeline"></a>Post on user, site or company timeline.
+
+```bash
+curl -X POST "https://api.workwell.io/1.0/developer/service/timeline" \
+  -H "accept: application/json" \
+  -H "ww-service-id: {service_id}" \
+  -H "ww-service-signature: {service_signature}" \
+  -H "ww-timestamp: {timestamp}" \
+  -H "Content-Type: application/json" \
+  -d '{ "target_id": "{user id}", "target_type": "user", "text": "{text}", "image_url": "{image_url}" }'
+```
+
+The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
+
+The `target_type` is a user or a group of user that the notification will be sent to. Its value can be either `user`, `site` or `company`.
+
+The `target_id` is the id of the target, which is `user id` if `target_type` is user, `company id` if `target_type` is company, `site id` if `target_type` is site. The [user-info endpoint](#user-info) includes `user id`, `site id` and `company id` in its response.
+
+The `text` is the textual content that will be included in the timeline.
+
+The *optional* `image_url` is the link to the image that comes with a timeline.
+
+The data returned will have the following format in case of success (200). Please note this is the number of notifications that are *scheduled*, and  the notifications are not guaranteed to arrive immediately (or even at all!), due to rate limit for example.
+
+In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
+
+```json
+{
+  "timeline_id":"string"
+}
+```
+
+with `timeline_id` being the timeline identifier that can be eventually used to update the timeline later. 
+Please note that updating timeline after it has been posted is NOT recommended.
+
 ## <a name="error-code"></a>Possible error codes
 
 In case of error, all endpoints returns 400 with the following payload format
