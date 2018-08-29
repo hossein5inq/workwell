@@ -70,7 +70,8 @@ We have put in place a number of requirements for a Workwell integration to ensu
     * [UI](docs/js-sdk.md#ui)
 * [Workwell API](docs/api.md)
 	* [Get user info](docs/api.md#user-info)
-	* [Send push notification to users](docs/api.md#push-notification)
+	* [Send push notification to user, site, company](docs/api.md#push-notification)
+	* [Post on user, site, company timeline](docs/api.md#post-timeline)
 	* [Workwell API Error Codes](docs/api.md#error-code)
 * [FAQ](docs/faq.md)
 
