@@ -140,20 +140,12 @@ Following is the list of possible `error_code`:
 
 *Specific errors, depending on each endpoint*
 
-* if `error_code = 1304`: Invalid data format.
+* if `error_code = 1300`: A generic error, please check the error payload for more information.
 
 * if `error_code = 1301`: Your service does not have the permission to do the requested action (send notification, get more user info, etc). Please get in touch with Workwell support team.
 
-* if `error_code = 1302`: The `access token` provided is not valid. Please check in the error  message, cf [user-info endpoint](#user-info)
+* if `error_code = 1302`: The `access token` provided is not valid. Please check in the error message, cf [user-info endpoint](#user-info)
 
 * if `error_code = 1303`: The `access token` provided is expired, cf [user-info endpoint](#user-info)
 
-<!--
-## <a name="timeline-all-users"></a>Post on timeline of all users of a company
-
-## <a name="timeline-some-users"></a>Post on users' timelines
-
-## <a name="notification-all-users"></a>Push notification to all users of a company
-
-## <a name="notification-some-users"></a>Push notification to users
--->
+* if `error_code = 1304`: Invalid data format, please check the error payload for more information.
