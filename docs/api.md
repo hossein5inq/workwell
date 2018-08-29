@@ -56,7 +56,7 @@ curl -X POST "https://api.workwell.io/1.0/developer/service/notification" \
   -H "ww-service-signature: {service_signature}" \
   -H "ww-timestamp: {timestamp}" \
   -H "Content-Type: application/json" \
-  -d '{ "target_id": "{user id}", "target_type": "user", "message": "{message}" }'
+  -d '{ "target_id": "{target id}", "target_type": "{target type}", "message": "{message}" }'
 ```
 
 The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
@@ -87,7 +87,7 @@ curl -X POST "https://api.workwell.io/1.0/developer/service/timeline" \
   -H "ww-service-signature: {service_signature}" \
   -H "ww-timestamp: {timestamp}" \
   -H "Content-Type: application/json" \
-  -d '{ "target_id": "{user id}", "target_type": "user", "text": "{text}", "image_url": "{image_url}" }'
+  -d '{ "target_id": "{target id}", "target_type": "{target type}", "text": "{text}", "image_url": "{image_url}" }'
 ```
 
 The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
