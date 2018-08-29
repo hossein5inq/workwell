@@ -47,9 +47,7 @@ The `site_id` can be used to interact with all site’s users such as broadcasti
 
 In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
 
-## <a name="push-notification"></a>Send a push notification to users
-
-Using the `user id` obtained from [user-info endpoint](#user-info), you can call Workwell API to send push notifications to multiple users:
+## <a name="push-notification"></a>Send a push notification to a user, a site or a whole company.
 
 ```bash
 curl -X POST "https://api.workwell.io/1.0/developer/service/notification" \
@@ -58,15 +56,20 @@ curl -X POST "https://api.workwell.io/1.0/developer/service/notification" \
   -H "ww-service-signature: {service_signature}" \
   -H "ww-timestamp: {timestamp}" \
   -H "Content-Type: application/json" \
-  -d '{ "message": "{message}", "user_ids": [ "{user id 1}", "{user id 2}" ]}'
+  -d '{ "target_id": "{target id}", "target_type": "{target type}", "message": "{message}" }'
 ```
 
 The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
 
+The `target_type` is a user or a group of user that the notification will be sent to. Its value can be either `user`, `site` or `company`.
+
+The `target_id` is the id of the target, which is `user id` if `target_type` is user, `company id` if `target_type` is company, `site id` if `target_type` is site. The [user-info endpoint](#user-info) includes `user id`, `site id` and `company id` in its response.
+
+The `message` is the notification that will be sent.
+
 The data returned will have the following format in case of success (200). Please note this is the number of notifications that are *scheduled*, and  the notifications are not guaranteed to arrive immediately (or even at all!), due to rate limit for example.
 
 In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
-
 
 ```json
 {
@@ -74,6 +77,41 @@ In case of error, the endpoint returns 400, please see [Workwell API Error](#err
 }
   
 ```
+
+## <a name="post-timeline"></a>Post on user, site or company timeline.
+
+```bash
+curl -X POST "https://api.workwell.io/1.0/developer/service/timeline" \
+  -H "accept: application/json" \
+  -H "ww-service-id: {service_id}" \
+  -H "ww-service-signature: {service_signature}" \
+  -H "ww-timestamp: {timestamp}" \
+  -H "Content-Type: application/json" \
+  -d '{ "target_id": "{target id}", "target_type": "{target type}", "text": "{text}", "image_url": "{image_url}" }'
+```
+
+The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
+
+The `target_type` is a user or a group of user that the notification will be sent to. Its value can be either `user`, `site` or `company`.
+
+The `target_id` is the id of the target, which is `user id` if `target_type` is user, `company id` if `target_type` is company, `site id` if `target_type` is site. The [user-info endpoint](#user-info) includes `user id`, `site id` and `company id` in its response.
+
+The `text` is the textual content that will be included in the timeline.
+
+The *optional* `image_url` is the link to the image that comes with a timeline.
+
+The data returned will have the following format in case of success (200). Please note this is the number of notifications that are *scheduled*, and  the notifications are not guaranteed to arrive immediately (or even at all!), due to rate limit for example.
+
+In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
+
+```json
+{
+  "timeline_id":"string"
+}
+```
+
+with `timeline_id` being the timeline identifier that can be eventually used to update the timeline later. 
+Please note that updating timeline after it has been posted is NOT recommended.
 
 ## <a name="error-code"></a>Possible error codes
 
@@ -102,20 +140,12 @@ Following is the list of possible `error_code`:
 
 *Specific errors, depending on each endpoint*
 
-* if `error_code = 1304`: Invalid data format.
+* if `error_code = 1300`: A generic error, please check the error payload for more information.
 
 * if `error_code = 1301`: Your service does not have the permission to do the requested action (send notification, get more user info, etc). Please get in touch with Workwell support team.
 
-* if `error_code = 1302`: The `access token` provided is not valid. Please check in the error  message, cf [user-info endpoint](#user-info)
+* if `error_code = 1302`: The `access token` provided is not valid. Please check in the error message, cf [user-info endpoint](#user-info)
 
 * if `error_code = 1303`: The `access token` provided is expired, cf [user-info endpoint](#user-info)
 
-<!--
-## <a name="timeline-all-users"></a>Post on timeline of all users of a company
-
-## <a name="timeline-some-users"></a>Post on users' timelines
-
-## <a name="notification-all-users"></a>Push notification to all users of a company
-
-## <a name="notification-some-users"></a>Push notification to users
--->
+* if `error_code = 1304`: Invalid data format, please check the error payload for more information.
