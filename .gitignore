@@ -5,3 +5,4 @@ node_modules
 requirements.txt
 templates/
 server.py
+live-coding/distribution/*.bundle.js
