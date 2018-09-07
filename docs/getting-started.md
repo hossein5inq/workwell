@@ -132,7 +132,7 @@ Let's also assume you have a project structure that looks like this:
 
 Install Workwell JS:
 
-`npm install workwell --save-dev`
+`npm install workwell --save`
 
 ### Step 2:
 
