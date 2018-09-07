@@ -73,6 +73,7 @@ We have put in place a number of requirements for a Workwell integration to ensu
 	* [Send push notification to user, site, company](docs/api.md#push-notification)
 	* [Post on user, site, company timeline](docs/api.md#post-timeline)
 	* [Update timeline](docs/api.md#update-timeline)
+	* [Delete timeline](docs/api.md#delete-timeline)
 	* [Workwell API Error Codes](docs/api.md#error-code)
 * [FAQ](docs/faq.md)
 

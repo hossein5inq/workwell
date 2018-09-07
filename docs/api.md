@@ -145,6 +145,27 @@ In case of error, the endpoint returns 400, please see [Workwell API Error](#err
 }
 ```
 
+## <a name="delete-timeline"></a>Delete existing timeline.
+
+```bash
+curl -X DELETE "https://api.workwell.io/1.0/developer/service/timeline" \
+  -H "accept: application/json" \
+  -H "ww-service-id: {service_id}" \
+  -H "ww-service-signature: {service_signature}" \
+  -H "ww-timestamp: {timestamp}" \
+  -H "Content-Type: application/json" \
+  -d '{ "timeline_id": "{timeline id}" }'
+```
+
+The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
+
+The `timeline_id` is the timeline id returned when a timeline is created, cf [Post on timeline](#post-timeline)
+
+200 is returned in case of success, i.e. the timeline has been deleted successfully.
+
+In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
+
+
 ## <a name="error-code"></a>Possible error codes
 
 In case of error, all endpoints returns 400 with the following payload format
