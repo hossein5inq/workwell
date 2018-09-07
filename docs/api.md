@@ -100,7 +100,7 @@ The `text` is the textual content that will be included in the timeline.
 
 The *optional* `image_url` is the link to the image that comes with a timeline.
 
-The data returned will have the following format in case of success (200). Please note this is the number of notifications that are *scheduled*, and  the notifications are not guaranteed to arrive immediately (or even at all!), due to rate limit for example.
+The data returned will have the following format in case of success (200).
 
 In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
 
@@ -112,6 +112,38 @@ In case of error, the endpoint returns 400, please see [Workwell API Error](#err
 
 with `timeline_id` being the timeline identifier that can be eventually used to update the timeline later. 
 Please note that updating timeline after it has been posted is NOT recommended.
+
+## <a name="update-timeline"></a>Update existing timeline.
+
+```bash
+curl -X PATCH "https://api.workwell.io/1.0/developer/service/timeline" \
+  -H "accept: application/json" \
+  -H "ww-service-id: {service_id}" \
+  -H "ww-service-signature: {service_signature}" \
+  -H "ww-timestamp: {timestamp}" \
+  -H "Content-Type: application/json" \
+  -d '{ "timeline_id": "{timeline id}", "text": "{text}", "image_url": "{image_url}" }'
+```
+
+The service id, signature and timestamp are generated in the same way as for service token, please see [Getting Started/Service Token](./getting-started.md#service-token).
+
+The `timeline_id` is the timeline id returned when a timeline is created, cf [Post on timeline](#post-timeline)
+
+The `text` is the textual content that will be updated in the timeline.
+
+The *optional* `image_url` is the link to the image that comes with a timeline.
+
+The data returned will have the following format in case of success (200). 
+
+In case of error, the endpoint returns 400, please see [Workwell API Error](#error-code) for more details.
+
+```json
+{
+  "image_url": "string",
+  "text": "string",
+  "timeline_id": "string"
+}
+```
 
 ## <a name="error-code"></a>Possible error codes
 
@@ -149,3 +181,6 @@ Following is the list of possible `error_code`:
 * if `error_code = 1303`: The `access token` provided is expired, cf [user-info endpoint](#user-info)
 
 * if `error_code = 1304`: Invalid data format, please check the error payload for more information.
+
+* if `error_code = 1305`: No such timeline. The timeline might have been deleted before?
+
