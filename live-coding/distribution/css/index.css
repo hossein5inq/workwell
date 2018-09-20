@@ -1,0 +1,134 @@
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body-ios {
+    background-color: #fafafa !important;
+}
+
+.body-android {
+    background-color: #ffffff !important;
+}
+
+#general-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#menu-container {
+    min-width: 200px;
+    height: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    border-right: solid 1px #dadada;
+}
+
+#main-component-container {
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+div.editor {
+    width: 100%;
+    height: 100%;
+    border: solid #dadada 1px;
+    box-sizing: border-box;
+}
+
+#mobile-container {
+    width: 384px;
+    height: 576px;
+    background-color: #fafafa;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    border-left: solid 1px #dadada;
+    border-right: solid 1px #dadada;
+    border-bottom: solid 1px #dadada;
+}
+
+#left-container {
+    box-sizing: border-box;
+}
+
+#right-container {
+    margin-left: 30px;
+}
+
+#html-editor-header, #js-editor-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: Helvetica, sans-serif;
+    padding: 10px;
+    border-left: solid #dadada 1px;
+    border-top: solid #dadada 1px;
+    border-right: solid #dadada 1px;
+}
+
+#html-container {
+    width: 600px;
+    height: 400px;
+    margin-bottom: 50px;
+}
+
+#js-container {
+    width: 600px;
+    height: 400px;
+}
+
+#os-pick-container {
+    display: flex;
+}
+
+#os-run-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: solid 1px #dadada;
+    background-color: #dadada;
+    font-family: Helvetica, sans-serif;
+}
+
+.os-picker {
+    height: 34px;
+    width: auto;
+    opacity: 0.5;
+}
+
+.os-picker:hover {
+    cursor: pointer;
+}
+
+.os-picker[selected] {
+    opacity: 1;
+}
+
+#nav {
+    margin-top: 50px;
+    font-family: Helvetica, sans-serif;;
+}
+
+#nav > li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+#nav > li > ul {
+    display: none;
+    list-style-type: none;
+}

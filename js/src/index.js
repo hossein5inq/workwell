@@ -4,6 +4,7 @@ import * as token from "./bridge/token";
 import {getMobileOperatingSystem} from "./bridge/utils";
 import * as constants_ from "./bridge/constants";
 import * as ui_ from "./ui/ui";
+import * as config from "./bridge/config";
 import "../../dist/css/workwell.css";
 
 window["Workwell_onShow"] = function () {
@@ -262,4 +263,8 @@ export function getUserAccessToken(obj) {
 
     const jsonObj = createJSONFrom("get", "userInfo", obj);
     sendFromJS(JSON.stringify(jsonObj));
+}
+
+export function setOS(os) {
+    config.setOS(os);
 }
