@@ -14,6 +14,7 @@ import InputMaterial from "./base-components/ww-input--material";
 import TextArea from "./base-components/ww-textarea";
 import TextAreaMaterial from "./base-components/ww-textarea--material";
 import Picker from "./base-components/ww-picker";
+import ImageGallery from "./base-components/ww-image-gallery";
 
 export default function ww_(el) {
     let obj = {};
@@ -59,6 +60,8 @@ export default function ww_(el) {
         obj = new TextArea();
     } else if (hasClass(el, "ww-picker__container")) {
         obj = new Picker();
+    } else if (hasClass(el, "ww-image-gallery__container")) {
+        obj = new ImageGallery();
     }
 
     Object.assign(obj, el);

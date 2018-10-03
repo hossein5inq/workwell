@@ -5,6 +5,7 @@ import {getMobileOperatingSystem} from "./bridge/utils";
 import * as constants_ from "./bridge/constants";
 import * as ui_ from "./ui/ui";
 import * as config from "./bridge/config";
+import * as sdk from "./bridge/sdk";
 import "../../dist/css/workwell.css";
 
 window["Workwell_onShow"] = function () {
@@ -67,8 +68,7 @@ export function onShow(fn) {
 }
 
 export function chooseImage(obj) {
-    const jsonObj = createJSONFrom("ui", "chooseImage", obj);
-    sendFromJS(JSON.stringify(jsonObj));
+    sdk.chooseImage(obj);
 }
 
 export function openWebPage(url) {
