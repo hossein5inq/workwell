@@ -194,9 +194,7 @@ This function adds an image to the ImageGallery component.
 
 ### getImages
 
-This function sets the type of the icon.
-
-- `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the type of the icon (can be 'chevron'|'directions'|'check')
+This function returns the list of images (url and if it's base64 or not) included in the ImageGallery.
 
 ### toggleEditMode
 
