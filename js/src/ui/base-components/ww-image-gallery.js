@@ -1,6 +1,7 @@
 import BaseComponent from "./ww-base-component";
 import PagingIndicator from "./ww-paging-indicator";
 import {chooseImage} from "../../bridge/sdk";
+import {get, getLocale} from "../i18n";
 
 export default class ImageGallery extends BaseComponent {
 
@@ -31,8 +32,8 @@ export default class ImageGallery extends BaseComponent {
         this.el.pagingIndicator.hide();
         this.el.pagingIndicator.addClass("ww-image-gallery__paging-indicator");
 
-        this.el.replacePhotoDiv.innerHTML = "Replace";
-        this.el.removePhotoDiv.innerHTML = "Remove";
+        this.el.replacePhotoDiv.innerHTML = get(getLocale(), "replace-photo");
+        this.el.removePhotoDiv.innerHTML = get(getLocale(), "remove-photo");
 
         this.el.changePhotoContainer.appendChild(this.el.replacePhotoDiv);
         this.el.changePhotoContainer.appendChild(this.el.removePhotoDiv);
@@ -135,18 +136,18 @@ export default class ImageGallery extends BaseComponent {
     toggleEditMode() {
         if (this.el.n === 0) {
             this.el.changePhotoContainer.style.display = "none";
-            this.el.addPhotoDiv.innerHTML = "Add Photo";
+            this.el.addPhotoDiv.innerHTML = get(getLocale(), "add-photo");
             this.el.topLayer.style.justifyContent = "center";
             BaseComponent.removeClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
             this.el.pagingIndicator.hide();
         } else if (this.el.n === 1) {
             BaseComponent.addClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
-            this.el.addPhotoDiv.innerHTML = "Add Another Photo";
+            this.el.addPhotoDiv.innerHTML = get(getLocale(), "add-another-photo");
             this.el.changePhotoContainer.style.display = "flex";
             this.el.pagingIndicator.hide();
         } else {
             BaseComponent.addClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
-            this.el.addPhotoDiv.innerHTML = "Add Another Photo";
+            this.el.addPhotoDiv.innerHTML = get(getLocale(), "add-another-photo");
             this.el.changePhotoContainer.style.display = "flex";
             this.el.pagingIndicator.setPageCount(this.el.n);
             this.el.pagingIndicator.show();

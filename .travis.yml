@@ -16,4 +16,4 @@ deploy:
   script: bash deploy.sh $NPM_USERNAME $NPM_PASSWORD $NPM_EMAIL $AWS_BUCKET $AWS_ACCESS_ID $AWS_ACCESS_SECRET
   skip_cleanup: true
   on:
-    condition: $TRAVIS_BRANCH == "master" && -n $TRAVIS_TAG
+    condition: $TRAVIS_BRANCH == "master"
