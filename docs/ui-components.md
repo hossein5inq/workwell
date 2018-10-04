@@ -209,7 +209,7 @@ document.body.appendChild(
 This function adds an image to the ImageGallery component.
 
 - `imageUrl` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the url of the image you want to add (can also be a base64 string)
-- `isBase64` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** this optional boolean (by default equals to false) informs the ImageGallery component of the type of url you are giving to add this image
+- `isBase64` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** this optional boolean (by default equals to false) informs the ImageGallery component of the type of url you are giving to add this image
 
 ### getImages
 
