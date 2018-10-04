@@ -182,6 +182,50 @@ document.body.appendChild(
   <kbd><img src="images/icon-check-android.png" alt="drawing" width="300px"/></kbd>
   </p>
   <br/>
+  
+## ImageGallery
+
+### addImage
+
+This function adds an image to the ImageGallery component.
+
+- `imageUrl` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the url of the image you want to add (can also be a base64 string)
+- `isBase64` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** this optional boolean (by default equals to false) informs the ImageGallery component of the type of url you are giving to add this image
+
+### getImages
+
+This function sets the type of the icon.
+
+- `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the type of the icon (can be 'chevron'|'directions'|'check')
+
+### toggleEditMode
+
+This function toggles the edit mode of the ImageGallery, with buttons appearing like "add another photo", "remove", "replace".
+
+### toggleNormalMode
+
+This function toggles the normal mode of the ImageGallery, with all buttons disappearing.
+
+**Example**
+
+```javascript
+document.body.appendChild(
+        Workwell.ui.createImageGallery()
+            .addImage("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg")
+            .addImage("https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg")
+            .addImage("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg")
+            .addImage("https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg")
+            .toggleEditMode()
+            .toHTMLElement()
+    );
+```
+
+<br/>
+  <p align="center">
+  <kbd><img src="images/image-gallery-ios.png" alt="drawing" width="300px"/></kbd>
+  <kbd><img src="images/image-gallery-android.png" alt="drawing" width="300px"/></kbd>
+  </p>
+  <br/>
 
 ## Input
 
