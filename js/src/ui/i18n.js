@@ -4,11 +4,19 @@ let locale = defaultLocale;
 const i18n = {
     en: {
         "cancel-search-input": "Cancel",
-        "required": "Required"
+        "required": "Required",
+        "add-photo": "Add Photo",
+        "add-another-photo": "Add Another Photo",
+        "remove-photo": "Remove",
+        "replace-photo": "Replace"
     },
     fr: {
         "cancel-search-input": "Annuler",
-        "required": "Requis"
+        "required": "Requis",
+        "add-photo": "Ajouter une photo",
+        "add-another-photo": "Ajouter une photo",
+        "remove-photo": "Supprimer",
+        "replace-photo": "Remplacer"
     }
 };
 
