@@ -2,6 +2,25 @@
 
 Here is the list of all the UI components (and their methods) available in the SDK.
 
+  - [Banner](ui-components.md#banner)
+  - [BannerSubtitle](ui-components.md#bannersubtitle)
+  - [BannerTitle](ui-components.md#bannertitle)
+  - [Button](ui-components.md#button)
+  - [Icon](ui-components.md#cicon)
+  - [ImageGallery](ui-components.md#imagegallery)
+  - [Input](ui-components.md#input)
+  - [List](ui-components.md#list)
+  - [ListItem](ui-components.md#listitem)
+  - [ListItemChevronIcon](ui-components.md#listitemchevronicon)
+  - [ListItemLabel](ui-components.md#listitemlabel)
+  - [ListItemSubtitle](ui-components.md#listitemsubtitle)
+  - [ListItemTitle](ui-components.md#listitemtitle)
+  - [PagingIndicator](ui-components.md#pagingindicator)
+  - [Picker](ui-components.md#picker)
+  - [Slider](ui-components.md#slider)
+  - [Switch](ui-components.md#switch)
+  - [TextArea](ui-components.md#textarea)
+
 ## Banner
 
 ### add
