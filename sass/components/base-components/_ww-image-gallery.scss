@@ -1,0 +1,94 @@
+@import "../../abstracts/variables";
+
+// Image-Gallery-specific variables (iOS)
+
+// Image-Gallery-specific variables (material)
+
+.ww-image-gallery__container {
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+
+.ww-image-gallery {
+  --n: 1;
+  height: 200px;
+  width: calc(var(--n) * 100%);
+  box-sizing: border-box;
+  background-color: #a8a8a8;
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  transform: translate(calc(var(--i) / var(--n) * -100%));
+  transition: transform .5s ease-out;
+  position: absolute;
+  z-index: 0;
+
+  &__slide {
+    display: inline;
+    height: 200px;
+    width: 100%;
+    width: calc(100% / var(--n));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+.ww-image-gallery__top-layer {
+  position: fixed;
+  box-sizing: border-box;
+  height: 200px;
+  width: 100%;
+  padding: 4px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ww-image-gallery__add-photo, .ww-image-gallery__replace-photo, .ww-image-gallery__remove-photo {
+  font-family: $ios-font;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.37);
+  color: white;
+  padding: 13px;
+  border-radius: 23px;
+  &--material {
+    font-family: $material-font;
+  }
+}
+
+.ww-image-gallery__change-photo-container {
+  display: flex;
+}
+
+.ww-image-gallery__add-photo {
+  margin-bottom: 0;
+}
+
+.ww-image-gallery__add-another-photo {
+  margin-bottom: 12px;
+}
+
+.ww-image-gallery__replace-photo {
+  font-size: 12px;
+  padding: 11px;
+  margin-right: 16px;
+  border-radius: 21px;
+}
+
+.ww-image-gallery__remove-photo {
+  font-size: 12px;
+  padding: 11px;
+  border-radius: 21px;
+}
+
+.ww-image-gallery__paging-indicator {
+  position: absolute;
+  bottom: 0;
+}

@@ -18,6 +18,7 @@ import TextAreaMaterial from "./base-components/ww-textarea--material";
 import BannerTitle from "./base-components/ww-banner-title";
 import BannerSubtitle from "./base-components/ww-banner-subtitle";
 import Picker from "./base-components/ww-picker";
+import ImageGallery from "./base-components/ww-image-gallery";
 import {getMobileOperatingSystem} from "../bridge/utils";
 import {hasClass, addClass, convertEvent} from "./ui-utils";
 import ww_ from "./ww_";
@@ -122,6 +123,10 @@ export function createIcon() {
 
 export function createPicker() {
     return new Picker();
+}
+
+export function createImageGallery() {
+    return new ImageGallery();
 }
 
 export function $(el) {
@@ -329,6 +334,24 @@ export function format() {
         if (el.hasAttribute("data-type")) {
             ww_(el).setType(el.getAttribute("data-type"));
         }
+    }
+
+    let imageGalleries = document.getElementsByClassName("ww-image-gallery");
+    for (let i = 0; i < imageGalleries.length; i++) {
+        let el = imageGalleries[i];
+        let newEl = createImageGallery();
+
+        if (el.hasAttribute("id")) {
+            newEl.setId(el.getAttribute("id"));
+        }
+
+        let imgs = el.getElementsByTagName("img");
+
+        for (let j = 0; j < imgs.length; +j++) {
+            newEl.addImage(imgs[j].src);
+        }
+
+        el.parentNode.replaceChild(newEl.toHTMLElement(), el);
     }
 }
 

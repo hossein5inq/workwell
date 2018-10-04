@@ -50,4 +50,12 @@ export default class PagingIndicator extends BaseComponent {
     getPageCount() {
         return this.pageCount;
     }
+
+    show() {
+        this.css("display", "flex");
+    }
+
+    hide() {
+        this.css("display", "none");
+    }
 }
