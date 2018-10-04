@@ -324,6 +324,7 @@
   - [createBannerTitle](js-sdk.md#createbannertitle)
   - [createButton](js-sdk.md#createbutton)
   - [createIcon](js-sdk.md#createicon)
+  - [createImageGallery](js-sdk.md#createimagegallery)
   - [createInput](js-sdk.md#createinput)
   - [createList](js-sdk.md#createlist)
   - [createListItem](js-sdk.md#createlistitem)
@@ -509,6 +510,20 @@
     ```
     
     See [Icon](ui-components.md#icon) for more details on this component.
+    
+  * ### createImageGallery
+  
+    This function creates a Workwell Image Gallery component. The style of this element will automatically be iOS-like or Android-like depending on the platform. Before adding it to the DOM, you need to call its `.toHTMLElement()` method, it's required for all the Workwell-UI components.
+    
+    **Examples**
+    
+    ```javascript
+    document.body.appendChild(
+        Workwell.ui.createImageGallery().toHTMLElement()
+    );
+    ```
+    
+    See [ImageGallery](ui-components.md#imagegallery) for more details on this component.
   
   * ### createInput
    
