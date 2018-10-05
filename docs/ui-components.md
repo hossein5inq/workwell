@@ -2,6 +2,25 @@
 
 Here is the list of all the UI components (and their methods) available in the SDK.
 
+  - [Banner](ui-components.md#banner)
+  - [BannerSubtitle](ui-components.md#bannersubtitle)
+  - [BannerTitle](ui-components.md#bannertitle)
+  - [Button](ui-components.md#button)
+  - [Icon](ui-components.md#cicon)
+  - [ImageGallery](ui-components.md#imagegallery)
+  - [Input](ui-components.md#input)
+  - [List](ui-components.md#list)
+  - [ListItem](ui-components.md#listitem)
+  - [ListItemChevronIcon](ui-components.md#listitemchevronicon)
+  - [ListItemLabel](ui-components.md#listitemlabel)
+  - [ListItemSubtitle](ui-components.md#listitemsubtitle)
+  - [ListItemTitle](ui-components.md#listitemtitle)
+  - [PagingIndicator](ui-components.md#pagingindicator)
+  - [Picker](ui-components.md#picker)
+  - [Slider](ui-components.md#slider)
+  - [Switch](ui-components.md#switch)
+  - [TextArea](ui-components.md#textarea)
+
 ## Banner
 
 ### add
@@ -180,6 +199,48 @@ document.body.appendChild(
   <p align="center">
   <kbd><img src="images/icon-check-ios.png" alt="drawing" width="300px"/></kbd>
   <kbd><img src="images/icon-check-android.png" alt="drawing" width="300px"/></kbd>
+  </p>
+  <br/>
+  
+## ImageGallery
+
+### addImage
+
+This function adds an image to the ImageGallery component.
+
+- `imageUrl` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the url of the image you want to add (can also be a base64 string)
+- `isBase64` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** this optional boolean (by default equals to false) informs the ImageGallery component of the type of url you are giving to add this image
+
+### getImages
+
+This function returns the list of images (url and if it's base64 or not) included in the ImageGallery.
+
+### toggleEditMode
+
+This function toggles the edit mode of the ImageGallery, with buttons appearing like "add another photo", "remove", "replace".
+
+### toggleNormalMode
+
+This function toggles the normal mode of the ImageGallery, with all buttons disappearing.
+
+**Example**
+
+```javascript
+document.body.appendChild(
+        Workwell.ui.createImageGallery()
+            .addImage("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg")
+            .addImage("https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg")
+            .addImage("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg")
+            .addImage("https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg")
+            .toggleEditMode()
+            .toHTMLElement()
+    );
+```
+
+<br/>
+  <p align="center">
+  <kbd><img src="images/image-gallery-ios.png" alt="drawing" width="300px"/></kbd>
+  <kbd><img src="images/image-gallery-android.png" alt="drawing" width="300px"/></kbd>
   </p>
   <br/>
 
