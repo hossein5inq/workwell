@@ -353,6 +353,10 @@ export function format() {
             }
         }
 
+        if (el.hasAttribute("data-max-images")) {
+            newEl.setMaxImages(parseInt(el.getAttribute("data-max-images")));
+        }
+
         let imgs = el.getElementsByTagName("img");
 
         for (let j = 0; j < imgs.length; +j++) {
