@@ -137,6 +137,7 @@ export default class ImageGallery extends BaseComponent {
     toggleEditMode() {
         if (this.el.n === 0) {
             this.el.changePhotoContainer.style.display = "none";
+            this.el.addPhotoDiv.style.display = "block";
             this.el.addPhotoDiv.innerHTML = get(getLocale(), "add-photo");
             this.el.topLayer.style.justifyContent = "center";
             BaseComponent.removeClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
@@ -184,6 +185,7 @@ export default class ImageGallery extends BaseComponent {
                 this.el.pagingIndicator.setPageCount(this.el.n);
                 this.el.pagingIndicator.show();
             }
+            this.el.changePhotoContainer.style.display = "flex";
             BaseComponent.addClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
             if (this.el.n === this.el.maxImages) {
                 this.el.addPhotoDiv.style.display = "none";

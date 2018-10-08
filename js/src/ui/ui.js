@@ -345,6 +345,14 @@ export function format() {
             newEl.setId(el.getAttribute("id"));
         }
 
+        if (el.hasAttribute("data-state")) {
+            if (el.getAttribute("data-state") === "edit") {
+                newEl.toggleEditMode();
+            } else if (el.getAttribute("data-state") === "normal") {
+                newEl.toggleNormalMode();
+            }
+        }
+
         let imgs = el.getElementsByTagName("img");
 
         for (let j = 0; j < imgs.length; +j++) {
