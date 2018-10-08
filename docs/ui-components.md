@@ -215,6 +215,16 @@ This function adds an image to the ImageGallery component.
 
 This function returns the list of images (url and if it's base64 or not) included in the ImageGallery.
 
+### getMaxImages
+
+This function returns the maximum number of images that the gallery can contain.
+
+### setMaxImages
+
+This function sets the maximum number of images that the gallery can contain.
+
+- `maxImages` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
 ### toggleEditMode
 
 This function toggles the edit mode of the ImageGallery, with buttons appearing like "add another photo", "remove", "replace".

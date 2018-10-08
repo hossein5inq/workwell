@@ -17,6 +17,7 @@ export default class ImageGallery extends BaseComponent {
         this.el.x0 = null;
         this.el.i = 0;
         this.el.n = 0;
+        this.el.maxImages = 3; // default
         this.el.slides = [];
         this.el.images = [];
 
@@ -152,7 +153,11 @@ export default class ImageGallery extends BaseComponent {
             this.el.pagingIndicator.setPageCount(this.el.n);
             this.el.pagingIndicator.show();
         }
-        this.el.addPhotoDiv.style.display = "block";
+        if (this.el.n === this.el.maxImages) {
+            this.el.addPhotoDiv.style.display = "none";
+        } else {
+            this.el.addPhotoDiv.style.display = "block";
+        }
         return this;
     }
 
@@ -163,27 +168,44 @@ export default class ImageGallery extends BaseComponent {
     }
 
     addImage(imageUrl, isBase64 = false) {
-        let url = imageUrl;
-        if (isBase64) {
-            url = "data:image/png;base64," + imageUrl;
-            url = url.replace(/(\r\n|\n|\r)/gm, "");
+        if (this.el.n < this.el.maxImages) {
+            let url = imageUrl;
+            if (isBase64) {
+                url = "data:image/png;base64," + imageUrl;
+                url = url.replace(/(\r\n|\n|\r)/gm, "");
+            }
+            let slide = document.createElement("div");
+            BaseComponent.addClass(slide, "ww-image-gallery__slide");
+            slide.style.backgroundImage = "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.48)), url('" + url + "')";
+            this.el.galleryBanner.appendChild(slide);
+            this.el.n++;
+            this.el.galleryBanner.style.setProperty("--n", this.el.n);
+            if (this.el.n > 1) {
+                this.el.pagingIndicator.setPageCount(this.el.n);
+                this.el.pagingIndicator.show();
+            }
+            BaseComponent.addClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
+            if (this.el.n === this.el.maxImages) {
+                this.el.addPhotoDiv.style.display = "none";
+            }
+            this.el.slides.push(slide);
+            this.el.images.push({
+                isBase64: isBase64,
+                url: isBase64 ? imageUrl : url
+            });
+        } else {
+            console.error("The maximum number of images has been reached");
         }
-        let slide = document.createElement("div");
-        BaseComponent.addClass(slide, "ww-image-gallery__slide");
-        slide.style.backgroundImage = "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.48)), url('" + url + "')";
-        this.el.galleryBanner.appendChild(slide);
-        this.el.n++;
-        this.el.galleryBanner.style.setProperty("--n", this.el.n);
-        if (this.el.n > 1) {
-            this.el.pagingIndicator.setPageCount(this.el.n);
-            this.el.pagingIndicator.show();
-        }
-        BaseComponent.addClass(this.el.addPhotoDiv, "ww-image-gallery__add-another-photo");
-        this.el.slides.push(slide);
-        this.el.images.push({
-            isBase64: isBase64,
-            url: isBase64 ? imageUrl : url
-        });
+        return this;
+    }
+
+    getMaxImages() {
+        return this.el.maxImages;
+    }
+
+    setMaxImages(maxImages) {
+        this.el.maxImages = maxImages;
+        this.el.pagingIndicator.setPageCount(Math.min(this.el.n, maxImages));
         return this;
     }
 
