@@ -220,4 +220,21 @@ export default class ImageGallery extends BaseComponent {
         return this.el.images;
     }
 
+    removeAll() {
+        while (this.el.galleryBanner.firstChild) {
+            this.el.galleryBanner.removeChild(this.el.galleryBanner.firstChild);
+        }
+        this.el.addPhotoDiv.innerHTML = get(getLocale(), "add-photo");
+        this.el.addPhotoDiv.style.display = "block";
+        this.el.changePhotoContainer.style.display = "none";
+        this.el.slides = [];
+        this.el.images = [];
+        this.el.n = 0;
+        this.el.i = 0;
+        this.el.galleryBanner.style.setProperty("--i", 0);
+        this.el.galleryBanner.style.setProperty("--n", 1);
+        this.el.pagingIndicator.setPageCount(0);
+        return this;
+    }
+
 }
