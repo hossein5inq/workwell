@@ -219,6 +219,10 @@ This function returns the list of images (url and if it's base64 or not) include
 
 This function returns the maximum number of images that the gallery can contain.
 
+### removeAll
+
+This function removes all the images contained in the gallery.
+
 ### setMaxImages
 
 This function sets the maximum number of images that the gallery can contain.
