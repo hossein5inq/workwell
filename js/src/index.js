@@ -20,7 +20,7 @@ ui_.ready(function () {
     let mutationObserver = new MutationObserver(function (mutations) {
         for (let mutation of mutations) {
             if (mutation.type === "childList") {
-                for (let addedNode of mutation.addedNodes) {
+                for (const addedNode in mutation.addedNodes) {
                     if (addedNode.onAttachedToDom) {
                         addedNode.onAttachedToDom();
                     }
