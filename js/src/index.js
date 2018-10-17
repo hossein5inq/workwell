@@ -6,6 +6,7 @@ import * as constants_ from "./bridge/constants";
 import * as ui_ from "./ui/ui";
 import * as config from "./bridge/config";
 import * as sdk from "./bridge/sdk";
+import "./polyfills.js";
 import "../../dist/css/workwell.css";
 
 window["Workwell_onShow"] = function () {
@@ -20,9 +21,9 @@ ui_.ready(function () {
     let mutationObserver = new MutationObserver(function (mutations) {
         for (let mutation of mutations) {
             if (mutation.type === "childList") {
-                for (const addedNode in mutation.addedNodes) {
-                    if (addedNode.onAttachedToDom) {
-                        addedNode.onAttachedToDom();
+                for (const addedNodeIndex in mutation.addedNodes) {
+                    if (mutation.addedNodes[addedNodeIndex].onAttachedToDom) {
+                        mutation.addedNodes[addedNodeIndex].onAttachedToDom();
                     }
                 }
             }
