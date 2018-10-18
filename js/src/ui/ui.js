@@ -246,6 +246,9 @@ export function format() {
         if (el.hasAttribute("data-assistive-text")) {
             newEl.setAssistiveText(el.getAttribute("data-assistive-text"));
         }
+        if (el.hasAttribute("data-date-format")) {
+            newEl.setDateFormat(el.getAttribute("data-date-format"));
+        }
 
         el.parentNode.replaceChild(newEl.toHTMLElement(), el);
     }

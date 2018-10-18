@@ -1,6 +1,7 @@
 import BaseComponent from "./ww-base-component";
 import anime from "animejs";
 import {get, getLocale} from "../i18n";
+import {showDateTimePicker} from "../../bridge/sdk";
 
 export default class InputMaterial extends BaseComponent {
 
@@ -12,6 +13,7 @@ export default class InputMaterial extends BaseComponent {
         this.labelColor = "#a5a5a5";
         this.borderColor = "#c6c6c6";
         this.el.required = false;
+        this.el.dateFormat = "dd/mm/yyyy";
 
         this.el.inputSubContainer = document.createElement("div");
         this.inputSubContainerCenterPart = document.createElement("div");
@@ -109,7 +111,37 @@ export default class InputMaterial extends BaseComponent {
         return this;
     }
 
+    pad(n) {
+        return n < 10 ? "0" + n : n;
+    }
+
     setType(type) {
+        if (type === "date") {
+            type = "text";
+            this.el.input.readOnly = true;
+            this.onClick(() => {
+                showDateTimePicker({
+                    maxDate: 1000000000000000000,
+                    success: (res) => {
+                        if (res && res.date) {
+                            const selectedDate = new Date(res.date * 1000);
+                            const date = selectedDate.getDate();
+                            const month = selectedDate.getMonth();
+                            const year = selectedDate.getFullYear();
+                            if (this.el.dateFormat === "dd-mm-yyyy") {
+                                this.setValue(this.pad(date) + "-" + this.pad(month + 1) + "-" + year);
+                            } else if (this.el.dateFormat === "mm-dd-yyyy") {
+                                this.setValue(this.pad(month + 1) + "-" + this.pad(date) + "-" + year);
+                            } else if (this.el.dateFormat === "mm/dd/yyyy") {
+                                this.setValue(this.pad(month + 1) + "/" + this.pad(date) + "/" + year);
+                            } else {
+                                this.setValue(this.pad(date) + "/" + this.pad(month + 1) + "/" + year);
+                            }
+                        }
+                    }
+                });
+            });
+        }
         this.el.input.type = type;
         if (type === "number") {
             this.el.input.pattern = "[0-9]*";
@@ -161,6 +193,11 @@ export default class InputMaterial extends BaseComponent {
                 this.onFocusAnimation();
             }
         }
+        return this;
+    }
+
+    setDateFormat(dateFormat) {
+        this.el.dateFormat = dateFormat;
         return this;
     }
 
