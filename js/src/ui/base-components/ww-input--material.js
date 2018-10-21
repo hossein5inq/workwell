@@ -1,9 +1,10 @@
 import BaseComponent from "./ww-base-component";
+import BaseInput from "./ww-base-input";
 import anime from "animejs";
 import {get, getLocale} from "../i18n";
 import {showDateTimePicker} from "../../bridge/sdk";
 
-export default class InputMaterial extends BaseComponent {
+export default class InputMaterial extends BaseInput {
 
     constructor(type = "text") {
         super("div");
@@ -22,6 +23,7 @@ export default class InputMaterial extends BaseComponent {
         this.el.input = document.createElement("input");
         this.assistiveText = document.createElement("div");
         this.el.hasBeenAttached = false;
+        this.el.inputType = type;
 
         this.labelContainer.appendChild(this.el.label);
         this.inputSubContainerCenterPart.appendChild(this.labelContainer);
@@ -40,7 +42,9 @@ export default class InputMaterial extends BaseComponent {
         this.setType(type);
 
         this.el.input.addEventListener("focus", () => {
-            this.onFocusAnimation();
+            if (this.el.inputType !== "date") {
+                this.onFocusAnimation();
+            }
         });
 
         this.el.input.addEventListener("blur", () => {
@@ -96,26 +100,8 @@ export default class InputMaterial extends BaseComponent {
         });
     }
 
-    disable() {
-        this.el.setAttribute("disabled", "");
-        return this;
-    }
-
-    enable() {
-        this.el.removeAttribute("disabled");
-        return this;
-    }
-
-    onClick(fn) {
-        this.el.addEventListener("click", fn);
-        return this;
-    }
-
-    pad(n) {
-        return n < 10 ? "0" + n : n;
-    }
-
     setType(type) {
+        this.el.inputType = type;
         if (type === "date") {
             type = "text";
             this.el.input.readOnly = true;
@@ -129,13 +115,13 @@ export default class InputMaterial extends BaseComponent {
                             const month = selectedDate.getMonth();
                             const year = selectedDate.getFullYear();
                             if (this.el.dateFormat === "dd-mm-yyyy") {
-                                this.setValue(this.pad(date) + "-" + this.pad(month + 1) + "-" + year);
+                                this.setValue(BaseInput.pad(date) + "-" + BaseInput.pad(month + 1) + "-" + year);
                             } else if (this.el.dateFormat === "mm-dd-yyyy") {
-                                this.setValue(this.pad(month + 1) + "-" + this.pad(date) + "-" + year);
+                                this.setValue(BaseInput.pad(month + 1) + "-" + BaseInput.pad(date) + "-" + year);
                             } else if (this.el.dateFormat === "mm/dd/yyyy") {
-                                this.setValue(this.pad(month + 1) + "/" + this.pad(date) + "/" + year);
+                                this.setValue(BaseInput.pad(month + 1) + "/" + BaseInput.pad(date) + "/" + year);
                             } else {
-                                this.setValue(this.pad(date) + "/" + this.pad(month + 1) + "/" + year);
+                                this.setValue(BaseInput.pad(date) + "/" + BaseInput.pad(month + 1) + "/" + year);
                             }
                         }
                     }
@@ -158,10 +144,6 @@ export default class InputMaterial extends BaseComponent {
         return this;
     }
 
-    getPlaceholder() {
-        return this.el.placeholder;
-    }
-
     setPlaceholder(placeholder) {
         let obj = this.el.inputSubContainer;
         this.el.placeholder = this.el.required ? placeholder + "*" : placeholder;
@@ -179,11 +161,6 @@ export default class InputMaterial extends BaseComponent {
         return this;
     }
 
-    onInput(fn) {
-        this.el.addEventListener("input", fn);
-        return this;
-    }
-
     setValue(value) {
         this.el.input.value = value;
         if (this.el.hasBeenAttached) {
@@ -196,22 +173,8 @@ export default class InputMaterial extends BaseComponent {
         return this;
     }
 
-    setDateFormat(dateFormat) {
-        this.el.dateFormat = dateFormat;
-        return this;
-    }
-
-    getValue() {
-        return this.el.input.value;
-    }
-
-    setMaxLength(maxLength) {
-        this.el.input.maxLength = maxLength;
-        return this;
-    }
-
-    getMaxLength() {
-        return this.el.input.maxLength;
+    getElement() {
+        return this.el.input;
     }
 
     setRequired(required) {

@@ -1,7 +1,8 @@
 import BaseComponent from "./ww-base-component";
+import BaseInput from "./ww-base-input";
 import {showDateTimePicker} from "../../bridge/sdk";
 
-export default class Input extends BaseComponent {
+export default class Input extends BaseInput {
 
     constructor(type = "text") {
         super("input");
@@ -14,6 +15,7 @@ export default class Input extends BaseComponent {
         this.setType(type);
         this.el.required = false;
         this.el.dateFormat = "dd/mm/yyyy";
+        this.el.inputType = type;
 
         this.el.onAttachedToDom = () => {
             if (this.el.headerAdded) {
@@ -22,26 +24,8 @@ export default class Input extends BaseComponent {
         };
     }
 
-    disable() {
-        this.el.setAttribute("disabled", "");
-        return this;
-    }
-
-    enable() {
-        this.el.removeAttribute("disabled");
-        return this;
-    }
-
-    onClick(fn) {
-        this.el.addEventListener("click", fn);
-        return this;
-    }
-
-    pad(n) {
-        return n < 10 ? "0" + n : n;
-    }
-
     setType(type) {
+        this.el.inputType = type;
         if (type === "date") {
             type = "text";
             this.el.readOnly = true;
@@ -57,13 +41,13 @@ export default class Input extends BaseComponent {
                             const month = selectedDate.getMonth();
                             const year = selectedDate.getFullYear();
                             if (this.el.dateFormat === "dd-mm-yyyy") {
-                                this.setValue(this.pad(date) + "-" + this.pad(month + 1) + "-" + year);
+                                this.setValue(BaseInput.pad(date) + "-" + BaseInput.pad(month + 1) + "-" + year);
                             } else if (this.el.dateFormat === "mm-dd-yyyy") {
-                                this.setValue(this.pad(month + 1) + "-" + this.pad(date) + "-" + year);
+                                this.setValue(BaseInput.pad(month + 1) + "-" + BaseInput.pad(date) + "-" + year);
                             } else if (this.el.dateFormat === "mm/dd/yyyy") {
-                                this.setValue(this.pad(month + 1) + "/" + this.pad(date) + "/" + year);
+                                this.setValue(BaseInput.pad(month + 1) + "/" + BaseInput.pad(date) + "/" + year);
                             } else {
-                                this.setValue(this.pad(date) + "/" + this.pad(month + 1) + "/" + year);
+                                this.setValue(BaseInput.pad(date) + "/" + BaseInput.pad(month + 1) + "/" + year);
                             }
                         }
                     }
@@ -91,18 +75,9 @@ export default class Input extends BaseComponent {
         return this;
     }
 
-    getPlaceholder() {
-        return this.el.placeholder;
-    }
-
     setPlaceholder(placeholder) {
         this.placeholder = this.el.required ? placeholder + "*" : placeholder;
         this.el.placeholder = this.placeholder;
-        return this;
-    }
-
-    onInput(fn) {
-        this.el.addEventListener("input", fn);
         return this;
     }
 
@@ -116,29 +91,11 @@ export default class Input extends BaseComponent {
         return this;
     }
 
-    getValue() {
-        return this.el.value;
-    }
-
-    setMaxLength(maxLength) {
-        this.el.maxLength = maxLength;
-        return this;
-    }
-
-    getMaxLength() {
-        return this.el.maxLength;
-    }
-
     setRequired(required) {
         if (required) {
             this.setPlaceholder(this.getPlaceholder() + "*");
         }
         this.el.required = required;
-        return this;
-    }
-
-    setDateFormat(dateFormat) {
-        this.el.dateFormat = dateFormat;
         return this;
     }
 
