@@ -13,6 +13,7 @@ export default class ListItem extends BaseComponent {
         this.centerDiv = document.createElement("div");
         this.rightDiv = document.createElement("div");
         this.isTouching = false;
+        this.el.isEnabled = true;
 
         this.addClass("ww-list-item");
         BaseComponent.addClass(this.leftDiv, "ww-list-item__left");
@@ -44,75 +45,83 @@ export default class ListItem extends BaseComponent {
         };
 
         this.el.handleTouchStart = () => {
-            this.el.setAttribute("data-active", "");
-            this.getLeftDiv().setAttribute("data-active", "");
-            this.getCenterDiv().setAttribute("data-active", "");
-            this.getRightDiv().setAttribute("data-active", "");
+            if (this.el.isEnabled) {
+                this.el.setAttribute("data-active", "");
+                this.getLeftDiv().setAttribute("data-active", "");
+                this.getCenterDiv().setAttribute("data-active", "");
+                this.getRightDiv().setAttribute("data-active", "");
 
-            // HACK FOR IOS
-            let previousSibling = this.el.previousElementSibling;
-            if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
-                this.isTouching = true;
-                let gradients = {
-                    start: "#FFFFFF",
-                    end: "#FFFFFF"
-                };
+                // HACK FOR IOS
+                let previousSibling = this.el.previousElementSibling;
+                if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                    this.isTouching = true;
+                    let gradients = {
+                        start: "#FFFFFF",
+                        end: "#FFFFFF"
+                    };
 
-                anime({
-                    targets: gradients,
-                    start: "#FFFFFF",
-                    end: "#D3D3D3",
-                    duration: 200,
-                    easing: "easeOutExpo",
-                    update: (a) => {
-                        if (this.isTouching) {
-                            let value = a.animations[1].currentValue;
-                            previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                    anime({
+                        targets: gradients,
+                        start: "#FFFFFF",
+                        end: "#D3D3D3",
+                        duration: 200,
+                        easing: "easeOutExpo",
+                        update: (a) => {
+                            if (this.isTouching) {
+                                let value = a.animations[1].currentValue;
+                                previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                // END OF HACK
             }
-            // END OF HACK
         };
 
         this.el.handleTouchEnd = () => {
-            this.el.removeAttribute("data-active");
-            this.getLeftDiv().removeAttribute("data-active");
-            this.getCenterDiv().removeAttribute("data-active");
-            this.getRightDiv().removeAttribute("data-active");
+            if (this.el.isEnabled) {
+                this.el.removeAttribute("data-active");
+                this.getLeftDiv().removeAttribute("data-active");
+                this.getCenterDiv().removeAttribute("data-active");
+                this.getRightDiv().removeAttribute("data-active");
 
-            // HACK FOR IOS
-            let previousSibling = this.el.previousElementSibling;
-            if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
-                this.isTouching = false;
-                let gradients = {
-                    start: "#FFFFFF",
-                    end: "#FFFFFF"
-                };
+                // HACK FOR IOS
+                let previousSibling = this.el.previousElementSibling;
+                if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
+                    this.isTouching = false;
+                    let gradients = {
+                        start: "#FFFFFF",
+                        end: "#FFFFFF"
+                    };
 
-                anime({
-                    targets: gradients,
-                    start: "#FFFFFF",
-                    end: "#FFFFFF",
-                    duration: 200,
-                    easing: "easeOutExpo",
-                    complete: () => {
-                        previousSibling.style.backgroundImage = "none";
-                    },
-                    update: (a) => {
-                        if (!this.isTouching) {
-                            let value = a.animations[1].currentValue;
-                            previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                    anime({
+                        targets: gradients,
+                        start: "#FFFFFF",
+                        end: "#FFFFFF",
+                        duration: 200,
+                        easing: "easeOutExpo",
+                        complete: () => {
+                            previousSibling.style.backgroundImage = "none";
+                        },
+                        update: (a) => {
+                            if (!this.isTouching) {
+                                let value = a.animations[1].currentValue;
+                                previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                // END OF HACK
             }
-            // END OF HACK
         };
     }
 
     onClick(fn) {
-        this.el.addEventListener("click", fn);
+        this.el.addEventListener("click", () => {
+            if (this.el.isEnabled) {
+                fn();
+            }
+        });
         return this;
     }
 
@@ -212,6 +221,18 @@ export default class ListItem extends BaseComponent {
 
     show() {
         this.css("display", "flex");
+        return this;
+    }
+
+    disable() {
+        this.addClass("ww-list-item--disable");
+        this.el.isEnabled = false;
+        return this;
+    }
+
+    enable() {
+        this.removeClass("ww-list-item--disable");
+        this.el.isEnabled = true;
         return this;
     }
 }

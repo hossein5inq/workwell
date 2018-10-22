@@ -208,3 +208,12 @@ $list-item-left-padding-material: 16;
   background: none;
   animation-name: none;
 }
+
+.ww-list-item--disable {
+  .ww-list-item__title {
+    color: #989898;
+  }
+  .ww-list-item__subtitle {
+    color: #CBCBCB;
+  }
+}
