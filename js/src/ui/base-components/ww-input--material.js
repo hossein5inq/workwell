@@ -1,8 +1,10 @@
 import BaseComponent from "./ww-base-component";
+import BaseInput from "./ww-base-input";
 import anime from "animejs";
 import {get, getLocale} from "../i18n";
+import {showDateTimePicker} from "../../bridge/sdk";
 
-export default class InputMaterial extends BaseComponent {
+export default class InputMaterial extends BaseInput {
 
     constructor(type = "text") {
         super("div");
@@ -12,6 +14,7 @@ export default class InputMaterial extends BaseComponent {
         this.labelColor = "#a5a5a5";
         this.borderColor = "#c6c6c6";
         this.el.required = false;
+        this.el.dateFormat = "dd/mm/yyyy";
 
         this.el.inputSubContainer = document.createElement("div");
         this.inputSubContainerCenterPart = document.createElement("div");
@@ -20,6 +23,7 @@ export default class InputMaterial extends BaseComponent {
         this.el.input = document.createElement("input");
         this.assistiveText = document.createElement("div");
         this.el.hasBeenAttached = false;
+        this.el.inputType = type;
 
         this.labelContainer.appendChild(this.el.label);
         this.inputSubContainerCenterPart.appendChild(this.labelContainer);
@@ -38,7 +42,9 @@ export default class InputMaterial extends BaseComponent {
         this.setType(type);
 
         this.el.input.addEventListener("focus", () => {
-            this.onFocusAnimation();
+            if (this.el.inputType !== "date") {
+                this.onFocusAnimation();
+            }
         });
 
         this.el.input.addEventListener("blur", () => {
@@ -94,22 +100,34 @@ export default class InputMaterial extends BaseComponent {
         });
     }
 
-    disable() {
-        this.el.setAttribute("disabled", "");
-        return this;
-    }
-
-    enable() {
-        this.el.removeAttribute("disabled");
-        return this;
-    }
-
-    onClick(fn) {
-        this.el.addEventListener("click", fn);
-        return this;
-    }
-
     setType(type) {
+        this.el.inputType = type;
+        if (type === "date") {
+            type = "text";
+            this.el.input.readOnly = true;
+            this.onClick(() => {
+                showDateTimePicker({
+                    maxDate: 1000000000000000000,
+                    success: (res) => {
+                        if (res && res.date) {
+                            const selectedDate = new Date(res.date * 1000);
+                            const date = selectedDate.getDate();
+                            const month = selectedDate.getMonth();
+                            const year = selectedDate.getFullYear();
+                            if (this.el.dateFormat === "dd-mm-yyyy") {
+                                this.setValue(BaseInput.pad(date) + "-" + BaseInput.pad(month + 1) + "-" + year);
+                            } else if (this.el.dateFormat === "mm-dd-yyyy") {
+                                this.setValue(BaseInput.pad(month + 1) + "-" + BaseInput.pad(date) + "-" + year);
+                            } else if (this.el.dateFormat === "mm/dd/yyyy") {
+                                this.setValue(BaseInput.pad(month + 1) + "/" + BaseInput.pad(date) + "/" + year);
+                            } else {
+                                this.setValue(BaseInput.pad(date) + "/" + BaseInput.pad(month + 1) + "/" + year);
+                            }
+                        }
+                    }
+                });
+            });
+        }
         this.el.input.type = type;
         if (type === "number") {
             this.el.input.pattern = "[0-9]*";
@@ -124,10 +142,6 @@ export default class InputMaterial extends BaseComponent {
             });
         }
         return this;
-    }
-
-    getPlaceholder() {
-        return this.el.placeholder;
     }
 
     setPlaceholder(placeholder) {
@@ -147,11 +161,6 @@ export default class InputMaterial extends BaseComponent {
         return this;
     }
 
-    onInput(fn) {
-        this.el.addEventListener("input", fn);
-        return this;
-    }
-
     setValue(value) {
         this.el.input.value = value;
         if (this.el.hasBeenAttached) {
@@ -164,17 +173,8 @@ export default class InputMaterial extends BaseComponent {
         return this;
     }
 
-    getValue() {
-        return this.el.input.value;
-    }
-
-    setMaxLength(maxLength) {
-        this.el.input.maxLength = maxLength;
-        return this;
-    }
-
-    getMaxLength() {
-        return this.el.input.maxLength;
+    getElement() {
+        return this.el.input;
     }
 
     setRequired(required) {

@@ -302,6 +302,12 @@ This function sets the value of the input's assistive text (Android-only, will d
 
 - `value` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the value of the assistive text
 
+### setDateFormat
+
+This function sets the format of the input's date that is going to be displayed in the input (once the date is selected).
+
+- `dateFormat` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the date's format (can be 'dd/mm/yyyy'(default)|'dd-mm-yyyy'|'mm/dd/yyyy'|'mm-dd-yyyy')
+
 ### setHeader
 
 This function adds a header to the input, the same header-like as the list can have (iOS-only). For Android, it will also work as the setPlaceholder method.
@@ -330,7 +336,7 @@ This function sets the value of the input's placeholder.
 
 This function sets the type of the input.
 
-- `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the type of the input (can be 'text'(default)|'number')
+- `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the type of the input (can be 'text'(default)|'number'|'date')
 
 ### setValue
 
