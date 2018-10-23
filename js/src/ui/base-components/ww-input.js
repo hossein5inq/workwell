@@ -31,7 +31,6 @@ export default class Input extends BaseInput {
             this.el.readOnly = true;
             this.onClick(() => {
                 this.el.blur();
-                this.setPlaceholder("");
                 showDateTimePicker({
                     maxDate: 1000000000000000000,
                     success: (res) => {
@@ -49,6 +48,7 @@ export default class Input extends BaseInput {
                             } else {
                                 this.setValue(BaseInput.pad(date) + "/" + BaseInput.pad(month + 1) + "/" + year);
                             }
+                            this.el.focus();
                         }
                     }
                 });
