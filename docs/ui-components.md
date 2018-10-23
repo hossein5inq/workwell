@@ -424,6 +424,14 @@ This function adds an element to the right of the <b>ListItem</b>.
 
 - `el` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** a Javascript Object
 
+### disable
+
+This function disables the item and so the onClick or onTap methods don't work anymore, also the fonts are lighter.
+
+### enable
+
+This function enables the item and so the onClick or onTap methods work (if any were associated to the item), also the fonts are back to normal.
+
 ### hide
 
 This function hides the item.
