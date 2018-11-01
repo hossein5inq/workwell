@@ -8,7 +8,8 @@ const i18n = {
         "add-photo": "Add Photo",
         "add-another-photo": "Add Another Photo",
         "remove-photo": "Remove",
-        "replace-photo": "Replace"
+        "replace-photo": "Replace",
+        "choose-image-error": "There was an error ! Please retry choosing an image."
     },
     fr: {
         "cancel-search-input": "Annuler",
@@ -16,7 +17,8 @@ const i18n = {
         "add-photo": "Ajouter une photo",
         "add-another-photo": "Ajouter une photo",
         "remove-photo": "Supprimer",
-        "replace-photo": "Remplacer"
+        "replace-photo": "Remplacer",
+        "choose-image-error": "Une erreur est survenue ! Veuillez choisir une image à nouveau."
     }
 };
 
