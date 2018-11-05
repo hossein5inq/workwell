@@ -9,7 +9,7 @@ const i18n = {
         "add-another-photo": "Add Another Photo",
         "remove-photo": "Remove",
         "replace-photo": "Replace",
-        "choose-image-error": "There was an error ! Please retry choosing an image."
+        "choose-image-error": "There was an error! Please retry choosing an image."
     },
     fr: {
         "cancel-search-input": "Annuler",
