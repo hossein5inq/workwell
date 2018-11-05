@@ -1,7 +1,29 @@
 import {createJSONFrom} from "./engine";
 import {sendFromJS} from "./bridge";
+import {get, getLocale} from "../ui/i18n";
+
+export function showMessage(message, type) {
+    let obj = {};
+    obj.data = {
+        message: message,
+        type: type
+    };
+    const jsonObj = createJSONFrom("ui", "toastMessage", obj);
+    sendFromJS(JSON.stringify(jsonObj));
+}
 
 export function chooseImage(obj) {
+    if (obj.success) {
+        let fn = obj.success;
+        obj.success = function (res) {
+            if (res === null) {
+                showMessage(get(getLocale(), "choose-image-error"), "error");
+            } else {
+                fn(res);
+            }
+        };
+    }
+
     const jsonObj = createJSONFrom("ui", "chooseImage", obj);
     sendFromJS(JSON.stringify(jsonObj));
 }

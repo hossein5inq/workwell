@@ -134,13 +134,7 @@ export function showDateTimePicker(obj) {
 }
 
 export function showMessage(message, type) {
-    let obj = {};
-    obj.data = {
-        message: message,
-        type: type
-    };
-    const jsonObj = createJSONFrom("ui", "toastMessage", obj);
-    sendFromJS(JSON.stringify(jsonObj));
+    sdk.showMessage(message, type);
 }
 
 export function showNativeLoader() {
