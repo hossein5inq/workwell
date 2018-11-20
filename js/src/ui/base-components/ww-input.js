@@ -35,7 +35,7 @@ export default class Input extends BaseInput {
                 // backspace
                 this.el.currentNumber = new Big(this.el.currentNumber).div(new Big("10.00"));
             } else {
-                if (String(Math.floor(this.el.currentNumber)).length < this.getMaxLength()) {
+                if (this.getMaxLength() === -1 || (this.getMaxLength() > -1 && String(Math.floor(this.el.currentNumber)).length < this.getMaxLength())) {
                     this.el.currentNumber = new Big(this.el.currentNumber).times(new Big("10.00"));
                     let enteredNumber = new Big(parseInt(String.fromCharCode(ev.keyCode)));
                     this.el.currentNumber = this.el.currentNumber.add(new Big(enteredNumber.div(new Big("100.00"))));
