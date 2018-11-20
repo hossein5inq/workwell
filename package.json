@@ -1,6 +1,6 @@
 {
   "name": "workwell",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Workwell JS is the SDK to communicate between a web-application and the Workwell mobile application",
   "main": "dist/js/workwell.js",
   "scripts": {
@@ -32,7 +32,8 @@
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-watch": "^4.3.1",
     "sinon": "^1.17.7",
-    "velocity-animate": "1.5.0"
+    "velocity-animate": "1.5.0",
+    "big": "^0.5.2"
   },
   "repository": {
     "type": "git",

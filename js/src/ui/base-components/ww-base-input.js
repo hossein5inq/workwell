@@ -1,6 +1,11 @@
 import BaseComponent from "./ww-base-component";
 
 export default class BaseInput extends BaseComponent {
+
+    constructor(type = "text") {
+        super(type);
+    }
+
     static pad(n) {
         return n < 10 ? "0" + n : "" + n;
     }
@@ -25,7 +30,7 @@ export default class BaseInput extends BaseComponent {
     }
 
     onInput(fn) {
-        this.el.addEventListener("input", fn);
+        this.getElement().addEventListener("input", fn);
         return this;
     }
 

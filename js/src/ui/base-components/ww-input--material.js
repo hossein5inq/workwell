@@ -14,7 +14,6 @@ export default class InputMaterial extends BaseInput {
         this.labelColor = "#a5a5a5";
         this.borderColor = "#c6c6c6";
         this.el.required = false;
-        this.el.dateFormat = "dd/mm/yyyy";
 
         this.el.inputSubContainer = document.createElement("div");
         this.inputSubContainerCenterPart = document.createElement("div");
@@ -23,7 +22,6 @@ export default class InputMaterial extends BaseInput {
         this.el.input = document.createElement("input");
         this.assistiveText = document.createElement("div");
         this.el.hasBeenAttached = false;
-        this.el.inputType = type;
 
         this.labelContainer.appendChild(this.el.label);
         this.inputSubContainerCenterPart.appendChild(this.labelContainer);
@@ -38,8 +36,6 @@ export default class InputMaterial extends BaseInput {
         BaseComponent.addClass(this.labelContainer, "ww-input__label-container");
         BaseComponent.addClass(this.assistiveText, "ww-input__assistive-text");
         BaseComponent.addClass(this.el.input, "ww-input");
-
-        this.setType(type);
 
         this.el.input.addEventListener("focus", () => {
             if (this.el.inputType !== "date") {
@@ -62,6 +58,8 @@ export default class InputMaterial extends BaseInput {
             }
             this.el.hasBeenAttached = true;
         };
+
+        this.setType(type);
     }
 
     onFocusAnimation() {
@@ -100,46 +98,58 @@ export default class InputMaterial extends BaseInput {
         });
     }
 
+    addDateTypeHack() {
+        this.el.dateFormat = "dd/mm/yyyy";
+        this.el.input.type = "text";
+        this.el.input.readOnly = true;
+        this.onClick(() => {
+            showDateTimePicker({
+                maxDate: 1000000000000000000,
+                success: (res) => {
+                    if (res && res.date) {
+                        const selectedDate = new Date(res.date * 1000);
+                        const date = selectedDate.getDate();
+                        const month = selectedDate.getMonth();
+                        const year = selectedDate.getFullYear();
+                        if (this.el.dateFormat === "dd-mm-yyyy") {
+                            this.setValue(BaseInput.pad(date) + "-" + BaseInput.pad(month + 1) + "-" + year);
+                        } else if (this.el.dateFormat === "mm-dd-yyyy") {
+                            this.setValue(BaseInput.pad(month + 1) + "-" + BaseInput.pad(date) + "-" + year);
+                        } else if (this.el.dateFormat === "mm/dd/yyyy") {
+                            this.setValue(BaseInput.pad(month + 1) + "/" + BaseInput.pad(date) + "/" + year);
+                        } else {
+                            this.setValue(BaseInput.pad(date) + "/" + BaseInput.pad(month + 1) + "/" + year);
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    addDecimalTypeHack() {
+        this.el.input.type = "number";
+        this.el.input.inputmode = "numeric";
+        this.el.input.pattern = "[0-9]*";
+
+        this.onInput(() => {
+            // maxLength doesn't work with 'number' type so this is a little hack
+            if (this.getMaxLength() > -1) {
+                // -1 is the default value of the maxLength (if nothing was set)
+                if (String(Math.floor(this.getValue())).length > this.getMaxLength()) {
+                    this.setValue(this.getValue().slice(0, this.getMaxLength()));
+                }
+            }
+        });
+    }
+
     setType(type) {
         this.el.inputType = type;
         if (type === "date") {
-            type = "text";
-            this.el.input.readOnly = true;
-            this.onClick(() => {
-                showDateTimePicker({
-                    maxDate: 1000000000000000000,
-                    success: (res) => {
-                        if (res && res.date) {
-                            const selectedDate = new Date(res.date * 1000);
-                            const date = selectedDate.getDate();
-                            const month = selectedDate.getMonth();
-                            const year = selectedDate.getFullYear();
-                            if (this.el.dateFormat === "dd-mm-yyyy") {
-                                this.setValue(BaseInput.pad(date) + "-" + BaseInput.pad(month + 1) + "-" + year);
-                            } else if (this.el.dateFormat === "mm-dd-yyyy") {
-                                this.setValue(BaseInput.pad(month + 1) + "-" + BaseInput.pad(date) + "-" + year);
-                            } else if (this.el.dateFormat === "mm/dd/yyyy") {
-                                this.setValue(BaseInput.pad(month + 1) + "/" + BaseInput.pad(date) + "/" + year);
-                            } else {
-                                this.setValue(BaseInput.pad(date) + "/" + BaseInput.pad(month + 1) + "/" + year);
-                            }
-                        }
-                    }
-                });
-            });
-        }
-        this.el.input.type = type;
-        if (type === "number") {
-            this.el.input.pattern = "[0-9]*";
-            this.el.input.inputmode = "numeric";
-            this.onInput(() => {
-                // maxLength doesn't work with 'number' type so this is a little hack
-                if (this.getMaxLength() > -1) {
-                    // -1 is the default value of the maxLength (if nothing was set)
-                    if (this.getValue().length > this.getMaxLength())
-                        this.setValue(this.getValue().slice(0, this.getMaxLength()));
-                }
-            });
+            this.addDateTypeHack();
+        } else if (type === "number" || type === "decimal") {
+            this.addDecimalTypeHack();
+        } else if (type === "text") {
+            this.el.input.type = type;
         }
         return this;
     }
