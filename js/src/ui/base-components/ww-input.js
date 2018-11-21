@@ -130,6 +130,9 @@ export default class Input extends BaseInput {
     }
 
     setValue(value) {
+        if (this.el.inputType === "decimal") {
+            this.el.currentNumber = value;
+        }
         this.el.value = value;
         if (value === "") {
             // To fix safari-mobile issue
