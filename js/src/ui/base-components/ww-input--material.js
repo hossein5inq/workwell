@@ -45,6 +45,14 @@ export default class InputMaterial extends BaseInput {
 
         this.el.input.addEventListener("blur", () => {
             if (this.el.input.value.trim() === "") {
+
+                // hack for android keyboard that returns an empty value for an input that actually has a value (that is not a number)
+                if (this.el.input.type === "number") {
+                    if (this.el.currentNumber && this.el.currentNumber.trim() !== "") {
+                        return;
+                    }
+                }
+
                 this.onBlurAnimation();
             }
         });
@@ -130,8 +138,20 @@ export default class InputMaterial extends BaseInput {
         this.el.input.type = "number";
         this.el.input.inputmode = "numeric";
         this.el.input.pattern = "[0-9]*";
+        this.el.currentNumber = "";
+
+        this.el.addEventListener("keydown", (ev) => {
+            this.el.currentNumber += String.fromCharCode(ev.keyCode);
+        });
 
         this.onInput(() => {
+            let numberAsTab = this.getValue().split(".");
+
+            if (numberAsTab[1]) {
+                // numberAsTab[1] is the decimal value of the number
+                this.setValue(numberAsTab[0] + "." + numberAsTab[1].substr(0, 2));
+            }
+
             // maxLength doesn't work with 'number' type so this is a little hack
             if (this.getMaxLength() > -1) {
                 // -1 is the default value of the maxLength (if nothing was set)
