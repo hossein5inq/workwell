@@ -16,7 +16,7 @@ export function chooseImage(obj) {
     if (obj.success) {
         let fn = obj.success;
         obj.success = function (res) {
-            if (res === null) {
+            if (typeof res === "undefined" || res === null) {
                 showMessage(get(getLocale(), "choose-image-error"), "error");
             } else {
                 fn(res);
