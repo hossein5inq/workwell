@@ -6,24 +6,24 @@ export default class ListItem extends BaseComponent {
 
     constructor() {
         super("li");
-        this.leftAdded = false;
-        this.centerAdded = false;
-        this.rightAdded = false;
-        this.leftDiv = document.createElement("div");
-        this.centerDiv = document.createElement("div");
-        this.rightDiv = document.createElement("div");
-        this.isTouching = false;
+        this.el.leftAdded = false;
+        this.el.centerAdded = false;
+        this.el.rightAdded = false;
+        this.el.leftDiv = document.createElement("div");
+        this.el.centerDiv = document.createElement("div");
+        this.el.rightDiv = document.createElement("div");
+        this.el.isTouching = false;
         this.el.isEnabled = true;
 
         this.addClass("ww-list-item");
-        BaseComponent.addClass(this.leftDiv, "ww-list-item__left");
-        BaseComponent.addClass(this.centerDiv, "ww-list-item__center");
-        BaseComponent.addClass(this.rightDiv, "ww-list-item__right");
+        BaseComponent.addClass(this.el.leftDiv, "ww-list-item__left");
+        BaseComponent.addClass(this.el.centerDiv, "ww-list-item__center");
+        BaseComponent.addClass(this.el.rightDiv, "ww-list-item__right");
 
         this.el.onAttachedToDom = () => {
-            let leftChildren = this.leftDiv.childNodes;
-            let centerChildren = this.centerDiv.childNodes;
-            let rightChildren = this.rightDiv.childNodes;
+            let leftChildren = this.el.leftDiv.childNodes;
+            let centerChildren = this.el.centerDiv.childNodes;
+            let rightChildren = this.el.rightDiv.childNodes;
 
             for (let i = 0; i < leftChildren.length; i++) {
                 if (leftChildren[i].hasOwnProperty("onAttachedToDom")) {
@@ -54,7 +54,7 @@ export default class ListItem extends BaseComponent {
                 // HACK FOR IOS
                 let previousSibling = this.el.previousElementSibling;
                 if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
-                    this.isTouching = true;
+                    this.el.isTouching = true;
                     let gradients = {
                         start: "#FFFFFF",
                         end: "#FFFFFF"
@@ -67,7 +67,7 @@ export default class ListItem extends BaseComponent {
                         duration: 200,
                         easing: "easeOutExpo",
                         update: (a) => {
-                            if (this.isTouching) {
+                            if (this.el.isTouching) {
                                 let value = a.animations[1].currentValue;
                                 previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
                             }
@@ -88,7 +88,7 @@ export default class ListItem extends BaseComponent {
                 // HACK FOR IOS
                 let previousSibling = this.el.previousElementSibling;
                 if (previousSibling && getMobileOperatingSystem() === "ios" && BaseComponent.hasClass(previousSibling, "ww-list-item")) {
-                    this.isTouching = false;
+                    this.el.isTouching = false;
                     let gradients = {
                         start: "#FFFFFF",
                         end: "#FFFFFF"
@@ -104,7 +104,7 @@ export default class ListItem extends BaseComponent {
                             previousSibling.style.backgroundImage = "none";
                         },
                         update: (a) => {
-                            if (!this.isTouching) {
+                            if (!this.el.isTouching) {
                                 let value = a.animations[1].currentValue;
                                 previousSibling.style.backgroundImage = "linear-gradient(0deg, " + value + " 0%, " + value + " 100%)";
                             }
@@ -139,79 +139,79 @@ export default class ListItem extends BaseComponent {
     }
 
     addToCenter(el) {
-        if (!this.centerAdded) {
-            this.centerAdded = true;
-            this.el.appendChild(this.centerDiv);
+        if (!this.el.centerAdded) {
+            this.el.centerAdded = true;
+            this.el.appendChild(this.el.centerDiv);
         }
         if (typeof el.toHTMLElement === "function") {
             // the method is defined
-            this.centerDiv.appendChild(el.toHTMLElement());
+            this.el.centerDiv.appendChild(el.toHTMLElement());
         } else {
-            this.centerDiv.appendChild(el);
+            this.el.centerDiv.appendChild(el);
         }
         return this;
 
     }
 
     addToRight(el) {
-        if (!this.rightAdded) {
-            this.rightAdded = true;
-            this.el.appendChild(this.rightDiv);
+        if (!this.el.rightAdded) {
+            this.el.rightAdded = true;
+            this.el.appendChild(this.el.rightDiv);
         }
         if (typeof el.toHTMLElement === "function") {
             // the method is defined
-            this.rightDiv.appendChild(el.toHTMLElement());
+            this.el.rightDiv.appendChild(el.toHTMLElement());
         } else {
-            this.rightDiv.appendChild(el);
+            this.el.rightDiv.appendChild(el);
         }
         return this;
     }
 
     addToLeft(el) {
-        if (!this.leftAdded) {
-            this.leftAdded = true;
-            this.el.appendChild(this.leftDiv);
+        if (!this.el.leftAdded) {
+            this.el.leftAdded = true;
+            this.el.appendChild(this.el.leftDiv);
         }
         if (typeof el.toHTMLElement === "function") {
             // the method is defined
-            this.leftDiv.appendChild(el.toHTMLElement());
+            this.el.leftDiv.appendChild(el.toHTMLElement());
         } else {
-            this.leftDiv.appendChild(el);
+            this.el.leftDiv.appendChild(el);
         }
         return this;
     }
 
     getLeftDiv() {
-        if (!this.leftAdded) {
+        if (!this.el.leftAdded) {
             // case when it's coming from dom-html (ui.js) file (not dynamically created)
-            this.leftAdded = true;
+            this.el.leftAdded = true;
             let leftDivElements = this.el.getElementsByClassName("ww-list-item__left");
             if (leftDivElements.length > 0)
-                this.leftDiv = leftDivElements[0];
+                this.el.leftDiv = leftDivElements[0];
         }
-        return this.leftDiv;
+        return this.el.leftDiv;
     }
 
     getCenterDiv() {
-        if (!this.centerAdded) {
+        if (!this.el.centerAdded) {
             // case when it's coming from dom-html (ui.js) file (not dynamically created)
-            this.centerAdded = true;
+            this.el.centerAdded = true;
             let centerDivElements = this.el.getElementsByClassName("ww-list-item__center");
             if (centerDivElements.length > 0)
-                this.centerDiv = centerDivElements[0];
+                this.el.centerDiv = centerDivElements[0];
         }
-        return this.centerDiv;
+        return this.el.centerDiv;
     }
 
     getRightDiv() {
-        if (!this.rightAdded) {
+        if (!this.el.rightAdded) {
             // case when it's coming from dom-html (ui.js) file (not dynamically created)
-            this.rightAdded = true;
+            this.el.rightAdded = true;
             let rightDivElements = this.el.getElementsByClassName("ww-list-item__right");
             if (rightDivElements.length > 0)
-                this.rightDiv = rightDivElements[0];
+                this.el.rightDiv = rightDivElements[0];
         }
-        return this.rightDiv;
+        return this.el.rightDiv;
     }
 
     hide() {
