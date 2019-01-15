@@ -7,7 +7,7 @@ Please find below the endpoints that you can use to interact with Workwell API.
 Using the `user access token` obtained from [getUserAccessToken](js-sdk.md#getuseraccesstoken), you can call workwell API to get the user's information:
 
 ```bash
-curl -X GET "http://api.workwell.io/1.0/developer/service/user_info" \
+curl -X GET "https://api.workwell.io/1.0/developer/service/user_info" \
 	-H "accept: application/json" \
 	-H "ww-service-id: {service_id}" \
 	-H "ww-service-signature: {service_signature}" \
